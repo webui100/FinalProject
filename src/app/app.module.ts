@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatIconModule, MatGridListModule } from "@angular/material";
+import { MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatCheckboxModule, MatIconModule, 
+  MatGridListModule, MatTableModule } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +25,7 @@ import { TeachersComponent } from './teachers/teachers.component';
     MatButtonModule,
     MatCheckboxModule,
     MatGridListModule,
+    MatTableModule,
     BrowserAnimationsModule,
     MatIconModule,
     FormsModule,
