@@ -1,5 +1,3 @@
-
-import { ErrorService } from './../services/error.service';
 import { AuthService } from "./../services/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
