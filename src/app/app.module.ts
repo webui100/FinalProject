@@ -11,11 +11,13 @@ import { AppComponent } from "./app.component";
 import { LoginComponent } from "./login/login.component";
 import { httpInterceptorProviders } from './http-interceptor';
 import { TeachersComponent } from './teachers/teachers.component';
+import { AdminComponent } from './admin/admin.component';
+import { StudentsComponent } from './students/students.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, TeachersComponent],
+  declarations: [AppComponent, LoginComponent, TeachersComponent, AdminComponent, StudentsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

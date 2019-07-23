@@ -1,4 +1,3 @@
-import { TeachersService } from './../services/teachers.service';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -8,19 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teachers.component.scss']
 })
 export class TeachersComponent implements OnInit {
-  constructor(private teachers: TeachersService) { }
-  teachersList = [];
+  constructor() { }
 
-  getTeachers(){
-    this.teachers.getTeachers().subscribe(response =>{
-      //@ts-ignore
-      this.teachersList = response.data
-    })
-  }
 
- ngOnInit() {
-  this.getTeachers()
-  
-  }
+
+
+ ngOnInit() {    }
 
 }
