@@ -1,4 +1,4 @@
-import { ShareService } from "./../share.service";
+import { BASE_URI } from "../api.constant";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
@@ -12,13 +12,12 @@ import { catchError, map, tap } from "rxjs/operators";
 export class AuthService {
   constructor(
     private http: HttpClient,
-    private URL: ShareService,
     private router: Router
   ) {}
 
   signIn(userData) {
     this.http
-      .post(this.URL.BASE_URI + "signin", userData, {
+      .post(BASE_URI + "signin", userData, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
           Accept: "*/*"
