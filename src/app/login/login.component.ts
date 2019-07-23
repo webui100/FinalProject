@@ -1,6 +1,6 @@
-import { AuthService } from "./../services/auth.service";
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { AuthService } from '../services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
       username: this.login.get("password").value
     };
 
-    if(this.login.valid){
-    this.auth.signIn(data)
-    }else{
+    if (this.login.valid) {
+      this.auth.signIn(data)
+    } else {
       this.error = "Введіть логін та пароль"
     }
   }
