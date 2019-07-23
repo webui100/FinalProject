@@ -9,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeachersComponent implements OnInit {
   constructor(private teachers: TeachersService) { }
-  teachersList;
-  ngOnInit() {
-    this.teachersList = this.teachers.getTeachers();
+  teachersList = [];
+
+  getTeachers(){
+    this.teachers.getTeachers().subscribe(response =>{
+      //@ts-ignore
+      this.teachersList = response.data
+    })
+  }
+
+ ngOnInit() {
+  this.getTeachers()
+  
   }
 
 }

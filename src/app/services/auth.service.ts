@@ -1,39 +1,41 @@
+import { ShareService } from './../share.service';
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Router } from "@angular/router";
-
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
-  token;
-
-  _URI = "http://35.228.86.127:8080/";
   
   constructor(private http: HttpClient,
-              private router: Router) {}
-  login(login, password) {
-    const data = JSON.stringify({
-      password: login,
-      username: password
-    });
+              private URL: ShareService) {}
+  
+  
 
+  signIn(userData) : Observable<any>{
     return this.http
-      .post(this._URI + "signin", data, {
+      .post(this.URL.BASE_URI + "signin", userData, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
           "Accept": "*/*"
         }),
         observe: "response",
         responseType: "json"
-      })
-      .subscribe(response => {
-        if (response.status == 204) {
-          this.token = response.headers.get("Authorization");
-          localStorage.setItem('token', this.token);
-          this.router.navigate(["/teachers"]);
-        }
-      });
+      }).pipe(catchError(this.handleError<any[]>('signed in', [])));
+    } 
+
+  signOut(){
+    localStorage.removeItem('token');
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console instead
+      // this.log(`${operation} failed: ${error.message}`);
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }

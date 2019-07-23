@@ -20,9 +20,10 @@
         <div class="button">
           <button type="submit" mat-flat-button>Sign In</button>
         </div>
+        <p [hidden]="!error" class="error">
+          {{ error }}
+        </p>
       </form>
-      <p *ngIf="error" class="error">
-        {{ error }}
-      </p>
+     
 
 </div>

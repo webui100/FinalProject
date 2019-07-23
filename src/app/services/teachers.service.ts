@@ -1,25 +1,26 @@
+import { ShareService } from './../share.service';
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: "root"
 })
 export class TeachersService {
-  _URI = "http://35.228.86.127:8080/";
-  teachersList;
+  constructor(private http: HttpClient,
+              private URL: ShareService) {}
 
-  constructor(private http: HttpClient) {}
 
   getTeachers() {
     return this.http
-      .get(this._URI + "teachers", {
-        responseType: "json"
-      })
-      .subscribe(response => {
-        //@ts-ignore
-        this.teachersList = response.data;
-        console.log(this.teachersList);
-        return this.teachersList
-      });
+      .get(this.URL.BASE_URI + "teachers", {
+        responseType: "json",
+      }).pipe(
+        tap(response => {
+          //@ts-ignore
+          return response.data;
+         
+        })
+      )
   }
 }

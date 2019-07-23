@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ErrorService } from './../services/error.service';
 import { AuthService } from "./../services/auth.service";
 import { Component, OnInit } from "@angular/core";
@@ -12,8 +13,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class LoginComponent implements OnInit {
   token;
   error;
-  constructor(private auth: AuthService, 
-              private errorMessage: ErrorService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   login: FormGroup = new FormGroup({
     username: new FormControl("", Validators.required),
@@ -23,11 +23,20 @@ export class LoginComponent implements OnInit {
   onSubmit(event) {
     event.preventDefault();
 
-    let username = this.login.get("username").value;
-    let password = this.login.get("password").value;
-    
+    const data = JSON.stringify({
+      password: this.login.get("username").value,
+      username: this.login.get("password").value
+    });
+
     if(this.login.valid){
-    this.auth.login(username, password)
+    this.auth.signIn(data)
+      .subscribe(response => {
+        let token = response.headers.get('Authorization')
+        localStorage.setItem('token', token);
+        this.router.navigate(["/teachers"]);
+      })
+    }else{
+      this.error = "Введіть логін та пароль"
     }
   }
 
