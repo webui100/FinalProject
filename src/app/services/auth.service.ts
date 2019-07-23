@@ -1,4 +1,4 @@
-import { BASE_URI } from "../api.constant";
+import { environment } from './../../environments/environment';
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
@@ -14,10 +14,12 @@ export class AuthService {
     private http: HttpClient,
     private router: Router
   ) {}
+  
+  private BASE_URI = environment.APIEndpoint
 
   signIn(userData) {
     this.http
-      .post(BASE_URI + "signin", userData, {
+      .post(this.BASE_URI + "signin", userData, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
           Accept: "*/*"
