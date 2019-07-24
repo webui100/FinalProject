@@ -1,32 +1,34 @@
 import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import * as jwt_decode from '../../../node_modules/jwt-decode';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
-// import { selectLogin } from '../store/login/login.selector';
+import { selectLogin } from '../store/login/login.selector';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  userData: Observable<object>;
+  userData$: Observable<string>;
+  userData: string;
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private store: Store<{ user }>
   ) {
-    this.userData = store.pipe(select('user'));
+    this.userData$ = store.pipe(select('user'));
   }
 
   private BASE_URI = environment.APIEndpoint;
 
 
   signIn(userData) {
+    this.userData$.subscribe(data => this.userData = data);
     console.log(this.userData);
     this.http
       .post(this.BASE_URI + "signin", userData, {
