@@ -5,6 +5,8 @@ import { MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, Mat
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { loginReducer } from './store/login/login.reducer';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -32,7 +34,10 @@ import { StudentsComponent } from './students/students.component';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({
+      login: loginReducer
+    })
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

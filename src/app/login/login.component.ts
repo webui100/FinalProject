@@ -1,7 +1,10 @@
-import { AuthService } from '../services/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from "../services/auth.service";
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { login } from '../store/login/login.actions';
 
 @Component({
   selector: "webui-login",
@@ -10,9 +13,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   error: string;
-  constructor(private auth: AuthService) {}
+  // userData: Observable<object>;
 
-  login: FormGroup = new FormGroup({
+  constructor(
+    private auth: AuthService,
+    private store: Store<{ login: object }>
+  ) {
+    // this.userData = store.pipe(select('login'));
+  }
+
+    login: FormGroup = new FormGroup({
     username: new FormControl("", Validators.required),
     password: new FormControl("", Validators.required)
   });
@@ -20,10 +30,14 @@ export class LoginComponent implements OnInit {
   onSubmit(event): void {
     event.preventDefault();
 
-    const data: object = {
+    const data: { username: string, password: string } = {
       password: this.login.get("username").value,
       username: this.login.get("password").value
     };
+
+    this.store.dispatch(login(data));
+
+    // console.log(this.userData);
 
     if (this.login.valid) {
       this.auth.signIn(data)
@@ -32,5 +46,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }
