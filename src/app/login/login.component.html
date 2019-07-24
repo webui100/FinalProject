@@ -1,29 +1,35 @@
 <div class="background">
+  <form [formGroup]="login" (ngSubmit)="onSubmit($event)">
+    <h1 class="mat-h1 mat-headline">Login</h1>
+    <p>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Login"
+          formControlName="username"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+    </p>
 
+    <p>
+      <mat-form-field>
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          formControlName="password"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+    </p>
 
-      <form [formGroup]="login" (ngSubmit)="onSubmit($event)">
-        <h1 class="mat-h1 mat-headline">Login</h1>
-        <p>
-          <mat-form-field>
-            <input type="text" matInput placeholder="Login" formControlName="username" >
-            <mat-icon matSuffix>lock</mat-icon>
-          </mat-form-field>
-        </p>
-  
-        <p>
-          <mat-form-field>
-            <input type="password" matInput placeholder="Password" formControlName="password">
-            <mat-icon matSuffix>lock</mat-icon>
-          </mat-form-field>
-        </p>
-  
-        <div class="button">
-          <button type="submit" mat-flat-button>Sign In</button>
-        </div>
-        <p [hidden]="!error" class="error">
-          {{ error }}
-        </p>
-      </form>
-     
-
+    <div class="button">
+      <button type="submit" mat-flat-button>Sign In</button>
+    </div>
+    <p [hidden]="!error" class="error">
+      {{ error }}
+    </p>
+  </form>
 </div>

@@ -1,9 +1,6 @@
 import { AuthService } from '../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-
-import { login } from '../store/login/login.actions';
 
 @Component({
   selector: 'webui-login',
@@ -13,10 +10,7 @@ import { login } from '../store/login/login.actions';
 export class LoginComponent implements OnInit {
   error: string;
 
-  constructor(
-    private auth: AuthService,
-    private store: Store<{ login: object }>
-  ) {}
+  constructor(private auth: AuthService) {}
 
   login: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -32,13 +26,11 @@ export class LoginComponent implements OnInit {
     };
 
     if (this.login.valid) {
-      this.store.dispatch(login(data));
-      this.auth.signIn();
+      this.auth.signIn(data);
     } else {
       this.error = 'Введіть логін та пароль';
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

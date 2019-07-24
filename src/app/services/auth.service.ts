@@ -6,7 +6,7 @@ import * as jwt_decode from '../../../node_modules/jwt-decode';
 // import { Observable } from 'rxjs';
 // import { catchError, map, tap } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
-// import { selectLogin } from '../store/login/login.selector';
+import { login } from '../store/login/login.actions';
 
 
 @Injectable({
@@ -25,12 +25,7 @@ export class AuthService {
 
   private BASE_URI = environment.APIEndpoint;
 
-  signIn() {
-    const userData = {
-      username: this.userData.actionsObserver._value.username,
-      password: this.userData.actionsObserver._value.password,
-    };
-
+  signIn(userData) {
     this.http
       .post(this.BASE_URI + 'signin', userData, {
         headers: new HttpHeaders({
@@ -42,7 +37,10 @@ export class AuthService {
       .subscribe(response => {
         const token = response.headers.get('Authorization');
         const decode_token = jwt_decode(token).Roles.authority;
+
         localStorage.setItem('token', token);
+
+        this.store.dispatch(login({role: decode_token}));
 
         if (decode_token === 'ROLE_ADMIN') {
           this.router.navigate(['/admin']);
@@ -51,6 +49,9 @@ export class AuthService {
         } else if (decode_token === 'ROLE_TEACHER') {
           this.router.navigate(['/teachers']);
         }
+
+        // Можливо існує кращий спосіб діставання даних з стору
+        console.log(this.userData.actionsObserver._value.role);
       });
   }
 
