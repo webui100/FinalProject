@@ -4,6 +4,7 @@ import { LoginComponent } from "./login/login.component";
 import { TeachersComponent } from "./teachers/teachers.component";
 import { StudentsComponent } from './students/students.component';
 import { AdminComponent } from './admin/admin.component';
+import {TemporaryComponent} from './temporary/temporary.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,30 @@ const routes: Routes = [
   },
   {
     path: "admin",
-    component: AdminComponent
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'pupils',
+        pathMatch: 'full'
+      },
+      {
+        path: 'pupils',
+        component: TemporaryComponent
+      },
+      {
+        path: 'teachers',
+        component: TemporaryComponent
+      },
+      {
+        path: 'subjects',
+        component: TemporaryComponent
+      },
+      {
+        path: 'classes',
+        component: TemporaryComponent
+      }
+    ]
   }
 ];
 

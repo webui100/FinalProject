@@ -11,7 +11,11 @@ import {
   MatGridListModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
+  MatCommonModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatBadgeModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +32,9 @@ import { TeachersComponent } from './teachers/teachers.component';
 import { AdminComponent } from './admin/admin.component';
 import { StudentsComponent } from './students/students.component';
 import { reducers, metaReducers } from './store';
+import {MainNavComponent} from './components/main-nav/main-nav.component';
+import {MatListModule} from '@angular/material';
+import { TemporaryComponent } from './temporary/temporary.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +42,16 @@ import { reducers, metaReducers } from './store';
     LoginComponent,
     TeachersComponent,
     AdminComponent,
-    StudentsComponent
+    StudentsComponent,
+    MainNavComponent,
+    TemporaryComponent
   ],
   imports: [
+    MatListModule,
+    MatCommonModule,
+    MatBadgeModule,
+    MatToolbarModule,
+    MatSidenavModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
