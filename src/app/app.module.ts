@@ -9,7 +9,9 @@ import {
   MatCheckboxModule,
   MatIconModule,
   MatGridListModule,
-  MatTableModule
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,6 +40,10 @@ import { reducers, metaReducers } from './store';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
@@ -45,11 +51,9 @@ import { reducers, metaReducers } from './store';
     MatCheckboxModule,
     MatGridListModule,
     MatTableModule,
-    BrowserAnimationsModule,
+    MatPaginatorModule,
     MatIconModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    MatSortModule,
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {
