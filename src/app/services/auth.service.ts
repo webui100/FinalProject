@@ -7,20 +7,21 @@ import * as jwt_decode from '../../../node_modules/jwt-decode';
 // import { catchError, map, tap } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 import { login } from '../store/login/login.actions';
+import { selectRole } from '../store/login/login.selectors';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  userData: any;
+  role$: any;
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private store: Store<{ user }>
   ) {
-    this.userData = store.pipe(select('user'));
+    this.role$ = this.store.pipe(select(selectRole));
   }
 
   private BASE_URI = environment.APIEndpoint;
@@ -51,7 +52,7 @@ export class AuthService {
         }
 
         // Можливо існує кращий спосіб діставання даних з стору
-        console.log(this.userData.actionsObserver._value.role);
+        console.log(this.role$.actionsObserver._value.role);
       });
   }
 
