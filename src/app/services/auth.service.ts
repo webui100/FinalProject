@@ -15,6 +15,7 @@ import { selectRole } from '../store/login/login.selectors';
 })
 export class AuthService {
   role$: any;
+  role: any;
 
   constructor(
     private http: HttpClient,
@@ -37,22 +38,22 @@ export class AuthService {
       })
       .subscribe(response => {
         const token = response.headers.get('Authorization');
-        const decode_token = jwt_decode(token).Roles.authority;
+        const decodeToken = jwt_decode(token).Roles.authority;
 
         localStorage.setItem('token', token);
 
-        this.store.dispatch(login({role: decode_token}));
+        this.store.dispatch(login({role: decodeToken}));
 
-        if (decode_token === 'ROLE_ADMIN') {
+        if (decodeToken === 'ROLE_ADMIN') {
           this.router.navigate(['/admin']);
-        } else if (decode_token === 'ROLE_USER') {
+        } else if (decodeToken === 'ROLE_USER') {
           this.router.navigate(['/students']);
-        } else if (decode_token === 'ROLE_TEACHER') {
+        } else if (decodeToken === 'ROLE_TEACHER') {
           this.router.navigate(['/teachers']);
         }
 
-        // Можливо існує кращий спосіб діставання даних з стору
-        console.log(this.role$.actionsObserver._value.role);
+        this.role$.subscribe((data) => this.role = data);
+        console.log(this.role);
       });
   }
 
