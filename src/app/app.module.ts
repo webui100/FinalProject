@@ -35,6 +35,7 @@ import { reducers, metaReducers } from './store';
 import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {MatListModule} from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
+import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { TemporaryComponent } from './temporary/temporary.component';
     AdminComponent,
     StudentsComponent,
     MainNavComponent,
-    TemporaryComponent
+    TemporaryComponent,
+    StudentDiaryComponent
   ],
   imports: [
     MatListModule,
