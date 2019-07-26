@@ -3,6 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import links from './links';
+import { Router } from '@angular/router';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'webui-main-nav',
@@ -36,6 +38,6 @@ export class MainNavComponent implements OnInit {
     }
   }
 
-  constructor(public breakpointObserver: BreakpointObserver) {}
+  constructor(public breakpointObserver: BreakpointObserver, private router:Router, private http: AuthService) {}
 
 }

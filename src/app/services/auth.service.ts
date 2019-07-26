@@ -59,7 +59,17 @@ export class AuthService {
       });
   }
 
-  // signOut() {
-  //   localStorage.removeItem('token');
-  // }
+  signOut() {
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
+  }
+
+  refreshToken() {
+    return this.http.get(this.BASE_URI + 'refresh', {observe: 'response'}).subscribe(
+      response => {
+        const newToken = response.headers.get('Authorization');
+        localStorage.setItem('token', newToken);
+      }, err => console.log(err + 'Your token is still old =)')
+    )
+  }
 }
