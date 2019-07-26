@@ -8,6 +8,7 @@ import * as jwt_decode from '../../../node_modules/jwt-decode';
 import { Store, select } from '@ngrx/store';
 import { login } from '../store/login/login.actions';
 import { selectRole } from '../store/login/login.selectors';
+import {tap} from "rxjs/operators";
 
 
 @Injectable({
@@ -57,7 +58,17 @@ export class AuthService {
       });
   }
 
-  // signOut() {
-  //   localStorage.removeItem('token');
-  // }
+  signOut() {
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
+  }
+
+  refreshToken() {
+    return this.http.get(this.BASE_URI + 'refresh', {observe: 'response'}).subscribe(
+      response => {
+        const newToken = response.headers.get('Authorization');
+        localStorage.setItem('token', newToken);
+      }, err => console.log(err + 'Your token is still old =)')
+    )
+  }
 }
