@@ -46,3 +46,11 @@ mat-nav-list i {
 .active {
   color: #f04d36;
 }
+
+.button-container {
+  justify-content: flex-end;
+}
+
+.button-container button {
+  margin-left: 10px;
+}
