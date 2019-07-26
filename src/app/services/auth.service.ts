@@ -77,7 +77,7 @@ export class AuthService {
     )
   }
 
-  loggedIn(){
+  loggedIn() {
     return !!localStorage.getItem('token')
   }
 }

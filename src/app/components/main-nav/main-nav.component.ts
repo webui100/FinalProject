@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import links from './links';
 import { Router } from '@angular/router';
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'webui-main-nav',
