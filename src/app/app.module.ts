@@ -15,7 +15,9 @@ import {
   MatCommonModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatSelectModule,
+  MatExpansionModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,6 +37,7 @@ import { reducers, metaReducers } from './store';
 import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {MatListModule} from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
+import { ScheduleComponent } from './admin/schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { TemporaryComponent } from './temporary/temporary.component';
     AdminComponent,
     StudentsComponent,
     MainNavComponent,
-    TemporaryComponent
+    TemporaryComponent,
+    ScheduleComponent
   ],
   imports: [
     MatListModule,
@@ -68,6 +72,8 @@ import { TemporaryComponent } from './temporary/temporary.component';
     MatPaginatorModule,
     MatIconModule,
     MatSortModule,
+    MatSelectModule,
+    MatExpansionModule,
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {
