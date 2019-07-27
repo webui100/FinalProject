@@ -22,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { loginReducer } from './store/login/login.reducer';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,8 +32,8 @@ import { TeachersComponent } from './teachers/teachers.component';
 import { AdminComponent } from './admin/admin.component';
 import { StudentsComponent } from './students/students.component';
 import { reducers, metaReducers } from './store';
-import {MainNavComponent} from './components/main-nav/main-nav.component';
-import {MatListModule} from '@angular/material';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { MatListModule } from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
 import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
 
@@ -55,6 +55,7 @@ import { StudentDiaryComponent } from './components/student-diary/student-diary.
     MatToolbarModule,
     MatSidenavModule,
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

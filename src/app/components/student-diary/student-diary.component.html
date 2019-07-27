@@ -1,1 +1,31 @@
-<p>student-diary works!</p>
+<button (click)="showDiary()" mat-raised-button color="primary">Diary</button>
+
+<div class="diary">
+
+  <div *ngFor="let day of weekDays; index as i" class="day-in-diary day-{{i + 1}}">
+    <mat-card>
+      <mat-card-title>{{day}}</mat-card-title>
+
+      <table>
+        <tr>
+          <th>№</th>
+          <th>Урок</th>
+          <th>Домашнє завдання</th>
+          <th>Оцінка</th>
+          <th>Примітка</th>
+        </tr>
+        <tr>
+          <td>{{diary.data[i].lessonNumber}}</td>
+          <td>{{diary.data[i].subjectName}}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+      </table>
+
+    </mat-card>
+  </div>
+
+</div>
+

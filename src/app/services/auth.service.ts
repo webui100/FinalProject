@@ -52,8 +52,8 @@ export class AuthService {
           this.router.navigate(['/teachers']);
         }
 
-        this.role$.subscribe((data) => this.role = data);
-        console.log(this.role);
+        this.role$.subscribe(data => this.role = data);
+        console.log('ROLE from store --- ', this.role);
       });
   }
 
