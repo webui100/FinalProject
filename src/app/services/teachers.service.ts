@@ -26,9 +26,6 @@ export class TeachersService {
     });
   }
 
-  ngOnDestroy(): void {
-    this.getTeachers().unsubscribe();
-  }
   ngOnInit(): void {
   }
 }

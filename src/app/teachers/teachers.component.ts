@@ -23,7 +23,7 @@ export class TeachersComponent implements OnInit {
     this.data$ = this.store.pipe(select(selectAll));
   }
 
-  displayedColumns: string[] = [
+  private displayedColumns: string[] = [
     "firstname",
     "lastname",
     "patronymic",
@@ -52,10 +52,5 @@ export class TeachersComponent implements OnInit {
 
   ngOnInit() {
     this.getTeachers();
-  }
-
-  ngOnDestroy(): void {
-    this.data$.unsubscribe()
-    
   }
 }
