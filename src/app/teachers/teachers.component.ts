@@ -6,6 +6,8 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
 import { selectAll } from "../store/teachers/teachers.selector";
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { share, map } from 'rxjs/operators';
 
 @Component({
   selector: "webui-teachers",
@@ -18,7 +20,7 @@ export class TeachersComponent implements OnInit {
 
   constructor(
     private teachers: TeachersService,
-    private store: Store<{ teachers }>
+    private store: Store<{ teachers }>,
   ) {
     this.data$ = this.store.pipe(select(selectAll));
   }
@@ -27,7 +29,9 @@ export class TeachersComponent implements OnInit {
     "firstname",
     "lastname",
     "patronymic",
-    "dateOfBirth"
+    "dateOfBirth",
+    "details",
+    "edit"
   ];
   private teachersList: any;
 

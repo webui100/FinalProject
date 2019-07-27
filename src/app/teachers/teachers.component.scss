@@ -1,42 +1,46 @@
-:host{
+$base-background: #673ab7;
+
+%flex-center {
   display: flex;
-  flex-direction: column;
   justify-content: center;
 }
 
-.table-container{
-  width: 90%;
+:host {
+  @extend %flex-center;
+  flex-direction: column;
+}
+
+.table-container {
+  width: 100%;
   display: flex;
   align-self: center;
   flex-direction: column;
 }
-h3{
+
+h3 {
+  @extend %flex-center;
   text-align: center;
-  display: flex;
   width: 100%;
-  justify-content: center;
 }
-.mat-form-field{
+.mat-form-field {
+  @extend %flex-center;
   width: 300px !important;
-  display: flex;
   align-self: center;
-  justify-content: center;
   margin: 1rem;
   font-size: 1rem;
 }
-.header{
+.header {
   display: flex;
-  background-color: #673AB7;
+  background-color: $base-background;
   width: 90%;
   color: white;
   padding: 1rem 0;
   align-self: center;
   margin-top: 1rem;
-  border-radius: 10px;
   text-align: center;
 }
 
-h3{
+h3 {
   font-size: 1.5rem;
   font-weight: 500;
 }
@@ -44,17 +48,38 @@ h3{
 table {
   width: 100%;
 
-  td, th {
+  td,
+  th {
     width: 25%;
-    padding: 1rem;
+    padding: 0.1rem;   
   }
+  td {
+      font-size: 12px;
+    }
 }
 
 th.mat-sort-header-sorted {
   color: black;
 }
 
+.mat-icon{
+  cursor: pointer
+}
+
 .mat-form-field {
   font-size: 14px;
   width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  .table-container {
+    width: 90%;
+  }
+  td,
+  th {
+    padding: 1rem !important;
+  }
+  td {
+    font-size: 14px !important;
+  }
 }
