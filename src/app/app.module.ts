@@ -17,7 +17,8 @@ import {
   MatToolbarModule,
   MatBadgeModule,
   MatSelectModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatAutocompleteModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -74,6 +75,7 @@ import { ScheduleComponent } from './admin/schedule/schedule.component';
     MatSortModule,
     MatSelectModule,
     MatExpansionModule,
+    MatAutocompleteModule,
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {

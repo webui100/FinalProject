@@ -14,7 +14,7 @@ export class TeachersService {
 
   constructor(private http: HttpClient) { }
 
-  getTeachers(): Observable<any>{
-    return this.http.get(this.BASE_URI + "teachers");
+  getTeachers(): Observable<any> {
+    return this.http.get(this.BASE_URI + 'teachers');
   }
 }
