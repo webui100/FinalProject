@@ -1,6 +1,6 @@
 $font-color: #fff;
 $half-dark: rgba(
-  $color: #3762D3,
+  $color: #3762d3,
   $alpha: 1
 );
 
@@ -30,7 +30,7 @@ figure {
   margin: 0.6rem;
   align-self: center;
   text-align: center;
-  margin-top: -10% !important;
+  margin-top: -20% !important;
 }
 
 .substrate {
@@ -73,12 +73,17 @@ mat-form-field {
 
       color: $font-color;
     }
+    &:disabled {
+      background-color: #cccccc;
+      color: #666666;
+    }
   }
 }
 
 @media only screen and (min-width: 576px) {
   .form-block {
     margin: 5rem;
+    margin-top: -10% !important;
   }
   .substrate {
     width: auto;

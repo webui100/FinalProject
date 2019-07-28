@@ -9,7 +9,7 @@
         <p>
           <mat-form-field>
             <input type="text" matInput placeholder="Login" formControlName="username" />
-            <mat-icon matSuffix>lock</mat-icon>
+            <mat-icon matSuffix>person</mat-icon>
           </mat-form-field>
         </p>
 
@@ -21,7 +21,7 @@
         </p>
 
         <div class="button">
-          <button type="submit" mat-flat-button>Sign In</button>
+          <button type="submit" mat-flat-button [disabled]="!login.valid">Sign In</button>
         </div>
         <p [hidden]="!error" class="error">
           {{ error }}
