@@ -19,6 +19,7 @@ export class StudentDiaryComponent implements OnInit {
     'Четвер',
     'П\'ятниця'
   ];
+  dayNumbers: number[];
 
   constructor(
     private studentDiary: StudentDiaryService,
@@ -28,12 +29,17 @@ export class StudentDiaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    const date = new Date();
-    const weekDaysPassed = date.getDay() - 1;
+    const date = new Date(2019, 4, 17);
+    const weekDaysPassed = date.getDay() > 0 ? date.getDay() - 1 : date.getDay() + 6;
     date.setDate(date.getDate() - weekDaysPassed);
+
     const year = date.getFullYear();
     const month = date.getMonth() < 10 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`;
     const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`;
+
+    const dayNumbers = [];
+    this.weekDays.map((item, i) => dayNumbers.push(+day + i));
+    this.dayNumbers = dayNumbers;
 
     this.studentDiary.fetchStudentDiary(`${year}-${month}-${day}`);
     this.diary$.subscribe(data => this.diary = data.diary);
@@ -42,5 +48,6 @@ export class StudentDiaryComponent implements OnInit {
   showDiary() {
     console.log(this.diary);
     console.log(this.weekDays);
+    console.log(this.dayNumbers);
   }
 }

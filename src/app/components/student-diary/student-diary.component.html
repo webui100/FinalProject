@@ -14,14 +14,15 @@
           <th>Оцінка</th>
           <th>Примітка</th>
         </tr>
-        <tr>
-          <td>{{diary.data[i].lessonNumber}}</td>
-          <td>{{diary.data[i].subjectName}}</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-
+        <ng-container *ngFor="let data of diary.data; index as num">
+          <tr *ngIf="data.date[2] == dayNumbers[i]">
+            <td>{{diary.data[num].lessonNumber}}</td>
+            <td>{{diary.data[num].subjectName}}</td>
+            <td></td>
+            <td>{{data.date[2]}}</td>
+            <td></td>
+          </tr>
+        </ng-container>
       </table>
 
     </mat-card>
