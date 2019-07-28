@@ -13,10 +13,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "teachers",
-    component: TeachersComponent
-  },
-  {
     path: "students",
     component: StudentsComponent
   },
@@ -35,7 +31,7 @@ const routes: Routes = [
       },
       {
         path: 'teachers',
-        component: TemporaryComponent
+        component: TeachersComponent
       },
       {
         path: 'subjects',
