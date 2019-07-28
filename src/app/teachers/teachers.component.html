@@ -2,12 +2,11 @@
     <h3>Список вчителів</h3>
 </div>
 
-
 <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Пошук" class="search-input">
 </mat-form-field>
-<div class="mat-elevation-z5 table-container">
 
+<div class="mat-elevation-z5 table-container">
     <table mat-table [dataSource]="teachersList" multiTemplateDataRows class="mat-elevation-z8" matSort>
         <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> {{dataHeader(column)}} </th>
