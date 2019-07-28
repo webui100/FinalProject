@@ -17,7 +17,6 @@ $base-background: #673ab7;
   flex-direction: column;
 }
 
-
 .mat-form-field {
   @extend %flex-center;
   width: 300px !important;
@@ -41,19 +40,21 @@ $base-background: #673ab7;
   }
 }
 
-
 table {
   width: 100%;
 
-  td,
+  .teacher-row,
   th {
     width: 25%;
-    padding: 0.1rem;   
+    padding: 0.1rem;
+  }
+  .teacher-row:hover{
+    background-color: #e8e8e8;
   }
   td {
-      font-size: 12px;
-    }
-  .mat-header-cell{
+    font-size: 12px;
+  }
+  .mat-header-cell {
     padding: 0.2rem;
   }
 }
@@ -62,8 +63,8 @@ th.mat-sort-header-sorted {
   color: black;
 }
 
-.mat-icon{
-  cursor: pointer
+.mat-icon {
+  cursor: pointer;
 }
 
 .mat-form-field {
@@ -76,7 +77,7 @@ th.mat-sort-header-sorted {
   display: flex;
 }
 .teacher-row {
-  padding: 0.2rem;
+ padding: 0.2rem;
 }
 
 .teacher-row td {
@@ -86,9 +87,27 @@ tr.teacher-detail-row {
   height: 0;
   padding: 0 !important;
 }
+.teacher-diagram {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 
+  & .diagram-block-1,
+    .diagram-block-2{
+      display: flex;
 
-
+      & > div{
+        padding: 0.5rem 0.2rem;
+      }
+    }
+}
+.bold-text{
+  font-weight: 600;
+}
+.last-element{
+  padding: 0.5rem 0.2rem;
+}
 
 @media only screen and (min-width: 600px) {
   .table-container {
@@ -108,7 +127,7 @@ tr.teacher-detail-row {
   .teacher-row td {
     padding: 1rem !important;
   }
-  .mat-header-cell{
+  .mat-header-cell {
     padding: 1rem !important;
   }
 }
