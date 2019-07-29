@@ -18,7 +18,7 @@ export interface State {
   teachers: TeachersState;
 }
 
-export const reducers: ActionReducerMap<State> = {
+export const reducers: ActionReducerMap<any> = {
   user: loginReducer,
   errors: errorReducer,
   schedule: scheduleReducer, // +

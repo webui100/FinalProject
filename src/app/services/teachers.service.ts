@@ -22,7 +22,7 @@ export class TeachersService {
     return this.http.get(`${this.BASE_URI}teachers`)
     .subscribe(response => {
       // @ts-ignore
-      this.store.dispatch(teacherAction({ data: response.data }));
+      this.store.dispatch(teacherAction(response.data));
     });
   }
 

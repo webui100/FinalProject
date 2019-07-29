@@ -1,8 +1,8 @@
-import { Action, createReducer, on } from "@ngrx/store";
-import * as TeacherData from "./teachers.action";
+import { Action, createReducer, on } from '@ngrx/store';
+import * as TeacherData from './teachers.action';
 
 export interface State {
-  data: Array<Object>;
+  data: Array<object>;
 }
 
 export const initialState: State = {
@@ -11,10 +11,13 @@ export const initialState: State = {
 
 const reducer = createReducer(
   initialState,
-  on(TeacherData.teacherAction, (state, { data }) => ({
+  on(TeacherData.teacherAction, (state, { data }) => {
+    console.log(data, state, {...state, data});
+    return ({
     ...state,
     data
-  }))
+  });
+})
 );
 
 export function teachersDataReducer(state: State | undefined, action: Action) {

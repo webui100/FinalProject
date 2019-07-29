@@ -7,7 +7,10 @@ import { tap, startWith, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import initialSchedule from './initial-schedule';
-import { getMatScrollStrategyAlreadyAttachedError } from '@angular/cdk/overlay/typings/scroll/scroll-strategy';
+import { selectRole } from 'src/app/store/login/login.selectors';
+import { selectTeachers } from 'src/app/store/teachers/teachers.selector';
+
+// import { reducers } from '../../store/index';
 
 @Component({
   selector: 'webui-schedule',
@@ -26,6 +29,7 @@ export class ScheduleComponent implements OnInit {
   chosenClass = new FormControl();
   year = new FormControl();
   teachers: string[] = [];
+  teachersTemp = [];
   terms: string[] = ['1', '2'];
   classes: string[] = ['1-А', '2-Б', '3-В'];
   years: number[] = [];
@@ -35,18 +39,33 @@ export class ScheduleComponent implements OnInit {
   filteredClasses: Observable<string[]>;
   filteredYears: Observable<string[]>;
 
+  // teachersFromStore$: Observable <any>;
+
   constructor(private schedule: ScheduleService,
-    private teachersObj: TeachersService) { }
+              private teachersObj: TeachersService,
+              private store: Store<{ teachers }>) { }
 
   ngOnInit() {
+
+    this.store.select(selectTeachers)
+      .subscribe(
+        res =>  console.log(res.data)
+      );
+
+    // this.teachersTemp.forEach(teacher => console.log(teacher)
+    //   // this.teachers.push(
+    //   // `${teacher.lastname} ${teacher.firstname} ${teacher.patronymic} ${teacher.id}`
+    // );
+
+
     this.dataSourse = new MatTableDataSource(this.data);
-    this.schedule.getSchedule(15).subscribe(res => console.log(res.data.classId));
-    this.teachersObj.getTeachers()
-      .pipe(
-        tap(res => res.data.forEach(teacher => this.teachers.push(
-          `${teacher.lastname} ${teacher.firstname} ${teacher.patronymic} ${teacher.id}`
-        ))))
-      .subscribe();
+    this.schedule.getSchedule(16); // .subscribe(res => console.log(res.data.classId));
+    this.teachersObj.getTeachers();
+    // .pipe(
+    //   tap(res => res.data.forEach(teacher => this.teachers.push(
+    //     `${teacher.lastname} ${teacher.firstname} ${teacher.patronymic} ${teacher.id}`
+    //   ))))
+    // .subscribe();
     if (!this.years.length) {
       for (let i = -5; i <= 5; i++) {
         this.years.push((this.currentYear + i));
@@ -81,10 +100,9 @@ export class ScheduleComponent implements OnInit {
 
   private _filter(value: string, arr: any[]): string[] {
     const filterValue = value.toLowerCase();
-    if (typeof(arr[0]) === 'number') {
+    if (typeof (arr[0]) === 'number') {
       arr.map((item, index) => arr[index] = item.toString());
     }
-    console.log(typeof(arr[0]));
     return arr.filter(option => option.toLowerCase().includes(filterValue));
   }
 

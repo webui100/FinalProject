@@ -5,9 +5,11 @@ import { State as ScheduleState } from './schedule.reducer';
 
 export const selectSchedule = (state: AppState) => state.schedule;
 
-export const selectScheduleData = (state: ScheduleState) => state.schedule;
+export const selectScheduleId = (state: ScheduleState) => state.id;
+// export const selectScheduleData = (state: ScheduleState) => state.data;
 
-export const selectRole = createSelector(
+export const selectS = createSelector(
   selectSchedule,
-  selectScheduleData
+  selectScheduleId,
+  // selectScheduleData
 );

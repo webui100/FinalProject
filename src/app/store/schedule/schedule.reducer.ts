@@ -2,19 +2,24 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as Schedule from './schedule.actions';
 
 export interface State {
-  schedule: {};
+  id: number;
+  data: Array<any>;
 }
 
 export const initialState: State = {
-    schedule: {}
+  id: null,
+  data: null
 };
 
 const reducer = createReducer(
   initialState,
-  on(Schedule.getSchedule, (state, { schedule }) => ({
+  on(Schedule.getSchedule, (state, { id }) => {
+    console.log(id, state, {...state, id});
+    return ({
     ...state,
-    schedule
-  }))
+    id
+  });
+})
 );
 
 export function scheduleReducer(state: State | undefined, action: Action) {
