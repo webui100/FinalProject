@@ -13,6 +13,7 @@ export class MainNavComponent implements OnInit {
 
   public isOpened = true;
   public linksSet = links;
+  public handset: boolean;
 
   isHandset$: Observable<boolean>;
 
@@ -23,7 +24,16 @@ export class MainNavComponent implements OnInit {
         share()
       );
 
-    this.isHandset$.subscribe(isHandset => this.isOpened = !isHandset);
+    this.isHandset$.subscribe(isHandset => {
+      this.isOpened = !isHandset;
+      this.handset = isHandset;
+    });
+  }
+
+  closeOnLink() {
+    if (this.handset) {
+      this.isOpened = false;
+    }
   }
 
   constructor(public breakpointObserver: BreakpointObserver) {}

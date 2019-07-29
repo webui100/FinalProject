@@ -37,7 +37,6 @@ import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {MatListModule} from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
 import {ErrorService} from './services/error.service';
-import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -47,8 +46,7 @@ import { ErrorComponent } from './components/error/error.component';
     AdminComponent,
     StudentsComponent,
     MainNavComponent,
-    TemporaryComponent,
-    ErrorComponent
+    TemporaryComponent
   ],
   imports: [
     MatListModule,
