@@ -1,7 +1,20 @@
 <button (click)="showDiary()" mat-raised-button color="primary">Diary</button>
 
-<div class="diary">
+<button (click)="selectPreviousWeek()" mat-stroked-button>
+  <mat-icon color="primary">navigate_before</mat-icon>
+</button>
 
+<button (click)="selectNextWeek()" mat-stroked-button>
+  <mat-icon color="primary">navigate_next</mat-icon>
+</button>
+
+<span>{{dayNumbers[0]}} - {{dayNumbers[4]}}</span>
+
+<button (click)="selectCurrentWeek()" mat-stroked-button>
+  Поточний тиждень
+</button>
+
+<div class="diary">
   <div *ngFor="let day of weekDays; index as i" class="day-in-diary day-{{i + 1}}">
     <mat-card>
       <mat-card-title>{{day}}</mat-card-title>
@@ -14,19 +27,18 @@
           <th>Оцінка</th>
           <th>Примітка</th>
         </tr>
+
         <ng-container *ngFor="let data of diary.data; index as num">
           <tr *ngIf="data.date[2] == dayNumbers[i]">
             <td>{{diary.data[num].lessonNumber}}</td>
             <td>{{diary.data[num].subjectName}}</td>
-            <td></td>
-            <td>{{data.date[2]}}</td>
-            <td></td>
+            <td>{{diary.data[num].homeWork}}</td>
+            <td>{{diary.data[num].mark > 0 ? diary.data[num].mark : null}}</td>
+            <td>{{diary.data[num].note}}</td>
           </tr>
         </ng-container>
       </table>
 
     </mat-card>
   </div>
-
 </div>
-
