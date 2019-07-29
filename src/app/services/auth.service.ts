@@ -116,5 +116,9 @@ export class AuthService implements OnDestroy{
   loggedIn(){
     return !!localStorage.getItem('token')
   }
+
+  loggedIn(){
+    return !!localStorage.getItem('token')
+  }
 }
 
