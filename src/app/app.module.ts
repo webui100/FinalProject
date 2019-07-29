@@ -39,7 +39,6 @@ import { MaterialModule } from './modules/material/material.module';
 import { ChartComponent } from './components/chart/chart.component';
 import { AuthInterceptor } from './interseptors/http-interceptor/auth-interceptor';
 
-
 @NgModule({
   declarations: [
     AppComponent,
