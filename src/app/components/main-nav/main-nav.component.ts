@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
-import {Store} from '@ngrx/store';
 import links from './links';
 
 @Component({

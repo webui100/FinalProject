@@ -1,13 +1,21 @@
-import { ErrorHandler, Injectable} from '@angular/core';
+import { ErrorHandler, Injectable, Injector} from '@angular/core';
+import {Store} from '@ngrx/store';
+import * as ErrorActions from '../store/error/error.actions';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class ErrorService implements ErrorHandler {
-  constructor() { }
 
-  handleError(error){
+  constructor(private inject: Injector) {
+
   }
+
+  handleError(error) {
+    const store = this.inject.get(Store);
+
+    store.dispatch(ErrorActions.setErrorAction({error}));
+
+  }
+
 }

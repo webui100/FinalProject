@@ -1,0 +1,10 @@
+<ul class="error-container">
+  <li class="error" *ngFor="let error of errorsArray">
+    {{errorParser(error)}}
+    <span class="error-close" (click)="closeError($event, error)">
+      <i class="material-icons">
+        close
+      </i>
+    </span>
+  </li>
+</ul>

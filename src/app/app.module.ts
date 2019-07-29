@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { environment } from '../environments/environment';
 import {
   MatFormFieldModule,
@@ -15,7 +15,8 @@ import {
   MatCommonModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,6 +36,8 @@ import { reducers, metaReducers } from './store';
 import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {MatListModule} from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
+import {ErrorService} from './services/error.service';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { TemporaryComponent } from './temporary/temporary.component';
     AdminComponent,
     StudentsComponent,
     MainNavComponent,
-    TemporaryComponent
+    TemporaryComponent,
+    ErrorComponent
   ],
   imports: [
     MatListModule,
@@ -68,6 +72,7 @@ import { TemporaryComponent } from './temporary/temporary.component';
     MatPaginatorModule,
     MatIconModule,
     MatSortModule,
+    MatSnackBarModule,
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {
@@ -81,7 +86,11 @@ import { TemporaryComponent } from './temporary/temporary.component';
       logOnly: environment.production // Restrict extension to log-only mode
     })
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    { provide: ErrorHandler, useClass: ErrorService },
+    httpInterceptorProviders
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
