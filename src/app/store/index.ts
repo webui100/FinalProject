@@ -37,10 +37,9 @@ export const reducers: ActionReducerMap<any> = {
   teachers: teachersDataReducer,
   chart: chartReducer,
   currentUser: currentUserReducer,
-  router: routerReducer
+  router: routerReducer,
   subjects: subjectsDataReducer,
   diary: diaryReducer,
-  chart: chartReducer
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production

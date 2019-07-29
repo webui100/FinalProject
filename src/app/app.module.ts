@@ -59,7 +59,7 @@ import { ChartComponent } from './components/chart/chart.component';
     TemporaryComponent,
     CurrentUserComponent,
     HeaderComponent,
-    TeacherComponent
+    TeacherComponent,
     ChartComponent
   ],
   imports: [
