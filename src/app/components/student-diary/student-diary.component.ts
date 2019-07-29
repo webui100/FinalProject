@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-
 import { StudentDiaryService } from '../../services/student-diary.service';
 import { selectDiary } from '../../store/diary/diary.selectors';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'webui-student-diary',
@@ -20,7 +20,8 @@ export class StudentDiaryComponent implements OnInit {
     'П\'ятниця'
   ];
   dayNumbers: number[];
-  currentDate: any = new Date();
+  currentDate = new FormControl(new Date());
+  showDiary: boolean;
 
   constructor(
     private studentDiary: StudentDiaryService,
@@ -30,7 +31,8 @@ export class StudentDiaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    const date = this.currentDate;
+    const date = this.currentDate.value;
+
     const weekDaysPassed = date.getDay() > 0 ? date.getDay() - 1 : date.getDay() + 6;
     date.setDate(date.getDate() - weekDaysPassed);
 
@@ -50,7 +52,10 @@ export class StudentDiaryComponent implements OnInit {
     this.dayNumbers = dayNumbers;
 
     this.studentDiary.fetchStudentDiary(`${year}-${month}-${day}`);
-    this.diary$.subscribe(data => this.diary = data.diary);
+    this.diary$.subscribe(data => {
+      this.diary = data.diary;
+      this.showDiary = !!this.diary.data.length;
+    });
   }
 
   daysInMonth(year, month) {
@@ -58,30 +63,32 @@ export class StudentDiaryComponent implements OnInit {
   }
 
   selectNextWeek() {
-    const year = this.currentDate.getFullYear();
-    const month = this.currentDate.getMonth();
-    const day = this.currentDate.getDate() + 7;
-    this.currentDate = new Date(year, month, day);
+    const year = this.currentDate.value.getFullYear();
+    const month = this.currentDate.value.getMonth();
+    const day = this.currentDate.value.getDate() + 7;
+    this.currentDate = new FormControl(new Date(year, month, day));
     this.ngOnInit();
   }
 
   selectPreviousWeek() {
-    const year = this.currentDate.getFullYear();
-    const month = this.currentDate.getMonth();
-    const day = this.currentDate.getDate() - 7;
-    this.currentDate = new Date(year, month, day);
+    const year = this.currentDate.value.getFullYear();
+    const month = this.currentDate.value.getMonth();
+    const day = this.currentDate.value.getDate() - 7;
+    this.currentDate = new FormControl(new Date(year, month, day));
     this.ngOnInit();
   }
 
   selectCurrentWeek() {
-    this.currentDate = new Date();
+    this.currentDate = new FormControl(new Date());
     this.ngOnInit();
   }
 
-  showDiary() {
-    console.log(this.diary);
-    console.log(this.weekDays);
-    console.log(this.dayNumbers);
-    console.log(this.currentDate);
+  selectDay() {
+    this.ngOnInit();
+  }
+
+  dateFilter(date) {
+    const day = date.getDay();
+    return day === 1;
   }
 }

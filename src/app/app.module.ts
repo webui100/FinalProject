@@ -15,7 +15,9 @@ import {
   MatCommonModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -71,6 +73,8 @@ import { StudentDiaryComponent } from './components/student-diary/student-diary.
     MatPaginatorModule,
     MatIconModule,
     MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {

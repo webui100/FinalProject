@@ -1,20 +1,31 @@
-<button (click)="showDiary()" mat-raised-button color="primary">Diary</button>
+<div class="navigation">
+  <button (click)="selectPreviousWeek()" mat-button>
+    <mat-icon color="primary">navigate_before</mat-icon>
+  </button>
 
-<button (click)="selectPreviousWeek()" mat-stroked-button>
-  <mat-icon color="primary">navigate_before</mat-icon>
-</button>
+  <mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="myDatePicker"
+      [matDatepickerFilter]="dateFilter"
+      [formControl]="currentDate"
+      (dateChange)="selectDay()"
+    >
+    <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #myDatePicker></mat-datepicker>
+  </mat-form-field>
 
-<button (click)="selectNextWeek()" mat-stroked-button>
-  <mat-icon color="primary">navigate_next</mat-icon>
-</button>
+  <button (click)="selectNextWeek()" mat-button>
+    <mat-icon color="primary">navigate_next</mat-icon>
+  </button>
 
-<span>{{dayNumbers[0]}} - {{dayNumbers[4]}}</span>
+  <button class="current-week" (click)="selectCurrentWeek()" mat-stroked-button>
+    Поточний тиждень
+  </button>
+</div>
 
-<button (click)="selectCurrentWeek()" mat-stroked-button>
-  Поточний тиждень
-</button>
 
-<div class="diary">
+<div class="diary" *ngIf="showDiary">
   <div *ngFor="let day of weekDays; index as i" class="day-in-diary day-{{i + 1}}">
     <mat-card>
       <mat-card-title>{{day}}</mat-card-title>
@@ -41,4 +52,8 @@
 
     </mat-card>
   </div>
+</div>
+
+<div *ngIf="!showDiary">
+  <h3>На обрану вами дату розкладу немає. Спробуйте обрати іншу дату.</h3>
 </div>
