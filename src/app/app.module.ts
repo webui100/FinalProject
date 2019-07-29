@@ -35,6 +35,9 @@ import { reducers, metaReducers } from './store';
 import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {MatListModule} from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
+import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModule} from "@ngrx/router-store";
+import {CustomSerializer} from "./store/router.reducer";
+
 
 @NgModule({
   declarations: [
@@ -44,7 +47,7 @@ import { TemporaryComponent } from './temporary/temporary.component';
     AdminComponent,
     StudentsComponent,
     MainNavComponent,
-    TemporaryComponent
+    TemporaryComponent,
   ],
   imports: [
     MatListModule,
@@ -68,6 +71,9 @@ import { TemporaryComponent } from './temporary/temporary.component';
     MatPaginatorModule,
     MatIconModule,
     MatSortModule,
+    StoreRouterConnectingModule.forRoot({
+      navigationActionTiming: NavigationActionTiming.PostActivation,
+    }),
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {
@@ -81,7 +87,10 @@ import { TemporaryComponent } from './temporary/temporary.component';
       logOnly: environment.production // Restrict extension to log-only mode
     })
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders,{
+    provide: RouterStateSerializer,
+    useClass: CustomSerializer
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

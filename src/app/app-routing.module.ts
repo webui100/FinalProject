@@ -5,6 +5,9 @@ import { TeachersComponent } from "./teachers/teachers.component";
 import { StudentsComponent } from './students/students.component';
 import { AdminComponent } from './admin/admin.component';
 import {TemporaryComponent} from './temporary/temporary.component';
+import {AdminGuard} from "./services/guards/admin.guard";
+import {TeacherGuard} from "./services/guards/teacher.guard";
+import {StudentGuard} from "./services/guards/student.guard";
 
 const routes: Routes = [
   {
@@ -12,12 +15,19 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "students",
-    component: StudentsComponent
+    path: 'teachers',
+    component: TeachersComponent,
+    canActivate: [TeacherGuard]
   },
   {
-    path: "admin",
+    path: 'students',
+    component: StudentsComponent,
+    canActivate: [StudentGuard]
+  },
+  {
+    path: 'admin',
     component: AdminComponent,
+    canActivate: [AdminGuard],
     children: [
       {
         path: '',
@@ -46,6 +56,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AdminGuard, TeacherGuard, StudentGuard]
 })
 export class AppRoutingModule {}
