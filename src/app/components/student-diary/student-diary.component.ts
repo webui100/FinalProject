@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { StudentDiaryService } from '../../services/student-diary.service';
 import { selectDiary } from '../../store/diary/diary.selectors';
 import { FormControl } from '@angular/forms';
+import { DateAdapter } from '@angular/material';
 
 @Component({
   selector: 'webui-student-diary',
@@ -25,12 +26,14 @@ export class StudentDiaryComponent implements OnInit {
 
   constructor(
     private studentDiary: StudentDiaryService,
-    private store: Store<{ diary }>
+    private store: Store<{ diary }>,
+    private dateAdapter: DateAdapter<any>
   ) {
     this.diary$ = this.store.pipe(select(selectDiary));
   }
 
   ngOnInit() {
+    this.dateAdapter.setLocale('uk');
     const date = this.currentDate.value;
 
     const weekDaysPassed = date.getDay() > 0 ? date.getDay() - 1 : date.getDay() + 6;

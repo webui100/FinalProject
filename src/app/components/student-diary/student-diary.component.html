@@ -28,7 +28,7 @@
 <div class="diary" *ngIf="showDiary">
   <div *ngFor="let day of weekDays; index as i" class="day-in-diary day-{{i + 1}}">
     <mat-card>
-      <mat-card-title>{{day}}</mat-card-title>
+      <mat-card-title>{{day}}, {{dayNumbers[i]}}</mat-card-title>
 
       <table>
         <tr>
