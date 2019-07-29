@@ -93,11 +93,6 @@ export class AuthService implements OnDestroy{
     }
   }
 
-
-  loggedIn() {
-    return !!localStorage.getItem('token');
-  }
-
   isTokenValid(): boolean {
     const currentToken = localStorage.getItem('token');
     const currentTokenExpirationDate = jwt_decode(currentToken).exp;
@@ -116,6 +111,10 @@ export class AuthService implements OnDestroy{
       takeUntil(this.timerTerminator$)).subscribe(() => {
       return this.refreshTokenManual();
     });
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem('token')
   }
 }
 
