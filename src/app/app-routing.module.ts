@@ -7,19 +7,23 @@ import { StudentsComponent } from './pages/students/students.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 import { StudentDiaryComponent } from './containers/student-diary/student-diary.component';
+import {AdminGuard} from './services/guards/admin.guard';
+import {TeacherGuard} from './services/guards/teacher.guard';
+import {StudentGuard} from './services/guards/student.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
-    path: 'teachers',
-    component: TeachersComponent
+    component: TeachersComponent,
+    canActivate: [TeacherGuard]
   },
   {
     path: 'student',
-    component: StudentsComponent
+    component: StudentsComponent,
+    canActivate: [StudentGuard]
   },
   {
     path: 'student/diary',
@@ -28,6 +32,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AdminGuard],
     children: [
       {
         path: '',
@@ -57,7 +62,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AdminGuard, TeacherGuard, StudentGuard]
 })
 // @ts-ignore
 export class AppRoutingModule {}

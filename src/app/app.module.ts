@@ -29,6 +29,9 @@ import { StudentDiaryComponent } from './containers/student-diary/student-diary.
 import { TeacherCreateComponent } from './containers/teachers/teacher-create/teacher-create.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 import { MaterialModule } from './modules/material/material.module';
+import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {CustomSerializer} from './store/router.reducer';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +60,9 @@ import { MaterialModule } from './modules/material/material.module';
     ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
+    StoreRouterConnectingModule.forRoot({
+      navigationActionTiming: NavigationActionTiming.PostActivation,
+    }),
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {
@@ -71,9 +77,13 @@ import { MaterialModule } from './modules/material/material.module';
     })
   ],
   providers: [
-    { provide: ErrorHandler, useClass: ErrorService },
-    httpInterceptorProviders
-  ],
+    { provide: ErrorHandler,
+      useClass: ErrorService },
+    httpInterceptorProviders,
+    {
+    provide: RouterStateSerializer,
+    useClass: CustomSerializer
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

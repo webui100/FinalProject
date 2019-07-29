@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import * as jwt_decode from '../../../node_modules/jwt-decode';
-// import { Observable } from 'rxjs';
-// import { catchError, map, tap } from 'rxjs/operators';
+
 import { Store, select } from '@ngrx/store';
 import { login } from '../store/login/login.actions';
 import { selectRole } from '../store/login/login.selectors';
@@ -45,6 +44,10 @@ export class AuthService {
 
         this.store.dispatch(login({ role: decodeToken, id: userId }));
 
+
+        this.role$.subscribe((data) => this.role = data);
+        console.log(this.role);
+
         if (decodeToken === 'ROLE_ADMIN') {
           this.router.navigate(['/admin']);
         } else if (decodeToken === 'ROLE_USER') {
@@ -62,6 +65,7 @@ export class AuthService {
   signOut() {
     localStorage.removeItem('token');
     this.router.navigate(['']);
+    this.store.dispatch(login({role: null}));
   }
 
   refreshToken() {
@@ -71,5 +75,9 @@ export class AuthService {
         localStorage.setItem('token', newToken);
       }, err => console.log(err + 'Your token is still old =)')
     )
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem('token')
   }
 }
