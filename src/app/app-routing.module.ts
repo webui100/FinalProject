@@ -39,7 +39,7 @@ const routes: Routes = [
       },
       {
         path: 'teachers',
-        component: TemporaryComponent
+        component: TeachersComponent
       },
       {
         path: 'subjects',
