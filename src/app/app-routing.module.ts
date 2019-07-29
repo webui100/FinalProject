@@ -12,10 +12,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "teachers",
-    component: TeachersComponent
-  },
-  {
     path: "students",
     component: StudentsComponent
   },
