@@ -39,7 +39,7 @@ import { MaterialModule } from './modules/material/material.module';
 import {StudentsComponent} from './pages/student/students.component';
 import {TeacherComponent} from '../../../ngSoftServe/material-ng/src/app/teacher/teacher.component';
 import { ChartComponent } from './components/chart/chart.component';
-import { AuthInterceptor } from './interseptors/http-interceptor';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 
 @NgModule({
