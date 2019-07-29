@@ -11,17 +11,19 @@ import {AdminGuard} from './services/guards/admin.guard';
 import {TeacherGuard} from './services/guards/teacher.guard';
 import {StudentGuard} from './services/guards/student.guard';
 
+
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
   },
   {
+    path: 'teachers',
     component: TeachersComponent,
     canActivate: [TeacherGuard]
   },
   {
-    path: 'student',
+    path: 'students',
     component: StudentsComponent,
     canActivate: [StudentGuard]
   },

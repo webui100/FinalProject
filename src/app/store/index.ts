@@ -6,7 +6,7 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
-import {routerReducer, RouterReducerState} from '@ngrx/router-store';
+import {routerReducer, RouterReducerState} from '@ngrx/router-store'
 import { environment } from '../../environments/environment';
 import { loginReducer, State as LoginState } from './login/login.reducer';
 import { errorReducer, State as ErrorState } from './error/error.reducer';

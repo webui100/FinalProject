@@ -48,6 +48,10 @@ export class AuthService {
         this.role$.subscribe((data) => this.role = data);
         console.log(this.role);
 
+
+        this.role$.subscribe((data) => this.role = data);
+        console.log(this.role);
+
         if (decodeToken === 'ROLE_ADMIN') {
           this.router.navigate(['/admin']);
         } else if (decodeToken === 'ROLE_USER') {
@@ -78,6 +82,6 @@ export class AuthService {
   }
 
   loggedIn() {
-    return !!localStorage.getItem('token')
+    return !!localStorage.getItem('token');
   }
 }

@@ -32,7 +32,6 @@ import { MaterialModule } from './modules/material/material.module';
 import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {CustomSerializer} from './store/router.reducer';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,9 +77,8 @@ import {CustomSerializer} from './store/router.reducer';
   ],
   providers: [
     { provide: ErrorHandler,
-      useClass: ErrorService },
-    httpInterceptorProviders,
-    {
+    useClass: ErrorService },
+    httpInterceptorProviders,{
     provide: RouterStateSerializer,
     useClass: CustomSerializer
   }],
