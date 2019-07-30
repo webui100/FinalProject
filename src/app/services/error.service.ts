@@ -8,6 +8,7 @@ import { ErrorHandler, Injectable} from '@angular/core';
 export class ErrorService implements ErrorHandler {
   constructor() { }
 
-  handleError(error){
+  handleError(error) {
+    console.log(error);
   }
 }

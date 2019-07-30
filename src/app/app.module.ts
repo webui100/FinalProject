@@ -32,7 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { httpInterceptorProviders } from './http-interceptor';
-import { TeachersComponent } from './teachers/teachers.component';
+import { TeachersComponent } from './components/teachers/teachers.component';
 import { AdminComponent } from './admin/admin.component';
 import { StudentsComponent } from './students/students.component';
 import { reducers, metaReducers } from './store';
@@ -40,7 +40,7 @@ import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
 import 'hammerjs';
-import { TeacherCardComponent } from './teachers/teacher-card/teacher-card.component';
+import { TeacherCardComponent } from './components/teachers/teacher-card/teacher-card.component';
 import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
 
 @NgModule({
