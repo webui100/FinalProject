@@ -87,7 +87,6 @@ import {ErrorService} from './services/error.service';
   providers: [
     { provide: ErrorHandler, useClass: ErrorService },
     httpInterceptorProviders
-
   ],
   bootstrap: [AppComponent]
 })
