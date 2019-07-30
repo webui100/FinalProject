@@ -29,7 +29,7 @@ export class TeachersComponent implements OnInit {
 
   constructor(
     private teachers: TeachersService,
-    private store: Store<{ teachers }>,
+    private store: Store<{}>,
   ) {
     this.data$ = this.store.pipe(select(selectAll));
   }

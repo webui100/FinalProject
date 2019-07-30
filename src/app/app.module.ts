@@ -15,7 +15,10 @@ import {
   MatCommonModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatExpansionModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,6 +38,9 @@ import { reducers, metaReducers } from './store';
 import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {MatListModule} from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
+import 'hammerjs';
+import { TeacherCardComponent } from './teachers/teacher-card/teacher-card.component';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +50,8 @@ import { TemporaryComponent } from './temporary/temporary.component';
     AdminComponent,
     StudentsComponent,
     MainNavComponent,
-    TemporaryComponent
+    TemporaryComponent,
+    TeacherCardComponent,
   ],
   imports: [
     MatListModule,
@@ -66,8 +73,11 @@ import { TemporaryComponent } from './temporary/temporary.component';
     MatGridListModule,
     MatTableModule,
     MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatIconModule,
     MatSortModule,
+    MatExpansionModule,
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {

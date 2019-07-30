@@ -26,6 +26,10 @@ $base-background: #673ab7;
   }
 }
 
+.mat-column-expandedDetail{
+  padding: 0 !important;
+}
+
 .mat-form-field {
   @extend %flex-center;
   width: 300px !important;
@@ -46,17 +50,13 @@ table {
 
   .teacher-row,
   th {
-    width: 25%;
-    padding: 0.1rem;
+    width: 30%;
   }
   .teacher-row:hover{
     background-color: #e8e8e8;
   }
   td {
     font-size: 12px;
-  }
-  .mat-header-cell {
-    padding: 0.2rem;
   }
 }
 
@@ -72,6 +72,7 @@ th.mat-sort-header-sorted {
 .teacher-detail {
   overflow: hidden;
   display: flex;
+  justify-content: center;
 }
 
 .teacher-row {
