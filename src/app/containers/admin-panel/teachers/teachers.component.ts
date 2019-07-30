@@ -1,5 +1,5 @@
 import { Store, select } from '@ngrx/store';
-import { Teacher } from './../models/teacher';
+import { Teacher } from './../models/teacher-panel';
 import { TeachersService } from './../services/teachers.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -36,7 +36,7 @@ export class TeachersComponent implements OnInit {
 
   private columnsToDisplay: string[] = ['firstname', 'lastname', 'dateOfBirth']; // header for TH
   private expandedElement: Teacher | null;                                       // for expanded row
-  private teachersList: any;                                                     // list of teacher
+  private teachersList: any;                                                     // list of teacher-panel
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;            // View child pulls out DOM element
   @ViewChild(MatSort, { static: true }) sort: MatSort;
