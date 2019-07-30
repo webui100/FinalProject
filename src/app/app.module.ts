@@ -17,15 +17,19 @@ import {
   MatToolbarModule,
   MatBadgeModule,
   MatDatepickerModule,
+<<<<<<< HEAD
   MatNativeDateModule,
   MatExpansionModule
+=======
+  MatNativeDateModule
+>>>>>>> upstream/master
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { loginReducer } from './store/login/login.reducer';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,12 +39,12 @@ import { TeachersComponent } from './teachers/teachers.component';
 import { AdminComponent } from './admin/admin.component';
 import { StudentsComponent } from './students/students.component';
 import { reducers, metaReducers } from './store';
-import {MainNavComponent} from './components/main-nav/main-nav.component';
-import {MatListModule} from '@angular/material';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { MatListModule } from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
 import 'hammerjs';
 import { TeacherCardComponent } from './teachers/teacher-card/teacher-card.component';
-
+import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,7 @@ import { TeacherCardComponent } from './teachers/teacher-card/teacher-card.compo
     MainNavComponent,
     TemporaryComponent,
     TeacherCardComponent,
+    StudentDiaryComponent
   ],
   imports: [
     MatListModule,
@@ -60,6 +65,7 @@ import { TeacherCardComponent } from './teachers/teacher-card/teacher-card.compo
     MatToolbarModule,
     MatSidenavModule,
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -77,7 +83,12 @@ import { TeacherCardComponent } from './teachers/teacher-card/teacher-card.compo
     MatNativeDateModule,
     MatIconModule,
     MatSortModule,
+<<<<<<< HEAD
     MatExpansionModule,
+=======
+    MatDatepickerModule,
+    MatNativeDateModule,
+>>>>>>> upstream/master
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {
