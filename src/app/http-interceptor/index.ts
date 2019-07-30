@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import { ErrorService } from '../services/error.service';
+=======
+import { ErrorHandler } from '@angular/core';
+>>>>>>> e636917a1091b502754505149ea033e08170384d
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthInterceptor } from './auth-interceptor';
-import { ErrorHandler } from '@angular/core';
+import { ErrorService } from '../services/error.service';
 
 /** Http interceptor providers in outside-in order */
 export const httpInterceptorProviders = [
