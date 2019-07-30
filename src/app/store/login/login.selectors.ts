@@ -11,5 +11,3 @@ export const selectRole = createSelector(
   selectUser,
   selectRolePure
 );
-
-

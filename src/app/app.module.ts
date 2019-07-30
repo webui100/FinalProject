@@ -16,14 +16,16 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatBadgeModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { loginReducer } from './store/login/login.reducer';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,10 +35,11 @@ import { TeachersComponent } from './teachers/teachers.component';
 import { AdminComponent } from './admin/admin.component';
 import { StudentsComponent } from './students/students.component';
 import { reducers, metaReducers } from './store';
-import {MainNavComponent} from './components/main-nav/main-nav.component';
-import {MatListModule} from '@angular/material';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { MatListModule } from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
 import {ErrorService} from './services/error.service';
+import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import {ErrorService} from './services/error.service';
     AdminComponent,
     StudentsComponent,
     MainNavComponent,
-    TemporaryComponent
+    TemporaryComponent,
+    StudentDiaryComponent
   ],
   imports: [
     MatListModule,
@@ -55,6 +59,7 @@ import {ErrorService} from './services/error.service';
     MatToolbarModule,
     MatSidenavModule,
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -71,6 +76,8 @@ import {ErrorService} from './services/error.service';
     MatIconModule,
     MatSortModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {
