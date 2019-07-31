@@ -1,0 +1,48 @@
+<mat-card>
+    <mat-card-header>
+        <img mat-card-avatar [src]="avatarURL">
+        <mat-card-title>
+            <div class="title-name">LOREM</div>
+            <div class="title-lastname">ipsum</div>
+        </mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="addTeacher" (ngSubmit)="submitAdd($event)">
+        <mat-card-content>
+            <mat-form-field class="add-input">
+                <input matInput placeholder="Ім'я" formControlName="firstname">
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput placeholder="Прізвище" formControlName="lastname">
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput placeholder="По-батькові" formControlName="patronymic">
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput matInput [matDatepicker]="picker" placeholder="Дата народження"
+                    formControlName="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput placeholder="Електронна скринька" formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput placeholder="Телефон" formControlName="phone">
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput placeholder="Логін" formControlName="login">
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button mat-stroked-button type="submit"> Створити </button>
+            </mat-card-actions>
+        </mat-card-content>
+    </form>
+
+</mat-card>

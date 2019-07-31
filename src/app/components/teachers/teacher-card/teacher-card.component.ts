@@ -40,6 +40,7 @@ export class TeacherCardComponent implements OnInit {
   submitEdit($event): void {
     $event.preventDefault();
     const data = {
+      avatar: '',
       firstname: this.editTeacher.get('firstname').value,
       lastname: this.editTeacher.get('lastname').value,
       patronymic: this.editTeacher.get('patronymic').value,
@@ -47,6 +48,9 @@ export class TeacherCardComponent implements OnInit {
       email: this.editTeacher.get('email').value,
       phone: this.editTeacher.get('phone').value,
       login: this.editTeacher.get('login').value,
+      oldPass: '',
+      newPass: '',
+      id: this.teacher.id
     };
     this.teachServise.editTeacher(this.teacher.id, data);
   }

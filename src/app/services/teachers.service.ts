@@ -1,12 +1,9 @@
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { selectAll } from '../store/teachers/teachers.selector';
+import { Store } from '@ngrx/store';
 import { teacherAction } from '../store/teachers/teachers.action';
-import { FormControl, FormGroup } from '@angular/forms';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +13,7 @@ export class TeachersService {
   private BASE_URI = environment.APIEndpoint;
 
   constructor(private http: HttpClient,
-              private store: Store<{teachers}>) {
+              private store: Store<{teacherState}>) {
   }
 
   getTeachers() {
@@ -28,11 +25,20 @@ export class TeachersService {
   }
 
   editTeacher(teacherId, data) {
-    console.log(teacherId)
-    return this.http.put(`${this.BASE_URI}teachers/${teacherId}`, data)
-    .subscribe(response => {
-      // @ts-ignore
-      console.log(response);
+    return this.http.put(`${this.BASE_URI}admin/teachers/${teacherId}`, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Accept: 'application/json, text/plain, */*',
+        'Access-Control-Allow-Origin':	'*'
+      }),
+      observe: 'response'
+    }).subscribe( () => {
+      this.getTeachers();
     });
+  }
+
+  addTeacher(data) {
+    return this.http.post(`${this.BASE_URI}teachers`, data)
+    .subscribe(() => this.getTeachers());
   }
 }

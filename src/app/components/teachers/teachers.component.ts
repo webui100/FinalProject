@@ -6,7 +6,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { selectAll } from '../../store/teachers/teachers.selector';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { share, map } from 'rxjs/operators';
 
@@ -16,41 +22,41 @@ import { share, map } from 'rxjs/operators';
   styleUrls: ['./teachers.component.scss'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
-
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      )
+    ])
+  ]
 })
 export class TeachersComponent implements OnInit {
   private data$: any;
   data: Teacher[];
 
-  constructor(
-    private teachers: TeachersService,
-    private store: Store<{}>,
-  ) {
+  constructor(private teachers: TeachersService, private store: Store<{}>) {
     this.data$ = this.store.pipe(select(selectAll));
   }
 
   private columnsToDisplay: string[] = ['firstname', 'lastname', 'dateOfBirth']; // header for TH
-  private expandedElement: Teacher | null;                                       // for expanded row
-  private teachersList: any;                                                     // list of teacher
+  private expandedElement: Teacher | null; // for expanded row
+  private teachersList: any; // list of teacher
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;            // View child pulls out DOM element
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator; // View child pulls out DOM element
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-
 
   /* function make subscribe and initializes "data",
   then convert data for correct view in table
-  add a pagintator and soring*/
+  add a pagintator and sorting*/
   getTeachers() {
     this.data$.subscribe(response => {
       this.data = response;
       this.teachersList = new MatTableDataSource<Teacher>(this.data);
-      this.teachersList.paginator = this.paginator;
-      this.teachersList.sort = this.sort;
+      if (this.data !== null) {
+        this.teachersList.paginator = this.paginator;
+        this.teachersList.sort = this.sort;
+      }
     });
     if (!this.data) {
       this.teachers.getTeachers();

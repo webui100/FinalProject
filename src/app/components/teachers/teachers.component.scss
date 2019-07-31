@@ -26,17 +26,33 @@ $base-background: #673ab7;
   }
 }
 
-.mat-column-expandedDetail{
+.mat-column-expandedDetail {
   padding: 0 !important;
 }
 
 .mat-form-field {
-  @extend %flex-center;
+  display: flex;
   width: 300px !important;
   align-self: center;
-  margin: 1rem;
+  justify-self: center;
+  margin: 0.2rem;
   font-size: 1rem;
+  justify-content: center;
+  font-size: 14px;
+  width: 100%;
 }
+.container{
+  flex-direction: column-reverse;
+  display: flex;
+  align-items: center;
+  width: 98%;
+  align-self: center; 
+}
+.addTeacherButton{
+  margin: 0.5rem;
+  margin-bottom: 2rem;
+}
+
 
 .table-container {
   width: 100%;
@@ -52,7 +68,7 @@ table {
   th {
     width: 30%;
   }
-  .teacher-row:hover{
+  .teacher-row:hover {
     background-color: #e8e8e8;
   }
   td {
@@ -64,10 +80,6 @@ th.mat-sort-header-sorted {
   color: black;
 }
 
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
-}
 
 .teacher-detail {
   overflow: hidden;
@@ -76,7 +88,7 @@ th.mat-sort-header-sorted {
 }
 
 .teacher-row {
- padding: 0.2rem;
+  padding: 0.2rem;
 }
 
 .teacher-row td {
@@ -93,15 +105,15 @@ tr.teacher-detail-row {
   align-items: center;
 
   & .diagram-block-1,
-    .diagram-block-2{
-      display: flex;
+  .diagram-block-2 {
+    display: flex;
 
-      & > div{
-        padding: 0.5rem 0.2rem;
-      }
+    & > div {
+      padding: 0.5rem 0.2rem;
     }
+  }
 }
-.bold-text{
+.bold-text {
   font-weight: 600;
 }
 
@@ -125,5 +137,18 @@ tr.teacher-detail-row {
   }
   .mat-header-cell {
     padding: 1rem !important;
+  }
+}
+@media only screen and (min-width: 600px){
+  .container{
+    width: 90%;
+    flex-direction: row;
+    align-content: center;
+  }
+  .addTeacherButton{
+    margin: 0;
+  }
+  .mat-form-field{
+    margin: 0.5rem;
   }
 }
