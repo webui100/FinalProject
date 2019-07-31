@@ -10,7 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   error: string;
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService) {
+  }
 
   login: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -33,5 +34,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
   }
 }

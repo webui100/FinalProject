@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { environment } from '../environments/environment';
 import {
   MatFormFieldModule,
@@ -16,6 +16,7 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatBadgeModule,
+  MatSnackBarModule,
   MatDatepickerModule,
   MatNativeDateModule,
   MatExpansionModule
@@ -41,6 +42,7 @@ import { MatListModule } from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
 import 'hammerjs';
 import { TeacherCardComponent } from './components/teachers/teacher-card/teacher-card.component';
+import {ErrorService} from './services/error.service';
 import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
 import { TeacherCreateComponent } from './components/teachers/teacher-create/teacher-create.component';
 
@@ -83,6 +85,7 @@ import { TeacherCreateComponent } from './components/teachers/teacher-create/tea
     MatIconModule,
     MatSortModule,
     MatExpansionModule,
+    MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
     StoreModule.forRoot(reducers, {
@@ -98,7 +101,10 @@ import { TeacherCreateComponent } from './components/teachers/teacher-create/tea
       logOnly: environment.production // Restrict extension to log-only mode
     })
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    { provide: ErrorHandler, useClass: ErrorService },
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
