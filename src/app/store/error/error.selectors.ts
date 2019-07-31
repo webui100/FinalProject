@@ -1,3 +1,4 @@
 import { State as AppState } from '../index';
 
-export const login = (state: AppState) => state.errors;
+export const errorsSelector = (state: AppState) => state.errors;
+

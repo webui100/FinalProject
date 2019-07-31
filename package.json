@@ -25,9 +25,12 @@
     "@ngrx/store-devtools": "^8.1.0",
     "hammerjs": "^2.0.8",
     "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.15",
+    "ngx-toastr": "^10.0.4",
     "rxjs": "~6.4.0",
     "store": "^2.0.12",
     "tslib": "^1.9.0",
+    "uuid": "^3.3.2",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
