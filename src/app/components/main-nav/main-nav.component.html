@@ -4,7 +4,8 @@
       [(opened)]="isOpened">
     <mat-toolbar>Меню</mat-toolbar>
     <mat-nav-list>
-      <a *ngFor="let link of linksSet" [routerLink]="link.path" mat-list-item routerLinkActive="active">
+      <a *ngFor="let link of linksSet" [routerLink]="link.path" mat-list-item routerLinkActive="active"
+         (click)="closeOnLink()">
         <i class="material-icons">
           {{link.icon}}
         </i>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { environment } from '../environments/environment';
 import {
   MatFormFieldModule,
@@ -16,6 +16,7 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatBadgeModule,
+  MatSnackBarModule,
   MatDatepickerModule,
   MatNativeDateModule
 } from '@angular/material';
@@ -37,6 +38,7 @@ import { reducers, metaReducers } from './store';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
+import {ErrorService} from './services/error.service';
 import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
 
 @NgModule({
@@ -73,6 +75,7 @@ import { StudentDiaryComponent } from './components/student-diary/student-diary.
     MatPaginatorModule,
     MatIconModule,
     MatSortModule,
+    MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
     StoreModule.forRoot(reducers, {
@@ -88,7 +91,10 @@ import { StudentDiaryComponent } from './components/student-diary/student-diary.
       logOnly: environment.production // Restrict extension to log-only mode
     })
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    { provide: ErrorHandler, useClass: ErrorService },
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,12 +1,13 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as ErrorActions from './error.actions';
 
+
 export interface State {
-  error: any;
+  errors: Array<Error>;
 }
 
 export const initialState: State = {
-  error: null
+  errors: []
 };
 
 
@@ -14,7 +15,11 @@ const reducer = createReducer(
   initialState,
   on(ErrorActions.setErrorAction, (state, { error }) => ({
     ...state,
-    error
+    errors: [...state.errors, error]
+  })),
+  on(ErrorActions.removeErrorAction, (state, {error}) => ({
+    ...state,
+    errors: state.errors.filter(item => item !== error)
   }))
 );
 
