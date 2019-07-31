@@ -34,9 +34,5 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/master
   }
 }
