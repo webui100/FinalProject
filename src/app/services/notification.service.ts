@@ -16,11 +16,25 @@ export class NotificationService {
   showError(message: string, error: Error): void {
     const snackRef = this.snackBar.open(message, '', {
       panelClass: ['error'],
-      duration: 2000
+      duration: 2300
     });
 
     snackRef.afterDismissed().subscribe(() => {
       this.store.dispatch(ErrorActions.removeErrorAction({error}));
+    });
+  }
+
+  notifySuccess(message: string) {
+    this.snackBar.open(message, '', {
+      panelClass: ['success'],
+      duration: 2300
+    });
+  }
+
+  notifyFailure(message: string) {
+    this.snackBar.open(message, '', {
+      panelClass: ['failure'],
+      duration: 2300
     });
   }
 
