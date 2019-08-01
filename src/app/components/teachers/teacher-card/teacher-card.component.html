@@ -41,8 +41,15 @@
                 <input matInput placeholder="Логін" formControlName="login">
             </mat-form-field>
             <mat-card-actions>
-                <button mat-flat-button type="submit"> Зберегти </button>
+                <button mat-button type="submit" [disabled]="!editTeacher.dirty"> Зберегти </button>
             </mat-card-actions>
+
+            <div class="form-group">
+                <label for="file">Choose File</label>
+                <input type="file"
+                       id="file"
+                       (change)="handleFileInput($event.target.files)">
+            </div>
         </mat-card-content>
     </form>
 

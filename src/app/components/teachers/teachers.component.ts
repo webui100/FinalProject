@@ -63,6 +63,8 @@ export class TeachersComponent implements OnInit {
     }
   }
 
+
+
   // function for sorting, trim() remove spaces
   private applyFilter(filterValue: string) {
     this.teachersList.filter = filterValue.trim().toLowerCase();

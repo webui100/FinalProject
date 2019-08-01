@@ -1,3 +1,4 @@
+import { NotificationService } from './notification.service';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,7 +14,8 @@ export class TeachersService {
   private BASE_URI = environment.APIEndpoint;
 
   constructor(private http: HttpClient,
-              private store: Store<{teacherState}>) {
+              private store: Store<{teacherState}>,
+              private notify: NotificationService) {
   }
 
   getTeachers() {
@@ -32,13 +34,30 @@ export class TeachersService {
         'Access-Control-Allow-Origin':	'*'
       }),
       observe: 'response'
-    }).subscribe( () => {
-      this.getTeachers();
+    })
+    .subscribe( (response) => {
+      if (response.status === 200) {
+        this.notify.notifySuccess('Успішно редаговано');
+        this.getTeachers();
+      } else {
+        this.notify.notifyFailure('Упс...щось пішло не так');
+      }
     });
   }
 
   addTeacher(data) {
-    return this.http.post(`${this.BASE_URI}teachers`, data)
-    .subscribe(() => this.getTeachers());
+    return this.http.post(`${this.BASE_URI}teachers`, data,
+    {
+      observe: 'response'
+    })
+    .subscribe( (response) => {
+      console.log(response.status === 200);
+      if (response.status === 200) {
+        this.notify.notifySuccess('Успішно створено');
+        this.getTeachers();
+      } else {
+        this.notify.notifyFailure('Упс...щось пішло не так');
+      }
+    });
   }
 }

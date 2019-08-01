@@ -1,6 +1,6 @@
 import { TeachersService } from './../../../services/teachers.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'webui-teacher-create',
@@ -12,13 +12,14 @@ export class TeacherCreateComponent implements OnInit {
   constructor(private teachServise: TeachersService) { }
 
   addTeacher: FormGroup = new FormGroup({
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    patronymic: new FormControl(''),
-    dateOfBirth: new FormControl(''),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
+    patronymic: new FormControl('', Validators.required),
+    dateOfBirth: new FormControl('', Validators.required),
     email: new FormControl(''),
     phone: new FormControl(''),
-    login: new FormControl('')
+    login: new FormControl('', Validators.required),
+    avatar: new FormControl(null)
   });
   ngOnInit() {
   }

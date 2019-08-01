@@ -1,19 +1,21 @@
 <div class="header mat-elevation-z5">
     <h3>Список вчителів</h3>
 </div>
-<div class="container">
-    <div class="addTeacherButton">
-        <button mat-raised-button type="button">Добавити вчителя 
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
-    <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Пошук" class="search-input">
-    </mat-form-field>
-</div>
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Пошук" class="search-input">
+</mat-form-field>
 
-<webui-teacher-create></webui-teacher-create>
-<div class="mat-elevation-z5 table-container">
+<mat-accordion>
+    <mat-expansion-panel >
+        <mat-expansion-panel-header>
+            Додати вчителя
+            <mat-icon>add</mat-icon>
+        </mat-expansion-panel-header>
+        <webui-teacher-create></webui-teacher-create>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<div class="mat-elevation-z5 table-container" >
     <table mat-table [dataSource]="teachersList" multiTemplateDataRows class="mat-elevation-z8" matSort>
         <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> {{dataHeader(column)}} </th>
