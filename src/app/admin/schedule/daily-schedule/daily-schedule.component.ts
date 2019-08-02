@@ -14,11 +14,12 @@ import { startWith, map } from 'rxjs/operators';
 export class DailyScheduleComponent implements OnInit {
   formDailySchedule: FormGroup;
   secondGroupVisible: boolean[] = [];
-  teachersVisible: boolean[] = [];
-  dailySchedule: FormArray;
+  firstGroupTeachersVisible: boolean[] = [];
+  secondGroupTeachersVisible: boolean[] = [];
+  dailySchedule;
 
   teacher = new FormControl(); //array
-  teachers: string[] = [];
+  teachers: object[] = [];
   teachersTemp$: any;
   filteredTeachers: Observable<string[]>;
 
@@ -48,8 +49,10 @@ export class DailyScheduleComponent implements OnInit {
       for (const key in res) {
         if (res.hasOwnProperty(key)) {
           const teacher = res[key];
-          this.teachers.push(
-                `${teacher.lastname} ${teacher.firstname} ${teacher.patronymic} ${teacher.id}`
+          this.teachers.push({
+                fullName: `${teacher.lastname} ${teacher.firstname} ${teacher.patronymic}`,
+                id: teacher.id
+              }
               );
         }
       }
@@ -74,11 +77,8 @@ export class DailyScheduleComponent implements OnInit {
     });
   }
 
-  get dailyShedule() {
-    return this.formDailySchedule.get('dailySchedule');
-  }
-
   addLesson(lessonNumber) {
+    this.dailySchedule = this.formDailySchedule.get('dailySchedule');
     if (lessonNumber < (this.lessonsMaxPerDay - 1) && this.dailySchedule.length === lessonNumber + 1) {
       this.dailySchedule.push(this.formBuilder.group({
         firstGroup: this.formBuilder.control(''),
@@ -93,7 +93,8 @@ export class DailyScheduleComponent implements OnInit {
   removeLesson(lessonNumber) {
     this.dailySchedule.removeAt(lessonNumber);
     this.removeSecondGroup(lessonNumber);
-    this.removeTeacher(lessonNumber);
+    this.removeTeacher(lessonNumber, 'first');
+    this.removeTeacher(lessonNumber, 'second');
     if (lessonNumber === (this.lessonsMaxPerDay - 1)) {
       this.addLesson(lessonNumber - 1);
     }
@@ -101,37 +102,40 @@ export class DailyScheduleComponent implements OnInit {
 
   addSecondGroup(lessonNumber: number): void {
     this.secondGroupVisible[lessonNumber] = true;
-    console.log(this.dailySchedule.value[lessonNumber].firstGroup);
   }
 
   removeSecondGroup(lessonNumber) { //онулювати значення "предмет" 2-ї групи
     this.secondGroupVisible[lessonNumber] = false;
   }
 
-  keyUp(lessonNumber) {
-    console.log(lessonNumber/*, typeof this.dailySchedule.value[lessonNumber].firstGroupTeacher.valueChanges*/);
+  addTeacherToLesson(lessonNumber, group: string) {
+    if (group === 'first') {this.firstGroupTeachersVisible[lessonNumber] = true }
+    if (group === 'second') {this.secondGroupTeachersVisible[lessonNumber] = true }
+    // this.dailySchedule.value[lessonNumber].firstGroupTeacher.valueChanges;
+
+    // this.filteredTeachers = this.dailySchedule.value[lessonNumber].get('firstGroupTeacher').valueChanges
+    //   .pipe(
+    //     startWith(''),
+    //     map(value => {
+    //       console.log(value);
+    //       this._filter(value, this.teachers);
+    //     })
+    //   ).subscribe();
   }
 
-  addTeacherToLesson(lessonNumber) {
-    this.teachersVisible[lessonNumber] = true;
+  removeTeacher(lessonNumber, group: string) { //онулювати значення "вчитель"
+    if (group === 'first') {this.firstGroupTeachersVisible[lessonNumber] = false }
+    if (group === 'second') {this.secondGroupTeachersVisible[lessonNumber] = false }
 
-    this.filteredTeachers = this.dailySchedule.value[lessonNumber].firstGroupTeacher.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value, this.teachers))
-      );
+          // this.teachersVisible[lessonNumber] = false;
   }
 
-  removeTeacher(lessonNumber) { //онулювати значення "вчитель"
-    this.teachersVisible[lessonNumber] = false;
-  }
-
-  private _filter(value: string, arr: any[]): string[] {
-    const filterValue = value.toLowerCase();
-    if (typeof (arr[0]) === 'number') {
-      arr.map((item, index) => arr[index] = item.toString());
-    }
-    return arr.filter(option => option.toLowerCase().includes(filterValue));
-  }
+  // private _filter(value: string, arr: any[]): string[] {
+  //   const filterValue = value.toLowerCase();
+  //   if (typeof (arr[0]) === 'number') {
+  //     arr.map((item, index) => arr[index] = item.toString());
+  //   }
+  //   return arr.filter(option => option.toLowerCase().includes(filterValue));
+  // }
 
 }

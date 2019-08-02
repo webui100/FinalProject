@@ -69,9 +69,9 @@ export class ScheduleComponent implements OnInit {
       );
   }
 
-  displayFn(user?: string): string | undefined {
-    return user ? user : undefined;
-  }
+  // displayFn(user?: string): string | undefined {
+  //   return user ? user : undefined;
+  // }
 
   private _filter(value: string, arr: any[]): string[] {
     const filterValue = value.toLowerCase();
