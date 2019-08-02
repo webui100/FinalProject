@@ -45,12 +45,32 @@
   }
 }
 
+
+
 mat-card-actions {
   display: flex;
-  margin: 0.5rem 0.5rem;
   width: 100%;
   justify-content: flex-end;
+  
+  &>button:enabled{
+    background-color: #673AB7;
+    color: white !important;
+  }
 }
+
+
+.header-mat-card-actions {
+  display: flex;
+  flex-direction: column;
+  
+  & > p {
+    font-size: 0.8rem;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+}
+
 
 .title-name,
 .title-lastname {

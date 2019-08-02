@@ -1,3 +1,4 @@
+import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
 import { Store, select } from '@ngrx/store';
 import { Teacher } from '../../models/teacher';
 import { TeachersService } from '../../services/teachers.service';
@@ -34,7 +35,6 @@ import { share, map } from 'rxjs/operators';
 export class TeachersComponent implements OnInit {
   private data$: any;
   data: Teacher[];
-
   constructor(private teachers: TeachersService, private store: Store<{}>) {
     this.data$ = this.store.pipe(select(selectAll));
   }
@@ -84,4 +84,5 @@ export class TeachersComponent implements OnInit {
         return 'Дата народження';
     }
   }
+
 }

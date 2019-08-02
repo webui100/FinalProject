@@ -4,13 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { teacherAction } from '../store/teachers/teachers.action';
+import { Observable, Observer } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeachersService {
-
+  file;
   private BASE_URI = environment.APIEndpoint;
 
   constructor(private http: HttpClient,
@@ -30,8 +31,6 @@ export class TeachersService {
     return this.http.put(`${this.BASE_URI}admin/teachers/${teacherId}`, data, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Accept: 'application/json, text/plain, */*',
-        'Access-Control-Allow-Origin':	'*'
       }),
       observe: 'response'
     })
@@ -51,7 +50,6 @@ export class TeachersService {
       observe: 'response'
     })
     .subscribe( (response) => {
-      console.log(response.status === 200);
       if (response.status === 200) {
         this.notify.notifySuccess('Успішно створено');
         this.getTeachers();
@@ -60,4 +58,15 @@ export class TeachersService {
       }
     });
   }
+
+  readFileImage(inputValue: HTMLInputElement) {
+    const file: File = inputValue.files[0];
+    const reader: FileReader = new FileReader();
+    reader.onloadend = (e) => {
+      this.file = reader.result;
+    };
+    reader.readAsDataURL(file);
+    return this.file;
+  }
+
 }

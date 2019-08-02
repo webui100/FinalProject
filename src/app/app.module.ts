@@ -57,7 +57,7 @@ import { TeacherCreateComponent } from './components/teachers/teacher-create/tea
     TemporaryComponent,
     TeacherCardComponent,
     StudentDiaryComponent,
-    TeacherCreateComponent
+    TeacherCreateComponent,
   ],
   imports: [
     MatListModule,
