@@ -1,14 +1,15 @@
 import { Store, select } from '@ngrx/store';
-import { Teacher } from './../models/teacher-panel';
-import { TeachersService } from './../services/teachers.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { selectAll } from '../store/teachers/teachers.selector';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { share, map } from 'rxjs/operators';
+
+import { Teacher } from '../../../models/teacher';
+import { TeachersService } from '../../../services/teachers.service';
+import { selectAll } from '../../../store/teachers/teachers.selector';
 
 @Component({
   selector: 'webui-teachers',

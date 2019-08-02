@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'webui-teacher',
-  templateUrl: './teacher.component.html',
-  styleUrls: ['./teacher.component.scss']
+  templateUrl: './teacher-panel.component.html',
+  styleUrls: ['./teacher-panel.component.scss']
 })
-export class TeacherComponent implements OnInit {
+export class TeacherPanelComponent implements OnInit {
 
   constructor() { }
 

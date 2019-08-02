@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'webui-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  templateUrl: './admin-panel.component.html',
+  styleUrls: ['./admin-panel.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class AdminPanelComponent implements OnInit {
 
   constructor() { }
 

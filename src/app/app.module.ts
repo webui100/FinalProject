@@ -17,7 +17,8 @@ import {
   MatToolbarModule,
   MatBadgeModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatListModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,31 +29,30 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { reducers, metaReducers } from './store';
 import { LoginComponent } from './pages/login/login.component';
 import { httpInterceptorProviders } from './interceptors/http-interceptor';
 import { TeachersComponent } from './containers/admin-panel/teachers/teachers.component';
-import { AdminComponent } from './containers/admin-panel/admin.component';
-import { StudentsComponent } from './pages/students/students.component';
-import { reducers, metaReducers } from './store';
+import { AdminPanelComponent } from './containers/admin-panel/admin-panel.component';
+import { StudentsComponent } from './pages/student/students.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
-import { MatListModule } from '@angular/material';
-import { TemporaryComponent } from './temporary/temporary.component';
+import { TemporaryComponent } from './components/temporary/temporary.component';
 import { StudentDiaryComponent } from './containers/student-panel/student-diary/student-diary.component';
-import { StudentComponent } from './containers/student-panel/student.component';
-import { TeacherComponent } from './containers/teacher-panel/teacher.component';
+import { StudentPanelComponent } from './containers/student-panel/student-panel.component';
+import { TeacherPanelComponent } from './containers/teacher-panel/teacher-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     TeachersComponent,
-    AdminComponent,
+    AdminPanelComponent,
     StudentsComponent,
     MainNavComponent,
     TemporaryComponent,
     StudentDiaryComponent,
-    StudentComponent,
-    TeacherComponent
+    StudentPanelComponent,
+    TeacherPanelComponent
   ],
   imports: [
     MatListModule,
