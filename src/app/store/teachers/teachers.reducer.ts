@@ -11,13 +11,10 @@ export const initialState: State = {
 
 const reducer = createReducer(
   initialState,
-  on(TeacherData.teacherAction, (state, { data }) => {
-    console.log(data, state, {...state, data});
-    return ({
+  on(TeacherData.teacherAction, (state, { data }) => ({
     ...state,
     data
-  });
-})
+  }))
 );
 
 export function teachersDataReducer(state: State | undefined, action: Action) {

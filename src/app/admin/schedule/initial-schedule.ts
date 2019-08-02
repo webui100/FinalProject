@@ -1,6 +1,7 @@
 const initialSchedule = [
     {
-        name: 'Понеділок',
+        name: 'monday',
+        value: 'Понеділок',
         lessons: [
             {
                 number: 1,
@@ -12,7 +13,8 @@ const initialSchedule = [
         ]
     },
     {
-        name: 'Вівторок',
+        name: 'tuesday',
+        value: 'Вівторок',
         lessons: [
             {
                 number: 1,
@@ -24,7 +26,8 @@ const initialSchedule = [
         ]
     },
     {
-        name: 'Середа',
+        name: 'wednesday',
+        value: 'Середа',
         lessons: [
             {
                 number: 1,
@@ -36,7 +39,8 @@ const initialSchedule = [
         ]
     },
     {
-        name: 'Четвер',
+        name: 'thutrsday',
+        value: 'Четвер',
         lessons: [
             {
                 number: 1,
@@ -48,7 +52,8 @@ const initialSchedule = [
         ]
     },
     {
-        name: "П'ятниця",
+        name: 'friday',
+        value: "П'ятниця",
         lessons: [
             {
                 number: 1,
@@ -60,7 +65,8 @@ const initialSchedule = [
         ]
     },
     {
-        name: 'Субота',
+        name: 'saturday',
+        value: 'Субота',
         lessons: [
             {
                 number: 1,

@@ -39,6 +39,7 @@ import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {MatListModule} from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
 import { ScheduleComponent } from './admin/schedule/schedule.component';
+import { DailyScheduleComponent } from './admin/schedule/daily-schedule/daily-schedule.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ScheduleComponent } from './admin/schedule/schedule.component';
     StudentsComponent,
     MainNavComponent,
     TemporaryComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    DailyScheduleComponent
   ],
   imports: [
     MatListModule,

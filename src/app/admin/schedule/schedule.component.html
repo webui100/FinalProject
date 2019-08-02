@@ -2,15 +2,7 @@
 
 <form>
   <mat-form-field>
-    <input type="text" placeholder="Вчитель" matInput [formControl]="teacher" [matAutocomplete]="teacherA">
-    <mat-autocomplete #teacherA="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let teacher of filteredTeachers | async" [value]="teacher">
-        {{teacher}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <mat-form-field>
-    <input type="text" placeholder="Виберіть семестр" matInput [formControl]="term" [matAutocomplete]="termA">
+    <input type="text" placeholder="Семестр" matInput [formControl]="term" [matAutocomplete]="termA">
     <mat-autocomplete #termA="matAutocomplete">
       <mat-option *ngFor="let term of filteredTerm | async" [value]="term">
         {{term}}
@@ -18,7 +10,7 @@
     </mat-autocomplete>
   </mat-form-field>
   <mat-form-field>
-    <input type="text" placeholder="Виберіть клас" matInput [formControl]="chosenClass" [matAutocomplete]="classA">
+    <input type="text" placeholder="Клас" matInput [formControl]="chosenClass" [matAutocomplete]="classA">
     <mat-autocomplete #classA="matAutocomplete">
       <mat-option *ngFor="let class of filteredClasses | async" [value]="class">
         {{class}}
@@ -26,7 +18,7 @@
     </mat-autocomplete>
   </mat-form-field>
   <mat-form-field>
-    <input type="text" placeholder="Виберіть навчальний рік" matInput [formControl]="year" [matAutocomplete]="yearA">
+    <input type="text" placeholder="Навчальний рік" matInput [formControl]="year" [matAutocomplete]="yearA">
     <mat-autocomplete #yearA="matAutocomplete">
       <mat-option *ngFor="let year of filteredYears | async" [value]="year + ' - ' + (+year + +1)">
         {{year}} - {{+year + 1}}
@@ -39,34 +31,20 @@
     <mat-expansion-panel *ngFor="let day of daysOfWeek; let i=index">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{day.name}}
+          {{day.value}}
         </mat-panel-title>
-        <mat-panel-description>
+        <!-- <mat-panel-description>
           ({{day.lessons.length - 1}} уроків)
-        </mat-panel-description>
+        </mat-panel-description> -->
       </mat-expansion-panel-header>
 
-      <div *ngFor="let lesson of day.lessons">
-        <span>{{lesson.number}}</span>
-        <mat-form-field>
-          <mat-label>Предмет</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let lesson of lessons" #subject1 [value]="lesson">
-              {{lesson}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Предмет</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let lesson of lessons" [value]="lesson">
-              {{lesson}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button (click)="addSubject()" *ngIf="!hideAddSubject">+</button>
-
-      </div>
+      <webui-daily-schedule 
+        *ngFor="let lesson of day.lessons"
+        [lesson]="lesson"
+        [dayOfWeek]="day.name"
+        [subjects]="subjects" 
+      >
+      </webui-daily-schedule>
 
       <!-- <table mat-table [dataSource]="dataSourse" class="mat-elevation-z8">
       <ng-container matColumnDef="col">

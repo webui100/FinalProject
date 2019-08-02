@@ -3,7 +3,7 @@ import * as Schedule from './schedule.actions';
 
 export interface State {
   id: number;
-  data: Array<any>;
+  data: Array<object>;
 }
 
 export const initialState: State = {

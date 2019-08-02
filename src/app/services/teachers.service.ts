@@ -11,7 +11,7 @@ import { teacherAction } from '../store/teachers/teachers.action';
   providedIn: 'root'
 })
 export class TeachersService {
-
+  data = [];
   private BASE_URI = environment.APIEndpoint;
 
   constructor(private http: HttpClient,
@@ -22,7 +22,8 @@ export class TeachersService {
     return this.http.get(`${this.BASE_URI}teachers`)
     .subscribe(response => {
       // @ts-ignore
-      this.store.dispatch(teacherAction(response.data));
+      this.data = response.data;
+      this.store.dispatch(teacherAction({data: this.data}));
     });
   }
 
