@@ -1,37 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { environment } from '../environments/environment';
-import {
-  MatFormFieldModule,
-  MatInputModule,
-  MatCardModule,
-  MatButtonModule,
-  MatCheckboxModule,
-  MatIconModule,
-  MatGridListModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatCommonModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatBadgeModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatListModule
-} from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { RouterModule } from '@angular/router';
 
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { MaterialModule } from './modules/material/material.module';
 import { reducers, metaReducers } from './store';
-import { LoginComponent } from './pages/login/login.component';
 import { httpInterceptorProviders } from './interceptors/http-interceptor';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './pages/login/login.component';
 import { TeachersComponent } from './containers/admin-panel/teachers/teachers.component';
 import { AdminPanelComponent } from './containers/admin-panel/admin-panel.component';
 import { StudentsComponent } from './pages/student/students.component';
@@ -55,30 +37,14 @@ import { TeacherPanelComponent } from './containers/teacher-panel/teacher-panel.
     TeacherPanelComponent
   ],
   imports: [
-    MatListModule,
-    MatCommonModule,
-    MatBadgeModule,
-    MatToolbarModule,
-    MatSidenavModule,
     BrowserModule,
-    RouterModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatGridListModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatIconModule,
-    MatSortModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
+    RouterModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {
