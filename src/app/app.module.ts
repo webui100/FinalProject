@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './modules/material/material.module';
 import { reducers, metaReducers } from './store';
 import { httpInterceptorProviders } from './interceptors/http-interceptor';
+import { ErrorService } from './services/error.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -34,12 +35,12 @@ import { TemporaryComponent } from './components/temporary/temporary.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     MaterialModule,
     StoreModule.forRoot(reducers, {
       metaReducers
@@ -54,7 +55,10 @@ import { TemporaryComponent } from './components/temporary/temporary.component';
       logOnly: environment.production // Restrict extension to log-only mode
     })
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    { provide: ErrorHandler, useClass: ErrorService },
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

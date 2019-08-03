@@ -10,3 +10,42 @@
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+%notification {
+  color: white;
+  font-weight: bold;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  animation: slowshow .3s;
+
+  &>*{
+    font-size: 14px !important;
+    text-transform: uppercase;
+  }
+}
+
+.error {
+  @extend %notification;
+  background-color: red;
+}
+
+.success {
+  @extend %notification;
+  background-color: limegreen;
+}
+
+.failure {
+  @extend %notification;
+  background-color: darkorange;
+}
+
+@keyframes slowshow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+
+}
