@@ -14,6 +14,7 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatBadgeModule,
+  MatSnackBarModule,
   MatDatepickerModule,
   MatNativeDateModule,
   MatListModule
@@ -34,6 +35,7 @@ const MaterialComponents = [
   MatSidenavModule,
   MatToolbarModule,
   MatBadgeModule,
+  MatSnackBarModule,
   MatDatepickerModule,
   MatNativeDateModule,
   MatListModule
