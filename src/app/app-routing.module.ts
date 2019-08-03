@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './pages/login/login.component';
-import { TeachersComponent } from './containers/admin-panel/teachers/teachers.component';
+import { AdminComponent } from './pages/admin/admin.component';
 import { StudentsComponent } from './pages/student/students.component';
-import { AdminPanelComponent } from './containers/admin-panel/admin-panel.component';
-import { StudentDiaryComponent } from './containers/student-panel/student-diary/student-diary.component';
+import { TeachersComponent } from './containers/teachers/teachers.component';
+import { StudentDiaryComponent } from './containers/student-diary/student-diary.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 
 const routes: Routes = [
@@ -26,8 +26,8 @@ const routes: Routes = [
     component: StudentDiaryComponent
   },
   {
-    path: 'admin-panel',
-    component: AdminPanelComponent,
+    path: 'admin',
+    component: AdminComponent,
     children: [
       {
         path: '',

@@ -14,27 +14,23 @@ import { reducers, metaReducers } from './store';
 import { httpInterceptorProviders } from './interceptors/http-interceptor';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
-import { TeachersComponent } from './containers/admin-panel/teachers/teachers.component';
-import { AdminPanelComponent } from './containers/admin-panel/admin-panel.component';
+import { AdminComponent } from './pages/admin/admin.component';
 import { StudentsComponent } from './pages/student/students.component';
+import { TeachersComponent } from './containers/teachers/teachers.component';
+import { StudentDiaryComponent } from './containers/student-diary/student-diary.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
-import { StudentDiaryComponent } from './containers/student-panel/student-diary/student-diary.component';
-import { StudentPanelComponent } from './containers/student-panel/student-panel.component';
-import { TeacherPanelComponent } from './containers/teacher-panel/teacher-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TeachersComponent,
-    AdminPanelComponent,
+    AdminComponent,
     StudentsComponent,
-    MainNavComponent,
-    TemporaryComponent,
+    TeachersComponent,
     StudentDiaryComponent,
-    StudentPanelComponent,
-    TeacherPanelComponent
+    MainNavComponent,
+    TemporaryComponent
   ],
   imports: [
     BrowserModule,

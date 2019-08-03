@@ -45,7 +45,7 @@ export class AuthService {
         this.store.dispatch(login({role: decodeToken}));
 
         if (decodeToken === 'ROLE_ADMIN') {
-          this.router.navigate(['/admin-panel']);
+          this.router.navigate(['/admin']);
         } else if (decodeToken === 'ROLE_USER') {
           this.router.navigate(['/student']);
         } else if (decodeToken === 'ROLE_TEACHER') {
