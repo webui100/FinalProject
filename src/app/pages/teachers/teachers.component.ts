@@ -1,4 +1,3 @@
-import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
 import { Store, select } from '@ngrx/store';
 import { Teacher } from '../../models/teacher';
 import { TeachersService } from '../../services/teachers.service';
@@ -6,7 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { selectAll } from '../../store/teachers/teachers.selector';
+import { selectTeachersList } from '../../store/teachers/teachers.selector';
 import {
   animate,
   state,
@@ -14,8 +13,6 @@ import {
   transition,
   trigger
 } from '@angular/animations';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { share, map } from 'rxjs/operators';
 
 @Component({
   selector: 'webui-teachers',
@@ -36,7 +33,7 @@ export class TeachersComponent implements OnInit {
   private data$: any;
   data: Teacher[];
   constructor(private teachers: TeachersService, private store: Store<{}>) {
-    this.data$ = this.store.pipe(select(selectAll));
+    this.data$ = this.store.pipe(select(selectTeachersList));
   }
 
   private columnsToDisplay: string[] = ['firstname', 'lastname', 'dateOfBirth']; // header for TH

@@ -11,7 +11,7 @@ export class TeacherCreateComponent implements OnInit {
   private startDate = new Date(1980, 0, 1);
   constructor(private teachServise: TeachersService) {}
   private fileToUpload;
-  private avatarImg;
+  private avatarImg = '../../../assets/images/no-user-image.png';
 
   addTeacher: FormGroup = new FormGroup({
     firstname: new FormControl('', Validators.required),
@@ -23,9 +23,6 @@ export class TeacherCreateComponent implements OnInit {
     login: new FormControl('', Validators.required)
   });
   ngOnInit() {
-    this.avatarImg = this.fileToUpload
-      ? this.fileToUpload
-      : '../../../assets/images/no-user-image.png';
   }
   generateDate() {
     const date = new Date(this.addTeacher.get('dateOfBirth').value);
@@ -57,6 +54,5 @@ export class TeacherCreateComponent implements OnInit {
     };
     this.teachServise.addTeacher(data);
     this.addTeacher.reset();
-    this.avatarImg = '../../../assets/images/no-user-image.png';
   }
 }

@@ -1,9 +1,10 @@
+import { editTeacher } from './../store/teachers/teachers.action';
 import { NotificationService } from './notification.service';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { teacherAction } from '../store/teachers/teachers.action';
+import { teacherAction, addOneTeacher } from '../store/teachers/teachers.action';
 import { Observable, Observer } from 'rxjs';
 
 
@@ -23,7 +24,7 @@ export class TeachersService {
     return this.http.get(`${this.BASE_URI}teachers`)
     .subscribe(response => {
       // @ts-ignore
-      this.store.dispatch(teacherAction({ data: response.data }));
+      this.store.dispatch(teacherAction({ teachersList: response.data }));
     });
   }
 
@@ -37,7 +38,8 @@ export class TeachersService {
     .subscribe( (response) => {
       if (response.status === 200) {
         this.notify.notifySuccess('Успішно редаговано');
-        this.getTeachers();
+        // @ts-ignore
+        this.store.dispatch(editTeacher({editedTeacher: response.body.data }));
       } else {
         this.notify.notifyFailure('Упс...щось пішло не так');
       }
@@ -52,7 +54,8 @@ export class TeachersService {
     .subscribe( (response) => {
       if (response.status === 200) {
         this.notify.notifySuccess('Успішно створено');
-        this.getTeachers();
+        // @ts-ignore
+        this.store.dispatch(addOneTeacher({ teacher: response.body.data }));
       } else {
         this.notify.notifyFailure('Упс...щось пішло не так');
       }
