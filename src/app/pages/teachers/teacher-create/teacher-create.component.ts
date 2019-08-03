@@ -1,4 +1,4 @@
-import { TeachersService } from './../../../services/teachers.service';
+import { TeachersService } from '../../../services/teachers.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 

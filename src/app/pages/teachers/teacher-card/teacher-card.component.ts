@@ -1,4 +1,4 @@
-import { TeachersService } from './../../../services/teachers.service';
+import { TeachersService } from '../../../services/teachers.service';
 import { Teacher } from '../../../models/teacher';
 import { TeachersComponent } from '../teachers.component';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
