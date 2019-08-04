@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { TeachersComponent } from './pages/teachers/teachers.component';
+import { LoginComponent } from './pages/login/login.component';
+import { TeachersComponent } from './containers/teachers/teachers.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
-import { StudentDiaryComponent } from './components/containers/student-panel/student-diary/student-diary.component';
+import { StudentDiaryComponent } from './containers/student-diary/student-diary.component';
 
 const routes: Routes = [
   {

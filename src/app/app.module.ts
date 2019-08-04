@@ -31,9 +31,9 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { httpInterceptorProviders } from './interceptors/http-interceptor';
-import { TeachersComponent } from './pages/teachers/teachers.component';
+import { TeachersComponent } from './containers/teachers/teachers.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { reducers, metaReducers } from './store';
@@ -41,10 +41,10 @@ import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 import 'hammerjs';
-import { TeacherCardComponent } from './pages/teachers/teacher-card/teacher-card.component';
+import { TeacherCardComponent } from './containers/teachers/teacher-card/teacher-card.component';
 import {ErrorService} from './services/error.service';
-import { StudentDiaryComponent } from './components/containers/student-panel/student-diary/student-diary.component';
-import { TeacherCreateComponent } from './pages/teachers/teacher-create/teacher-create.component';
+import { StudentDiaryComponent } from './containers/student-diary/student-diary.component';
+import { TeacherCreateComponent } from './containers/teachers/teacher-create/teacher-create.component';
 
 @NgModule({
   declarations: [
