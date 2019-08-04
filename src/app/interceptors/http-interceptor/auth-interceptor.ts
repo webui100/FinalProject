@@ -1,3 +1,4 @@
+import { TeachersService } from './../../services/teachers.service';
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -11,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     private auth: AuthService,
-    private studentDiary: StudentDiaryService
+    private studentDiary: StudentDiaryService,
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

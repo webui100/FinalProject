@@ -10,20 +10,6 @@ $base-background: #673ab7;
   flex-direction: column;
 }
 
-.table-container {
-  width: 100%;
-  display: flex;
-  align-self: center;
-  flex-direction: column;
-}
-
-.mat-form-field {
-  @extend %flex-center;
-  width: 300px !important;
-  align-self: center;
-  margin: 1rem;
-  font-size: 1rem;
-}
 .header {
   @extend %flex-center;
   background-color: $base-background;
@@ -40,22 +26,61 @@ $base-background: #673ab7;
   }
 }
 
+.mat-column-expandedDetail {
+  padding: 0 !important;
+}
+
+.mat-form-field {
+  display: flex;
+  width: 300px !important;
+  align-self: center;
+  justify-self: center;
+  margin: 0.2rem;
+  font-size: 1rem;
+  justify-content: center;
+  font-size: 14px;
+  width: 100%;
+}
+.container{
+  flex-direction: column-reverse;
+  display: flex;
+  align-items: center;
+  width: 98%;
+  align-self: center; 
+}
+.addTeacherButton{
+  margin: 0.5rem;
+  margin-bottom: 2rem;
+}
+mat-content{
+  align-items: center;
+}
+
+.mat-accordion{
+  align-self: center;
+  margin: 0.5rem;
+  width: 90%;
+}
+
+.table-container {
+  width: 100%;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+
 table {
   width: 100%;
 
   .teacher-row,
   th {
-    width: 25%;
-    padding: 0.1rem;
+    width: 30%;
   }
-  .teacher-row:hover{
+  .teacher-row:hover {
     background-color: #e8e8e8;
   }
   td {
     font-size: 12px;
-  }
-  .mat-header-cell {
-    padding: 0.2rem;
   }
 }
 
@@ -63,21 +88,15 @@ th.mat-sort-header-sorted {
   color: black;
 }
 
-.mat-icon {
-  cursor: pointer;
-}
-
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
-}
 
 .teacher-detail {
   overflow: hidden;
   display: flex;
+  justify-content: center;
 }
+
 .teacher-row {
- padding: 0.2rem;
+  padding: 0.2rem;
 }
 
 .teacher-row td {
@@ -94,19 +113,16 @@ tr.teacher-detail-row {
   align-items: center;
 
   & .diagram-block-1,
-    .diagram-block-2{
-      display: flex;
+  .diagram-block-2 {
+    display: flex;
 
-      & > div{
-        padding: 0.5rem 0.2rem;
-      }
+    & > div {
+      padding: 0.5rem 0.2rem;
     }
+  }
 }
-.bold-text{
+.bold-text {
   font-weight: 600;
-}
-.last-element{
-  padding: 0.5rem 0.2rem;
 }
 
 @media only screen and (min-width: 600px) {
@@ -129,5 +145,18 @@ tr.teacher-detail-row {
   }
   .mat-header-cell {
     padding: 1rem !important;
+  }
+}
+@media only screen and (min-width: 600px){
+  .container{
+    width: 90%;
+    flex-direction: row;
+    align-content: center;
+  }
+  .addTeacherButton{
+    margin: 0;
+  }
+  .mat-form-field{
+    margin: 0.5rem;
   }
 }
