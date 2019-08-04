@@ -27,7 +27,8 @@ export class ErrorService implements ErrorHandler {
 
       }
     } else {
-      console.log(error);
+      // tslint:disable-next-line: no-console
+      console.error(error);
     }
 
 

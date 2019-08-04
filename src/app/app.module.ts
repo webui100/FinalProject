@@ -18,7 +18,9 @@ import {
   MatBadgeModule,
   MatSnackBarModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSelectModule,
+  MatRadioModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,6 +42,8 @@ import { MatListModule } from '@angular/material';
 import { TemporaryComponent } from './temporary/temporary.component';
 import {ErrorService} from './services/error.service';
 import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -50,9 +54,12 @@ import { StudentDiaryComponent } from './components/student-diary/student-diary.
     StudentsComponent,
     MainNavComponent,
     TemporaryComponent,
-    StudentDiaryComponent
+    StudentDiaryComponent,
+    AdminPanelComponent
   ],
   imports: [
+    MatRadioModule,
+    MatSelectModule,
     MatListModule,
     MatCommonModule,
     MatBadgeModule,
@@ -78,6 +85,7 @@ import { StudentDiaryComponent } from './components/student-diary/student-diary.
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ChartsModule,
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {

@@ -6,6 +6,7 @@ import { StudentsComponent } from './students/students.component';
 import { AdminComponent } from './admin/admin.component';
 import { TemporaryComponent } from './temporary/temporary.component';
 import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
+import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
 
 const routes: Routes = [
   {
@@ -30,8 +31,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'pupils',
+        redirectTo: 'home',
         pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        component: AdminPanelComponent
       },
       {
         path: 'pupils',

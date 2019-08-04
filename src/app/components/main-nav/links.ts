@@ -1,5 +1,10 @@
 const links = [
   {
+    path: 'home',
+    title: 'Домашня панель',
+    icon: 'home'
+  },
+  {
     path: 'pupils',
     title: 'Учні',
     icon: 'people'
