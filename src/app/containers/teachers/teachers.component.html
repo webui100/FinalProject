@@ -6,7 +6,7 @@
 </mat-form-field>
 
 <mat-accordion>
-    <mat-expansion-panel >
+    <mat-expansion-panel>
         <mat-expansion-panel-header>
             Додати вчителя
         </mat-expansion-panel-header>
@@ -29,8 +29,6 @@
                 </div>
             </td>
         </ng-container>
-
-
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let teacher; columns: columnsToDisplay;" class="teacher-row"
             [class.teacher-expanded-row]="expandedElement === teacher"
