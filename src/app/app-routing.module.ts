@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { TeachersComponent } from './teachers/teachers.component';
-import { StudentsComponent } from './students/students.component';
-import { AdminComponent } from './admin/admin.component';
-import { TemporaryComponent } from './temporary/temporary.component';
-import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
+import { LoginComponent } from './pages/login/login.component';
+import { TeachersComponent } from './containers/teachers/teachers.component';
+import { StudentsComponent } from './pages/students/students.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { TemporaryComponent } from './components/temporary/temporary.component';
+import { StudentDiaryComponent } from './containers/student-diary/student-diary.component';
 
 const routes: Routes = [
   {
@@ -17,11 +17,11 @@ const routes: Routes = [
     component: TeachersComponent
   },
   {
-    path: 'students',
+    path: 'student',
     component: StudentsComponent
   },
   {
-    path: 'students/diary',
+    path: 'student/diary',
     component: StudentDiaryComponent
   },
   {

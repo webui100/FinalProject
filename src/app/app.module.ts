@@ -1,63 +1,48 @@
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
 import { environment } from '../environments/environment';
-import {
-  MatFormFieldModule,
-  MatInputModule,
-  MatCardModule,
-  MatButtonModule,
-  MatCheckboxModule,
-  MatIconModule,
-  MatGridListModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatCommonModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatBadgeModule,
-  MatSnackBarModule,
-  MatDatepickerModule,
-  MatNativeDateModule
-} from '@angular/material';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { httpInterceptorProviders } from './http-interceptor';
-import { TeachersComponent } from './teachers/teachers.component';
-import { AdminComponent } from './admin/admin.component';
-import { StudentsComponent } from './students/students.component';
+import { LoginComponent } from './pages/login/login.component';
+import { httpInterceptorProviders } from './interceptors/http-interceptor';
+import { TeachersComponent } from './containers/teachers/teachers.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { StudentsComponent } from './pages/students/students.component';
 import { reducers, metaReducers } from './store';
+
 import { MainNavComponent } from './components/main-nav/main-nav.component';
-import { MatListModule } from '@angular/material';
-import { TemporaryComponent } from './temporary/temporary.component';
-import {ErrorService} from './services/error.service';
-import { StudentDiaryComponent } from './components/student-diary/student-diary.component';
+import 'hammerjs';
+import { TeacherCardComponent } from './containers/teachers/teacher-card/teacher-card.component';
+import { ErrorService } from './services/error.service';
+import { StudentDiaryComponent } from './containers/student-diary/student-diary.component';
+import { TeacherCreateComponent } from './containers/teachers/teacher-create/teacher-create.component';
+import { TemporaryComponent } from './components/temporary/temporary.component';
+import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TeachersComponent,
     AdminComponent,
     StudentsComponent,
+    TeachersComponent,
+    StudentDiaryComponent,
     MainNavComponent,
     TemporaryComponent,
-    StudentDiaryComponent
+    TeacherCardComponent,
+    StudentDiaryComponent,
+    TeacherCreateComponent,
+    TemporaryComponent
   ],
   imports: [
-    MatListModule,
-    MatCommonModule,
-    MatBadgeModule,
-    MatToolbarModule,
-    MatSidenavModule,
     BrowserModule,
     RouterModule,
     AppRoutingModule,
@@ -65,19 +50,7 @@ import { StudentDiaryComponent } from './components/student-diary/student-diary.
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatGridListModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatIconModule,
-    MatSortModule,
-    MatSnackBarModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
+    MaterialModule,
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {
