@@ -3,6 +3,7 @@ import { Teacher } from '../../../models/teacher';
 import { TeachersComponent } from '../teachers.component';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'webui-teacher-card',
@@ -15,6 +16,7 @@ export class TeacherCardComponent implements OnInit {
   private fileToUpload;
   avatarImg;
   private startDate = new Date(1980, 0, 1);
+  private subject: Subject<string | ArrayBuffer>;
   constructor(private teachServise: TeachersService) {}
   editTeacher: FormGroup = new FormGroup({
     firstname: new FormControl(''),
@@ -27,13 +29,11 @@ export class TeacherCardComponent implements OnInit {
   });
 
   handleFileInput(event) {
-    const file: File = event.target.files[0];
-    const reader: FileReader = new FileReader();
-    reader.onloadend = (e) => {
-      this.fileToUpload = reader.result;
-      this.avatarImg = this.fileToUpload;
-    };
-    reader.readAsDataURL(file);
+    this.teachServise.readFileImage(event.target);
+    this.teachServise.subject.subscribe(response => {
+      this.avatarImg = response;
+      this.fileToUpload = response;
+    });
   }
 
   generateDate() {
@@ -72,5 +72,9 @@ export class TeacherCardComponent implements OnInit {
       id: this.teacher.id
     };
     this.teachServise.editTeacher(this.teacher.id, data);
+  }
+
+  ngOnDestroy(): void {
+   this.teachServise.subject.unsubscribe();
   }
 }

@@ -1,6 +1,7 @@
 import { TeachersService } from '../../../services/teachers.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'webui-teacher-create',
@@ -12,6 +13,7 @@ export class TeacherCreateComponent implements OnInit {
   constructor(private teachServise: TeachersService) {}
   private fileToUpload;
   private avatarImg = '../../../assets/images/no-user-image.png';
+  private subject: Subject<any>;
 
   addTeacher: FormGroup = new FormGroup({
     firstname: new FormControl('', Validators.required),
@@ -30,14 +32,8 @@ export class TeacherCreateComponent implements OnInit {
     return date.toISOString().slice(0, 10);
   }
   handleFileInput(event): void {
-    const file: File = event.target.files[0];
-    const reader: FileReader = new FileReader();
-    reader.onloadend = e => {
-      this.fileToUpload = reader.result;
-      this.avatarImg = this.fileToUpload;
-      console.log(this.fileToUpload);
-    };
-    reader.readAsDataURL(file);
+    this.teachServise.readFileImage(event.target);
+    this.subject = this.teachServise.subject;
   }
 
   submitAdd($event): void {

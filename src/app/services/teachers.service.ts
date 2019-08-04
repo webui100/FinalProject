@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { teacherAction, addOneTeacher } from '../store/teachers/teachers.action';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -13,6 +13,7 @@ import { Observable, Observer } from 'rxjs';
 })
 export class TeachersService {
   file;
+  public subject = new Subject<string | ArrayBuffer>();
   private BASE_URI = environment.APIEndpoint;
 
   constructor(private http: HttpClient,
@@ -66,10 +67,9 @@ export class TeachersService {
     const file: File = inputValue.files[0];
     const reader: FileReader = new FileReader();
     reader.onloadend = (e) => {
-      this.file = reader.result;
+      this.subject.next(reader.result);
     };
     reader.readAsDataURL(file);
-    return this.file;
   }
 
 }
