@@ -47,9 +47,9 @@ export class AuthService {
         if (decodeToken === 'ROLE_ADMIN') {
           this.router.navigate(['/admin']);
         } else if (decodeToken === 'ROLE_USER') {
-          this.router.navigate(['/students']);
+          this.router.navigate(['/student']);
         } else if (decodeToken === 'ROLE_TEACHER') {
-          this.router.navigate(['/teachers']);
+          this.router.navigate(['/teacher']);
         }
 
 

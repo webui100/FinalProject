@@ -17,11 +17,11 @@ const routes: Routes = [
     component: TeachersComponent
   },
   {
-    path: 'students',
+    path: 'student',
     component: StudentsComponent
   },
   {
-    path: 'students/diary',
+    path: 'student/diary',
     component: StudentDiaryComponent
   },
   {
