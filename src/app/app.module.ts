@@ -21,7 +21,7 @@ import { reducers, metaReducers } from './store';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import 'hammerjs';
 import { TeacherCardComponent } from './containers/teachers/teacher-card/teacher-card.component';
-import {ErrorService} from './services/error.service';
+import { ErrorService } from './services/error.service';
 import { StudentDiaryComponent } from './containers/student-diary/student-diary.component';
 import { TeacherCreateComponent } from './containers/teachers/teacher-create/teacher-create.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';

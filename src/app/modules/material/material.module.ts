@@ -17,13 +17,15 @@ import {
   MatSnackBarModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatListModule
+  MatListModule,
+  MatExpansionModule,
 } from '@angular/material';
 
 const MaterialComponents = [
   MatFormFieldModule,
   MatInputModule,
   MatCardModule,
+  MatExpansionModule,
   MatButtonModule,
   MatCheckboxModule,
   MatIconModule,
