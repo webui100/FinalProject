@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { LoginComponent } from "./login/login.component";
-import { TeachersComponent } from "./teachers/teachers.component";
-import { StudentsComponent } from './students/students.component';
-import { AdminComponent } from './admin/admin.component';
-import { ScheduleComponent } from './admin/schedule/schedule.component';
-import {TemporaryComponent} from './temporary/temporary.component';
+import { LoginComponent } from "./pages/login/login.component";
+import { TeachersComponent } from "./containers/teachers/teachers.component";
+import { StudentsComponent } from './pages/students/students.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { ScheduleComponent } from './containers/schedule/schedule.component';
+import {TemporaryComponent} from './components/temporary/temporary.component';
 
 const routes: Routes = [
   {

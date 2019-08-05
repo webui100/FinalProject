@@ -29,17 +29,17 @@ import { loginReducer } from './store/login/login.reducer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { httpInterceptorProviders } from './http-interceptor';
-import { TeachersComponent } from './teachers/teachers.component';
-import { AdminComponent } from './admin/admin.component';
-import { StudentsComponent } from './students/students.component';
+import { LoginComponent } from './pages/login/login.component';
+import { httpInterceptorProviders } from './interceptors';
+import { TeachersComponent } from './containers/teachers/teachers.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { StudentsComponent } from './pages/students/students.component';
 import { reducers, metaReducers } from './store';
 import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {MatListModule} from '@angular/material';
-import { TemporaryComponent } from './temporary/temporary.component';
-import { ScheduleComponent } from './admin/schedule/schedule.component';
-import { DailyScheduleComponent } from './admin/schedule/daily-schedule/daily-schedule.component';
+import { TemporaryComponent } from './components/temporary/temporary.component';
+import { ScheduleComponent } from './containers/schedule/schedule.component';
+import { DailyScheduleComponent } from './containers/schedule/daily-schedule/daily-schedule.component';
 
 @NgModule({
   declarations: [
