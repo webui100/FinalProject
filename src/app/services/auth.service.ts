@@ -10,7 +10,7 @@ import { selectRole, selectId } from '../store/login/login.selectors';
 import { takeUntil, tap} from 'rxjs/operators';
 
 import {timer} from 'rxjs/internal/observable/timer';
-import {Subject} from "rxjs/internal/Subject";
+import {Subject} from 'rxjs/internal/Subject';
 
 @Injectable({
   providedIn: 'root'

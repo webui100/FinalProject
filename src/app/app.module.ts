@@ -25,6 +25,10 @@ import { CurrentUserComponent } from './components/current-user/current-user.com
 import { CurrentUserService } from './services/current-user.service';
 import { HeaderComponent } from './components/header/header.component';
 
+import { AuthInterceptor } from './http-interceptor/auth-interceptor';
+import { CurrentUserComponent } from './components/current-user/current-user.component';
+import { CurrentUserService } from './services/current-user.service';
+
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
 import { AdminPanelComponent } from './containers/admin-panel/admin-panel.component';
