@@ -49,16 +49,16 @@ const routes: Routes = [
       {
         path: 'subjects',
         component: TemporaryComponent
-      },
-      {
-        path: 'classes',
-        component: TemporaryComponent
       }
     ]
   }
 ];
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+// @ts-ignore
+export class AppRoutingModule {}
+// @ts-ignore

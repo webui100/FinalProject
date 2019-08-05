@@ -3,10 +3,6 @@ export interface Chart {
   labels: Array<string>;
   type: string;
   legend: boolean;
-  data: Array<Data>;
-}
-
-export interface Data {
-  data: Array<string>;
-  label: string;
+  data: Array<number>;
+  colors: Array<object>;
 }

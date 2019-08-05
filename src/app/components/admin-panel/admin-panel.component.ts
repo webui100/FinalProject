@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminPanelService} from '../../services/admin-panel.service';
 import {Observable} from 'rxjs';
-import { Store } from '@ngrx/store';
-import { chartDataSelector, chartTypeSelector } from 'src/app/store/chart/chart.selectors';
-
+import {Store} from '@ngrx/store';
+import {
+  chartColorsSelector,
+  chartDataSelector,
+  chartLabelsSelector, chartLegendSelector,
+  chartOptionsSelector,
+  chartTypeSelector
+} from 'src/app/store/chart/chart.selectors';
+import randomC from 'randomcolor';
 
 @Component({
   selector: 'webui-admin-panel',
@@ -12,38 +18,48 @@ import { chartDataSelector, chartTypeSelector } from 'src/app/store/chart/chart.
 })
 export class AdminPanelComponent implements OnInit {
 
+  constructor(public panelService: AdminPanelService, private store: Store<{chart}>) { }
+
   teachers$: Observable<number>;
   subjects$: Observable<number>;
   students$: Observable<number>;
   classes$: Observable<number>;
-  data$: Observable<any>;
+  data$: Observable<Array<number>>;
+  labels$: Observable<Array<string>>;
+  colors$: Observable<Array<object>>;
   chartType$: Observable<string>;
+  options$: Observable<object>;
+  legend$: Observable<boolean>;
   listOfClasses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-    scales: {
-      yAxes: [{
-          ticks: {
-              beginAtZero: true,
-              callback(value) {if (value % 1 === 0) {return value; }}
-          }
-      }]
-    }
-  };
-
-  public barChartLabels = ['2006'];
-  public barChartLegend = true;
-
-  constructor(public panelService: AdminPanelService, private store: Store<{chart}>) { }
+  static getRandomColor(): string {
+    return randomC({
+      luminosity: 'light',
+      format: 'rgba',
+      alpha: 0.5
+    });
+  }
 
   setClassChart(classNumber) {
-    console.log(classNumber);
+    const data: Array<number> = [];
+    const labels: Array<string> = [];
+    const colors: Array<object> = [{
+      backgroundColor: []
+    }];
     const httpRef = this.panelService.getStudentsFromClass(classNumber + '')
-    .subscribe(value => this.panelService.generateChart(value),
+    .subscribe((value: Array<ChartData>) => {
+        value.forEach(dataset => {
+          data.push(dataset.data[0]);
+          labels.push(dataset.label);
+          // @ts-ignore
+          colors[0].backgroundColor.push(AdminPanelComponent.getRandomColor());
+        });
+    },
       (error) => console.log(error),
-      () => httpRef.unsubscribe());
+      () => {
+        this.panelService.generateChart(data, labels, colors);
+        httpRef.unsubscribe();
+    });
   }
 
   setChartType(value) {
@@ -57,17 +73,21 @@ export class AdminPanelComponent implements OnInit {
     this.students$ = this.panelService.getStudentsNumber();
     this.classes$ = this.panelService.getClassesNumber();
 
-    this.panelService.getStudentsFromClass('11')
-      .subscribe(value => this.panelService.generateChart(value));
+    this.setClassChart('11');
 
+    this.colors$ = this.store.select(chartColorsSelector);
     this.data$ = this.store.select(chartDataSelector);
-    this.data$.subscribe(value => console.log(value));
-
+    this.labels$ = this.store.select(chartLabelsSelector);
+    this.options$ = this.store.select(chartOptionsSelector);
     this.chartType$ = this.store.select(chartTypeSelector);
+    this.legend$ = this.store.select(chartLegendSelector);
 
   }
 
 
+}
 
-
+interface ChartData {
+  data: Array<number>;
+  label: string;
 }
