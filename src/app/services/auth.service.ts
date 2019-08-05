@@ -8,7 +8,7 @@ import * as jwt_decode from '../../../node_modules/jwt-decode';
 import { Store, select } from '@ngrx/store';
 import { login } from '../store/login/login.actions';
 import { selectRole } from '../store/login/login.selectors';
-
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class AuthService {
 
   signIn(userData) {
     this.http
-      .post(this.BASE_URI + 'signin', userData, {
+      .post( `${this.BASE_URI}signin`, userData, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           Accept: '*/*'
@@ -42,7 +42,7 @@ export class AuthService {
 
         localStorage.setItem('token', token);
 
-        this.store.dispatch(login({role: decodeToken}));
+        this.store.dispatch(login({ role: decodeToken }));
 
         if (decodeToken === 'ROLE_ADMIN') {
           this.router.navigate(['/admin']);
@@ -51,6 +51,7 @@ export class AuthService {
         } else if (decodeToken === 'ROLE_TEACHER') {
           this.router.navigate(['/teacher']);
         }
+
 
         this.role$.subscribe(data => this.role = data);
         console.log('ROLE from store --- ', this.role);
