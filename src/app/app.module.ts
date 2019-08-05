@@ -4,8 +4,8 @@ import { environment } from '../environments/environment';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -17,6 +17,10 @@ import { TeachersComponent } from './containers/teachers/teachers.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { reducers, metaReducers } from './store';
+
+import { AuthInterceptor } from './http-interceptor/auth-interceptor';
+import { CurrentUserComponent } from './components/current-user/current-user.component';
+import { CurrentUserService } from './services/current-user.service';
 
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
@@ -46,7 +50,8 @@ import {CustomSerializer} from './store/router.reducer';
     TeacherCardComponent,
     StudentDiaryComponent,
     TeacherCreateComponent,
-    TemporaryComponent
+    TemporaryComponent,
+    CurrentUserComponent,
   ],
   imports: [
     ChartsModule,
@@ -78,8 +83,10 @@ import {CustomSerializer} from './store/router.reducer';
   providers: [
     { provide: ErrorHandler,
     useClass: ErrorService },
-    httpInterceptorProviders,{
-    provide: RouterStateSerializer,
+    {provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true },
+    {provide: RouterStateSerializer,
     useClass: CustomSerializer
   }],
   bootstrap: [AppComponent]

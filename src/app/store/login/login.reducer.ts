@@ -3,17 +3,19 @@ import * as Login from './login.actions';
 
 export interface State {
   role: string;
+  id: number;
 }
 
 export const initialState: State = {
-  role: null
+  role: null,
+  id: null
 };
 
 const reducer = createReducer(
   initialState,
-  on(Login.login, (state, { role }) => ({
+  on(Login.login, (state, { role, id }) => ({
     ...state,
-    role
+    role, id
   }))
 );
 
