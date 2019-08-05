@@ -1,0 +1,58 @@
+<mat-card>
+    <div class="stripe"></div>
+    <mat-card-header>
+        <img mat-card-avatar [src]='avatarImg'>
+        <mat-card-title>
+            <div class="title-name">{{name.value}}</div>
+            <div class="title-lastname">{{surname.value}}</div>
+            <!-- <input type="file" #inputFile id="file" (change)="handleFileInput($event)" [hidden]="true">
+            <mat-card-actions class="header-mat-card-actions">
+                <button mat-button type="button" (click)="inputFile.click()">Вибрати фото</button>
+            </mat-card-actions> -->
+        </mat-card-title>
+
+    </mat-card-header>
+    <form [formGroup]="addTeacher" (ngSubmit)="submitAdd($event)">
+        <mat-card-content>
+            <mat-form-field class="add-input">
+                <input matInput placeholder="Ім'я" formControlName="firstname" #name required>
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput placeholder="Прізвище" formControlName="lastname" #surname required>
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput placeholder="По-батькові" formControlName="patronymic" required>
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput matInput [matDatepicker]="picker" placeholder="Дата народження"
+                    formControlName="dateOfBirth" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput placeholder="Логін" formControlName="login" required>
+            </mat-form-field>
+
+
+            <mat-form-field class="add-input">
+                <input matInput placeholder="Електронна скринька" formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field class="add-input">
+                <input matInput placeholder="Телефон" formControlName="phone">
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button mat-button type="submit" [disabled]="!addTeacher.valid"> Створити </button>
+            </mat-card-actions>
+
+
+
+        </mat-card-content>
+    </form>
+
+</mat-card>

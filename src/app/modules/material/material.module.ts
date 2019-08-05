@@ -20,7 +20,8 @@ import {
   MatListModule,
   MatOptionModule,
   MatSelectModule,
-  MatRadioModule
+  MatRadioModule,
+  MatExpansionModule,
 } from '@angular/material';
 
 const MaterialComponents = [
@@ -29,6 +30,7 @@ const MaterialComponents = [
   MatFormFieldModule,
   MatInputModule,
   MatCardModule,
+  MatExpansionModule,
   MatButtonModule,
   MatCheckboxModule,
   MatIconModule,
