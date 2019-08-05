@@ -1,7 +1,12 @@
 const links = [
   {
+    path: 'home',
+    title: 'Домашня панель',
+    icon: 'home'
+  },
+  {
     path: 'pupils',
-    title: 'Учні',
+    title: 'Учні / Класи',
     icon: 'people'
   },
   {
@@ -13,11 +18,6 @@ const links = [
     path: 'subjects',
     title: 'Предмети',
     icon: 'book'
-  },
-  {
-    path: 'classes',
-    title: 'Класи',
-    icon: 'library_books'
   },
   {
     path: 'schedule',
