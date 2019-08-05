@@ -8,7 +8,7 @@
       matInput
       [matDatepicker]="myDatePicker"
       [matDatepickerFilter]="dateFilter"
-      [formControl]="currentDate"
+      [(ngModel)]="dateValue"
       (dateChange)="selectDay()"
     >
     <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>

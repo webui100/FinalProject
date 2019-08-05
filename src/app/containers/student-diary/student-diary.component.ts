@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { FormControl } from '@angular/forms';
 import { DateAdapter } from '@angular/material';
+import { addDays, format, getDate, getDay, getDaysInMonth, setDate, subDays } from 'date-fns';
 
 import { StudentDiaryService } from '../../services/student-diary.service';
 import { selectDiary } from '../../store/diary/diary.selectors';
@@ -14,6 +14,7 @@ import { selectDiary } from '../../store/diary/diary.selectors';
 export class StudentDiaryComponent implements OnInit {
   diary$: any;
   diary: any;
+  dateValue = this.getStartOfWeek();
   weekDays: string[] = [
     'Понеділок',
     'Вівторок',
@@ -22,68 +23,63 @@ export class StudentDiaryComponent implements OnInit {
     'П\'ятниця'
   ];
   dayNumbers: number[];
-  currentDate = new FormControl(new Date());
   showDiary: boolean;
 
   constructor(
     private studentDiary: StudentDiaryService,
     private store: Store<{ diary }>,
-    private dateAdapter: DateAdapter<any>
+    private dateAdapter: DateAdapter<Date>
   ) {
     this.diary$ = this.store.pipe(select(selectDiary));
   }
 
   ngOnInit() {
     this.dateAdapter.setLocale('uk');
-    const date = this.currentDate.value;
+    this.dateAdapter.getFirstDayOfWeek = () => 1;
 
-    const weekDaysPassed = date.getDay() > 0 ? date.getDay() - 1 : date.getDay() + 6;
-    date.setDate(date.getDate() - weekDaysPassed);
+    const date = this.dateValue;
 
-    const year = date.getFullYear();
-    const month = date.getMonth() < 9 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`;
-    const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`;
+    const formattedDate = format(
+      new Date(date),
+      'YYYY-MM-DD'
+    );
 
     const dayNumbers = [];
-    const daysInMonth = this.daysInMonth(year, month);
+    const daysInMonth = getDaysInMonth((new Date(date)));
     this.weekDays.map((item, i) => {
-      if (+day + i <= daysInMonth) {
-        dayNumbers.push(+day + i);
+      if (getDate(new Date(date)) + i <= daysInMonth) {
+        dayNumbers.push(getDate(new Date(date)) + i);
       } else {
-        dayNumbers.push(+day + i - daysInMonth);
+        dayNumbers.push(getDate(new Date(date)) + i - daysInMonth);
       }
     });
     this.dayNumbers = dayNumbers;
 
-    this.studentDiary.fetchStudentDiary(`${year}-${month}-${day}`);
+    this.studentDiary.fetchStudentDiary(formattedDate);
     this.diary$.subscribe(data => {
       this.diary = data.diary;
       this.showDiary = !!this.diary.data.length;
     });
   }
 
-  daysInMonth(year, month) {
-    return new Date(year, month, 0).getDate();
-  }
-
-  selectNextWeek() {
-    const year = this.currentDate.value.getFullYear();
-    const month = this.currentDate.value.getMonth();
-    const day = this.currentDate.value.getDate() + 7;
-    this.currentDate = new FormControl(new Date(year, month, day));
-    this.ngOnInit();
+  getStartOfWeek() {
+    const today = new Date();
+    const weekDaysPassed = getDay(today) - 1;
+    return setDate(today, getDate(today) - weekDaysPassed);
   }
 
   selectPreviousWeek() {
-    const year = this.currentDate.value.getFullYear();
-    const month = this.currentDate.value.getMonth();
-    const day = this.currentDate.value.getDate() - 7;
-    this.currentDate = new FormControl(new Date(year, month, day));
+    this.dateValue = subDays(new Date(this.dateValue), 7);
+    this.ngOnInit();
+  }
+
+  selectNextWeek() {
+    this.dateValue = addDays(new Date(this.dateValue), 7);
     this.ngOnInit();
   }
 
   selectCurrentWeek() {
-    this.currentDate = new FormControl(new Date());
+    this.dateValue = new Date();
     this.ngOnInit();
   }
 
