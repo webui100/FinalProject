@@ -16,6 +16,7 @@ export class MainNavComponent implements OnInit {
 
   public isOpened = true;
   public linksSet = links;
+  private sidenavPosition = "end";
 
   isHandset$: Observable<boolean>;
 

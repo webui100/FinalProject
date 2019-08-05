@@ -9,5 +9,6 @@ export class ErrorService implements ErrorHandler {
   constructor() { }
 
   handleError(error){
+    console.log(error);
   }
 }

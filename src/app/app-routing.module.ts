@@ -8,10 +8,16 @@ import {TemporaryComponent} from './temporary/temporary.component';
 import {AdminGuard} from "./services/guards/admin.guard";
 import {TeacherGuard} from "./services/guards/teacher.guard";
 import {StudentGuard} from "./services/guards/student.guard";
+import { LoginGuard } from './services/guards/login.guard';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
+    component: LoginComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'login',
     component: LoginComponent
   },
   {
@@ -57,6 +63,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AdminGuard, TeacherGuard, StudentGuard]
+  providers: [AdminGuard, TeacherGuard, StudentGuard, LoginGuard]
 })
 export class AppRoutingModule {}
