@@ -22,8 +22,8 @@ import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModu
 import {CustomSerializer} from './store/router.reducer';
 
 import { CurrentUserComponent } from './components/current-user/current-user.component';
-import { CurrentUserService } from './services/current-user.service';
 import { HeaderComponent } from './components/header/header.component';
+import { CurrentUserService } from './services/current-user.service';
 
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
@@ -40,6 +40,7 @@ import {StudentsComponent} from './pages/student/students.component';
 import {TeacherComponent} from '../../../ngSoftServe/material-ng/src/app/teacher/teacher.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
+
 
 
 @NgModule({
