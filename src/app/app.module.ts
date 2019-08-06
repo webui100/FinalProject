@@ -1,25 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
-import {
-  MatFormFieldModule,
-  MatInputModule,
-  MatCardModule,
-  MatButtonModule,
-  MatCheckboxModule,
-  MatIconModule,
-  MatGridListModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatCommonModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatBadgeModule,
-  MatSelectModule,
-  MatExpansionModule,
-  MatAutocompleteModule
-} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -79,19 +60,6 @@ import { ChartComponent } from './components/chart/chart.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatGridListModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatIconModule,
-    MatSortModule,
-    MatSelectModule,
-    MatExpansionModule,
-    MatAutocompleteModule,
     MaterialModule,
     StoreModule.forRoot(reducers, {
       metaReducers
