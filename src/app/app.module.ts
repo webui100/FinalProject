@@ -19,6 +19,9 @@ import { StudentsComponent } from './pages/students/students.component';
 import { reducers, metaReducers } from './store';
 
 import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { MatListModule } from '@angular/material';
+import { AdminPanelComponent } from './containers/admin-panel/admin-panel.component';
+import {ChartsModule} from 'ng2-charts';
 import 'hammerjs';
 import { TeacherCardComponent } from './containers/teachers/teacher-card/teacher-card.component';
 import { ErrorService } from './services/error.service';
@@ -36,6 +39,7 @@ import { MaterialModule } from './modules/material/material.module';
     TeachersComponent,
     StudentDiaryComponent,
     MainNavComponent,
+    AdminPanelComponent,
     TemporaryComponent,
     TeacherCardComponent,
     StudentDiaryComponent,
@@ -43,6 +47,8 @@ import { MaterialModule } from './modules/material/material.module';
     TemporaryComponent
   ],
   imports: [
+    ChartsModule,
+    MatListModule,
     BrowserModule,
     RouterModule,
     AppRoutingModule,

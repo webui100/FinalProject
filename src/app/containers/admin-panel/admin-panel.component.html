@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="column-desktop-1-4 column-tablet-1-4 column-phablet-1-2 column-laptop-1-4 column-mobile-1-2 m-b-10">
+      <div class="card-container">
+        <ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{obs: teachers$, title: 'Вчителі'}"></ng-container>
+      </div>
+    </div>
+    <div class="column-desktop-1-4 column-tablet-1-4 column-phablet-1-2 column-laptop-1-4 column-mobile-1-2 m-b-10">
+      <div class="card-container">
+      <ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{obs: subjects$, title: 'Предмети'}"></ng-container>
+      </div>
+    </div>
+    <div class="column-desktop-1-4 column-tablet-1-4 column-phablet-1-2 column-laptop-1-4 column-mobile-1-2 m-b-10">
+      <div class="card-container">
+      <ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{obs: classes$, title: 'Класи'}"></ng-container>
+      </div>
+      </div>
+    <div class="column-desktop-1-4 column-tablet-1-4 column-phablet-1-2 column-laptop-1-4 column-mobile-1-2 m-b-10">
+      <div class="card-container">
+      <ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{obs: students$, title: 'Учні'}"></ng-container>
+      </div>
+      </div>
+    <div class="chart-block-container">
+
+      <mat-card class="chart-card">
+        <mat-card-title>Статистика навантаженості потоків</mat-card-title>
+        <mat-card-content>
+          <div class="row w-100">
+            <div class="column-desktop-1-4">
+
+              <div class="chart-control-panel">
+                <mat-form-field>
+                  <mat-label>Виберіть потік</mat-label>
+                  <mat-select  (selectionChange)="setClassChart($event.value)" [value]="11">
+                    <mat-option
+                      *ngFor='let num of listOfClasses'
+                      [value]="num"
+                      >
+                      {{num}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                            <mat-radio-group (change)="setChartType($event.value)">
+                              <mat-radio-button value="bar" checked>Стовпці</mat-radio-button>
+                              <mat-radio-button value="pie">Пиріг</mat-radio-button>
+                              <mat-radio-button value="doughnut">Пончик</mat-radio-button>
+                            </mat-radio-group>
+              </div>
+            </div>
+            <div class="column-desktop-3-4">
+
+              <div class="chart-container">
+                <canvas baseChart
+                        [data]="data$ | async"
+                        [labels]="labels$ | async"
+                        [options]="options$ | async"
+                        [legend]="legend$ | async"
+                        [chartType]="chartType$ | async"
+                        [colors]="colors$ | async"></canvas>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #card let-obs="obs" let-title="title">
+    <mat-card class="counting">
+      <mat-card-title>{{title}}</mat-card-title>
+      <mat-card-content>{{obs | async}}</mat-card-content>
+    </mat-card>
+</ng-template>
+
+
