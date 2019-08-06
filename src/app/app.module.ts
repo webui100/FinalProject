@@ -1,7 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,6 +16,8 @@ import { TeachersComponent } from './containers/teachers/teachers.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { reducers, metaReducers } from './store';
+import { ScheduleComponent } from './containers/schedule/schedule.component';
+import { DailyScheduleComponent } from './containers/schedule/daily-schedule/daily-schedule.component';
 
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
@@ -39,10 +40,10 @@ import { ChartComponent } from './components/chart/chart.component';
     AdminComponent,
     StudentsComponent,
     TeachersComponent,
-    StudentDiaryComponent,
     MainNavComponent,
+    ScheduleComponent,
+    DailyScheduleComponent,
     AdminPanelComponent,
-    TemporaryComponent,
     TeacherCardComponent,
     StudentDiaryComponent,
     TeacherCreateComponent,

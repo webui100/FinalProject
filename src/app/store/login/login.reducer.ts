@@ -12,9 +12,9 @@ export const initialState: State = {
 const reducer = createReducer(
   initialState,
   on(Login.login, (state, { role }) => ({
-    ...state,
-    role
-  }))
+      ...state,
+      role
+    }))
 );
 
 export function loginReducer(state: State | undefined, action: Action) {
