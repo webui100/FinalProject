@@ -24,7 +24,6 @@ import {CustomSerializer} from './store/router.reducer';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CurrentUserService } from './services/current-user.service';
-import { HeaderComponent } from './components/header/header.component';
 
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
