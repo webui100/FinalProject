@@ -12,7 +12,8 @@ import {AdminGuard} from './services/guards/admin.guard';
 import {TeacherGuard} from './services/guards/teacher.guard';
 import {StudentGuard} from './services/guards/student.guard';
 import { LoginGuard } from './services/guards/login.guard';
-import {HeaderComponent} from "./components/header/header.component";
+import {StudentsComponent} from "./pages/student/students.component";
+import {TeacherComponent} from "../../../ngSoftServe/material-ng/src/app/teacher/teacher.component";
 
 const routes: Routes = [
   {
