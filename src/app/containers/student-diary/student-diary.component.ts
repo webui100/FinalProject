@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { DateAdapter } from '@angular/material';
 import { registerLocaleData } from '@angular/common';
 import localeUk from '@angular/common/locales/uk';
-import { addDays, format, getDate, getDay, getDaysInMonth, setDate, subDays } from 'date-fns';
+import { format, addDays, subDays, getDate, getDay, setDate } from 'date-fns';
 
 import { StudentDiaryService } from '../../services/student-diary.service';
 import { selectDiary } from '../../store/diary/diary.selectors';
@@ -17,10 +17,8 @@ import { Diary } from '../../store/diary/diary.reducer';
 })
 export class StudentDiaryComponent implements OnInit {
   diary?: Diary;
-  dateValue: any = StudentDiaryComponent.getStartOfWeek();
-  // weekDays: string[] = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця'];
+  dateValue = StudentDiaryComponent.getStartOfWeek();
   weekDays: Date[];
-  // weekDays1: Date[];
   dayNumbers: number[];
   showDiary: boolean;
 
@@ -51,39 +49,19 @@ export class StudentDiaryComponent implements OnInit {
 
   fetchDiary() {
     const date = this.dateValue;
-
     const formattedDate = format(
       new Date(date),
       'YYYY-MM-DD'
     );
-
-    //
-    // const dayNumbers = [];
-    // const daysInMonth = getDaysInMonth((new Date(date)));
-    // this.weekDays.map((item, i) => {
-    //   if (getDate(new Date(date)) + i <= daysInMonth) {
-    //     dayNumbers.push(getDate(new Date(date)) + i);
-    //   } else {
-    //     dayNumbers.push(getDate(new Date(date)) + i - daysInMonth);
-    //   }
-    // });
-    // this.dayNumbers = dayNumbers;
-
     this.studentDiary.fetchStudentDiary(formattedDate);
-
     this.setWeekDays();
   }
 
   setWeekDays() {
     this.weekDays = new Array(5).fill('');
     this.weekDays.map((item, i, arr) => arr[i] = addDays(new Date(this.dateValue), i));
-
     this.dayNumbers = new Array(5).fill('');
     this.dayNumbers.map((item, i, arr) => arr[i] = getDate(new Date(this.weekDays[i])));
-
-
-    console.log(this.dateValue);
-    console.log(this.dayNumbers);
   }
 
   selectPreviousWeek() {

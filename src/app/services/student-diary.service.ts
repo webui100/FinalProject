@@ -26,7 +26,6 @@ export class StudentDiaryService {
         observe: 'response'
       })
       .subscribe(response => {
-        console.log(response);
         this.store.dispatch(fetchDiary({ diary: response.body }));
       });
   }
