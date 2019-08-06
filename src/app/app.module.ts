@@ -21,6 +21,7 @@ import { reducers, metaReducers } from './store';
 import { AuthInterceptor } from './http-interceptor/auth-interceptor';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
 import { CurrentUserService } from './services/current-user.service';
+import { HeaderComponent } from './components/header/header.component';
 
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
@@ -52,6 +53,7 @@ import {CustomSerializer} from './store/router.reducer';
     TeacherCreateComponent,
     TemporaryComponent,
     CurrentUserComponent,
+    HeaderComponent,
   ],
   imports: [
     ChartsModule,
