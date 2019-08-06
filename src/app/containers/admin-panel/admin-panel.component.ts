@@ -10,6 +10,7 @@ import {
   chartTypeSelector
 } from 'src/app/store/chart/chart.selectors';
 import randomC from 'randomcolor';
+import ChartObject from '../../models/chartObject.model';
 
 @Component({
   selector: 'webui-admin-panel',
@@ -30,7 +31,8 @@ export class AdminPanelComponent implements OnInit {
   chartType$: Observable<string>;
   options$: Observable<object>;
   legend$: Observable<boolean>;
-  listOfClasses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+
+  chartObject: ChartObject;
 
   static getRandomColor(): string {
     return randomC({
@@ -81,6 +83,15 @@ export class AdminPanelComponent implements OnInit {
     this.options$ = this.store.select(chartOptionsSelector);
     this.chartType$ = this.store.select(chartTypeSelector);
     this.legend$ = this.store.select(chartLegendSelector);
+
+    this.chartObject = {
+      colors$: this.colors$,
+      data$: this.data$,
+      labels$: this.labels$,
+      options$: this.options$,
+      chartType$: this.chartType$,
+      legend$: this.legend$
+    };
 
   }
 
