@@ -28,7 +28,8 @@
 <div class="diary" *ngIf="showDiary">
     <div *ngFor="let day of weekDays; index as i;" class="day-in-diary day-{{i + 1}}">
       <mat-card>
-        <mat-card-title>{{day}}, {{dayNumbers[i]}}</mat-card-title>
+        <!--<mat-card-title>{{day}}, {{dayNumbers[i]}}</mat-card-title>-->
+        <mat-card-title>{{day}}</mat-card-title>
 
         <table>
           <tr>
@@ -54,6 +55,8 @@
     </div>
 </div>
 
+
+<div>{{fuck | date:'EEEE, d'}}</div>
 
 <div *ngIf="!showDiary">
   <h3>На обрану вами дату розкладу немає. Спробуйте обрати іншу дату.</h3>
