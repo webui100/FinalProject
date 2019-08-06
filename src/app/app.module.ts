@@ -56,7 +56,7 @@ import { AuthInterceptor } from './interseptors/http-interceptor/auth-intercepto
     TemporaryComponent,
     CurrentUserComponent,
     HeaderComponent,
-    ChartComponent
+    ChartComponent,
   ],
   imports: [
     ChartsModule,
