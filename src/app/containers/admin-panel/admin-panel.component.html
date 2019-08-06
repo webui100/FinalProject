@@ -1,21 +1,21 @@
 <div class="container">
-  <div class="row">
-    <div class="column-desktop-1-4 column-tablet-1-4 column-phablet-1-2 column-laptop-1-4 column-mobile-1-2 m-b-10">
+  <div class="myrow">
+    <div class="mycol-desktop-1-4 mycol-tablet-1-4 mycol-phablet-1-2 mycol-laptop-1-4 mycol-mobile-1-2 m-b-10">
       <div class="card-container">
         <ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{obs: teachers$, title: 'Вчителі'}"></ng-container>
       </div>
     </div>
-    <div class="column-desktop-1-4 column-tablet-1-4 column-phablet-1-2 column-laptop-1-4 column-mobile-1-2 m-b-10">
+    <div class="mycol-desktop-1-4 mycol-tablet-1-4 mycol-phablet-1-2 mycol-laptop-1-4 mycol-mobile-1-2 m-b-10">
       <div class="card-container">
       <ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{obs: subjects$, title: 'Предмети'}"></ng-container>
       </div>
     </div>
-    <div class="column-desktop-1-4 column-tablet-1-4 column-phablet-1-2 column-laptop-1-4 column-mobile-1-2 m-b-10">
+    <div class="mycol-desktop-1-4 mycol-tablet-1-4 mycol-phablet-1-2 mycol-laptop-1-4 mycol-mobile-1-2 m-b-10">
       <div class="card-container">
       <ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{obs: classes$, title: 'Класи'}"></ng-container>
       </div>
       </div>
-    <div class="column-desktop-1-4 column-tablet-1-4 column-phablet-1-2 column-laptop-1-4 column-mobile-1-2 m-b-10">
+    <div class="mycol-desktop-1-4 mycol-tablet-1-4 mycol-phablet-1-2 mycol-laptop-1-4 mycol-mobile-1-2 m-b-10">
       <div class="card-container">
       <ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{obs: students$, title: 'Учні'}"></ng-container>
       </div>
