@@ -8,8 +8,7 @@ import {Observable} from 'rxjs/internal/Observable';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(public auth: AuthService) {
-  }
+  constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
