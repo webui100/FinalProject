@@ -31,7 +31,6 @@ export class AdminPanelComponent implements OnInit {
   chartType$: Observable<string>;
   options$: Observable<object>;
   legend$: Observable<boolean>;
-
   chartObject: ChartObject;
 
   static getRandomColor(): string {
@@ -83,7 +82,6 @@ export class AdminPanelComponent implements OnInit {
     this.options$ = this.store.select(chartOptionsSelector);
     this.chartType$ = this.store.select(chartTypeSelector);
     this.legend$ = this.store.select(chartLegendSelector);
-
     this.chartObject = {
       colors$: this.colors$,
       data$: this.data$,
