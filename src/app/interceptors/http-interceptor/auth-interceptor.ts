@@ -10,10 +10,7 @@ import { StudentDiaryService } from '../../services/student-diary.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(
-    private auth: AuthService,
-    private studentDiary: StudentDiaryService,
-  ) {}
+  constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');

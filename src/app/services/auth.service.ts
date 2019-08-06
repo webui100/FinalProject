@@ -39,10 +39,11 @@ export class AuthService {
       .subscribe(response => {
         const token = response.headers.get('Authorization');
         const decodeToken = jwt_decode(token).Roles.authority;
+        const userId = jwt_decode(token).jti;
 
         localStorage.setItem('token', token);
 
-        this.store.dispatch(login({ role: decodeToken }));
+        this.store.dispatch(login({ role: decodeToken, id: userId }));
 
         if (decodeToken === 'ROLE_ADMIN') {
           this.router.navigate(['/admin']);
