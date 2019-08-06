@@ -66,7 +66,7 @@ import {CdkDetailRowDirective} from './containers/subjects/cdk-detail-row.direct
     HeaderComponent,
     ChartComponent,
     SubjectsComponent,
-    CdkDetailRowDirective
+    CdkDetailRowDirective,
     StudentsComponent,
     StudentDetailComponent,
     AddStudentComponent
