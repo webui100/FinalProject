@@ -12,6 +12,8 @@ import {AdminGuard} from './services/guards/admin.guard';
 import {TeacherGuard} from './services/guards/teacher.guard';
 import {StudentGuard} from './services/guards/student.guard';
 import { LoginGuard } from './services/guards/login.guard';
+import { SubjectsComponent } from './containers/subjects/subjects.component';
+
 
 const routes: Routes = [
   {
@@ -61,7 +63,7 @@ const routes: Routes = [
       },
       {
         path: 'subjects',
-        component: TemporaryComponent
+        component: SubjectsComponent
       },
       {
         path: 'schedule',

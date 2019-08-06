@@ -38,6 +38,8 @@ import { TemporaryComponent } from './components/temporary/temporary.component';
 import { MaterialModule } from './modules/material/material.module';
 import { ChartComponent } from './components/chart/chart.component';
 import { AuthInterceptor } from './interseptors/http-interceptor/auth-interceptor';
+import { SubjectsComponent } from './containers/subjects/subjects.component';
+import {CdkDetailRowDirective} from './containers/subjects/cdk-detail-row.directive';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { AuthInterceptor } from './interseptors/http-interceptor/auth-intercepto
     TemporaryComponent,
     CurrentUserComponent,
     HeaderComponent,
-    ChartComponent
+    ChartComponent,
+    SubjectsComponent,
+    CdkDetailRowDirective
   ],
   imports: [
     ChartsModule,
