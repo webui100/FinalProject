@@ -40,6 +40,7 @@ import {CustomSerializer} from './store/router.reducer';
 import { AuthInterceptor } from './http-interceptor/auth-interceptor';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
 import { CurrentUserService } from './services/current-user.service';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { CurrentUserService } from './services/current-user.service';
     MainNavComponent,
     TemporaryComponent,
     CurrentUserComponent,
+    HeaderComponent,
   ],
   imports: [
     MatListModule,
