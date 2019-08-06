@@ -12,6 +12,7 @@ import { Observable, Observer, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class TeachersService {
+  data = [];
   file;
   public subject = new Subject<string | ArrayBuffer>();
   private BASE_URI = environment.APIEndpoint;
@@ -25,6 +26,13 @@ export class TeachersService {
     return this.http.get(`${this.BASE_URI}teachers`)
     .subscribe(response => {
       // @ts-ignore
+  //     this.data = response.data;
+  //     this.store.dispatch(teacherAction({data: this.data}));
+  //   });
+  // }
+
+  // getTeachers(): Observable<any> {
+  //   return this.http.get(this.BASE_URI + 'teachers');
       this.store.dispatch(teacherAction({ teachersList: response.data }));
     });
   }

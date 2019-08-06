@@ -1,22 +1,29 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
-import { httpInterceptorProviders } from './interceptors/http-interceptor';
+
 import { TeachersComponent } from './containers/teachers/teachers.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { StudentsComponent } from './pages/students/students.component';
+
 import { reducers, metaReducers } from './store';
+import { ScheduleComponent } from './containers/schedule/schedule.component';
+import { DailyScheduleComponent } from './containers/schedule/daily-schedule/daily-schedule.component';
+
+import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {CustomSerializer} from './store/router.reducer';
+
+import { CurrentUserComponent } from './components/current-user/current-user.component';
+import { CurrentUserService } from './services/current-user.service';
+import { HeaderComponent } from './components/header/header.component';
 
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
@@ -29,6 +36,11 @@ import { StudentDiaryComponent } from './containers/student-diary/student-diary.
 import { TeacherCreateComponent } from './containers/teachers/teacher-create/teacher-create.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 import { MaterialModule } from './modules/material/material.module';
+import {AuthInterceptor} from "./interseptors/http-interceptor/auth-interceptor";
+import {StudentsComponent} from "./pages/student/students.component";
+import {TeacherComponent} from "../../../ngSoftServe/material-ng/src/app/teacher/teacher.component";
+import { ChartComponent } from './components/chart/chart.component';
+
 
 @NgModule({
   declarations: [
@@ -37,14 +49,18 @@ import { MaterialModule } from './modules/material/material.module';
     AdminComponent,
     StudentsComponent,
     TeachersComponent,
-    StudentDiaryComponent,
     MainNavComponent,
+    ScheduleComponent,
+    DailyScheduleComponent,
     AdminPanelComponent,
-    TemporaryComponent,
     TeacherCardComponent,
     StudentDiaryComponent,
     TeacherCreateComponent,
-    TemporaryComponent
+    TemporaryComponent,
+    CurrentUserComponent,
+    HeaderComponent,
+    TeacherComponent
+    ChartComponent
   ],
   imports: [
     ChartsModule,
@@ -57,6 +73,9 @@ import { MaterialModule } from './modules/material/material.module';
     ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
+    StoreRouterConnectingModule.forRoot({
+      navigationActionTiming: NavigationActionTiming.PostActivation,
+    }),
     StoreModule.forRoot(reducers, {
       metaReducers
       // runtimeChecks: {
@@ -71,9 +90,14 @@ import { MaterialModule } from './modules/material/material.module';
     })
   ],
   providers: [
-    { provide: ErrorHandler, useClass: ErrorService },
-    httpInterceptorProviders
-  ],
+    {provide: ErrorHandler,
+    useClass: ErrorService },
+    {provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true },
+    {provide: RouterStateSerializer,
+    useClass: CustomSerializer
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
