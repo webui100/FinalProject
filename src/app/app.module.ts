@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -18,6 +17,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { reducers, metaReducers } from './store';
 
+import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {CustomSerializer} from './store/router.reducer';
 import { AuthInterceptor } from './http-interceptor/auth-interceptor';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
 import { CurrentUserService } from './services/current-user.service';
@@ -34,8 +35,6 @@ import { StudentDiaryComponent } from './containers/student-diary/student-diary.
 import { TeacherCreateComponent } from './containers/teachers/teacher-create/teacher-create.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 import { MaterialModule } from './modules/material/material.module';
-import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
-import {CustomSerializer} from './store/router.reducer';
 
 @NgModule({
   declarations: [

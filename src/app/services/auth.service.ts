@@ -12,7 +12,6 @@ import { takeUntil, tap} from 'rxjs/operators';
 import {timer} from 'rxjs/internal/observable/timer';
 import {Subject} from "rxjs/internal/Subject";
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -118,8 +117,5 @@ export class AuthService implements OnDestroy{
       return this.refreshTokenManual();
     });
   }
-
-
-
 }
 
