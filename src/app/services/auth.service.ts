@@ -61,9 +61,9 @@ export class AuthService implements OnDestroy{
           if (this.role === 'ROLE_ADMIN') {
               this.router.navigate(['admin']);
             } else if (this.role === 'ROLE_USER') {
-              this.router.navigate(['students']);
+              this.router.navigate(['student']);
             } else if (this.role === 'ROLE_TEACHER') {
-              this.router.navigate(['teachers']);
+              this.router.navigate(['teacher']);
             }
         })}
 

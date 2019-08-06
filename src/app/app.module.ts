@@ -11,15 +11,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
-import { httpInterceptorProviders } from './interceptors/http-interceptor';
+
 import { TeachersComponent } from './containers/teachers/teachers.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { StudentsComponent } from './pages/students/students.component';
+
 import { reducers, metaReducers } from './store';
 
 import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {CustomSerializer} from './store/router.reducer';
-import { AuthInterceptor } from './http-interceptor/auth-interceptor';
+
 import { CurrentUserComponent } from './components/current-user/current-user.component';
 import { CurrentUserService } from './services/current-user.service';
 import { HeaderComponent } from './components/header/header.component';
@@ -35,6 +35,9 @@ import { StudentDiaryComponent } from './containers/student-diary/student-diary.
 import { TeacherCreateComponent } from './containers/teachers/teacher-create/teacher-create.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 import { MaterialModule } from './modules/material/material.module';
+import {AuthInterceptor} from "./interseptors/http-interceptor/auth-interceptor";
+import {StudentsComponent} from "./pages/student/students.component";
+import {TeacherComponent} from "../../../ngSoftServe/material-ng/src/app/teacher/teacher.component";
 
 @NgModule({
   declarations: [
@@ -53,6 +56,7 @@ import { MaterialModule } from './modules/material/material.module';
     TemporaryComponent,
     CurrentUserComponent,
     HeaderComponent,
+    TeacherComponent
   ],
   imports: [
     ChartsModule,
@@ -82,7 +86,7 @@ import { MaterialModule } from './modules/material/material.module';
     })
   ],
   providers: [
-    { provide: ErrorHandler,
+    {provide: ErrorHandler,
     useClass: ErrorService },
     {provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
