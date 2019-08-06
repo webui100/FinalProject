@@ -24,7 +24,6 @@ import {CustomSerializer} from './store/router.reducer';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CurrentUserService } from './services/current-user.service';
-import { HeaderComponent } from './components/header/header.component';
 
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MatListModule } from '@angular/material';
@@ -37,11 +36,11 @@ import { StudentDiaryComponent } from './containers/student-diary/student-diary.
 import { TeacherCreateComponent } from './containers/teachers/teacher-create/teacher-create.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 import { MaterialModule } from './modules/material/material.module';
+
 import {StudentsComponent} from './pages/student/students.component';
 import {TeacherComponent} from '../../../ngSoftServe/material-ng/src/app/teacher/teacher.component';
 import { ChartComponent } from './components/chart/chart.component';
-import { AuthInterceptor } from './interceptors/auth-interceptor';
-
+import { AuthInterceptor } from './interseptors/http-interceptor/auth-interceptor';
 
 
 @NgModule({

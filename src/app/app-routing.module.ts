@@ -32,7 +32,7 @@ const routes: Routes = [
     canActivate: [TeacherGuard]
   },
   {
-    path: 'students',
+    path: 'student',
     component: StudentsComponent,
     canActivate: [StudentGuard],
     children: [
