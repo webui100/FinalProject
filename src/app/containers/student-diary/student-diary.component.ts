@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { DateAdapter } from '@angular/material';
+import { registerLocaleData } from '@angular/common';
+import localeUk from '@angular/common/locales/uk';
 import { addDays, format, getDate, getDay, getDaysInMonth, setDate, subDays } from 'date-fns';
 
 import { StudentDiaryService } from '../../services/student-diary.service';
 import { selectDiary } from '../../store/diary/diary.selectors';
+import { Diary } from '../../store/diary/diary.reducer';
 
 @Component({
   selector: 'webui-student-diary',
@@ -12,16 +15,9 @@ import { selectDiary } from '../../store/diary/diary.selectors';
   styleUrls: ['./student-diary.component.scss']
 })
 export class StudentDiaryComponent implements OnInit {
-  diary$: any;
-  diary: any;
-  dateValue = this.getStartOfWeek();
-  weekDays: string[] = [
-    'Понеділок',
-    'Вівторок',
-    'Середа',
-    'Четвер',
-    'П\'ятниця'
-  ];
+  diary?: Diary;
+  dateValue: any = StudentDiaryComponent.getStartOfWeek();
+  weekDays: string[] = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця'];
   dayNumbers: number[];
   showDiary: boolean;
 
@@ -30,13 +26,26 @@ export class StudentDiaryComponent implements OnInit {
     private store: Store<{ diary }>,
     private dateAdapter: DateAdapter<Date>
   ) {
-    this.diary$ = this.store.pipe(select(selectDiary));
+    this.store.pipe(select(selectDiary)).subscribe(data => {
+      this.diary = data.diary;
+      this.showDiary = data.diary && !!this.diary.data.length;
+    });
+  }
+
+  static getStartOfWeek() {
+    const today = new Date();
+    const weekDaysPassed = getDay(today) - 1;
+    return setDate(today, getDate(today) - weekDaysPassed);
   }
 
   ngOnInit() {
+    registerLocaleData(localeUk);
     this.dateAdapter.setLocale('uk');
     this.dateAdapter.getFirstDayOfWeek = () => 1;
+    this.fetchDiary();
+  }
 
+  fetchDiary() {
     const date = this.dateValue;
 
     const formattedDate = format(
@@ -56,35 +65,25 @@ export class StudentDiaryComponent implements OnInit {
     this.dayNumbers = dayNumbers;
 
     this.studentDiary.fetchStudentDiary(formattedDate);
-    this.diary$.subscribe(data => {
-      this.diary = data.diary;
-      this.showDiary = !!this.diary.data.length;
-    });
-  }
-
-  getStartOfWeek() {
-    const today = new Date();
-    const weekDaysPassed = getDay(today) - 1;
-    return setDate(today, getDate(today) - weekDaysPassed);
   }
 
   selectPreviousWeek() {
     this.dateValue = subDays(new Date(this.dateValue), 7);
-    this.ngOnInit();
+    this.fetchDiary();
   }
 
   selectNextWeek() {
     this.dateValue = addDays(new Date(this.dateValue), 7);
-    this.ngOnInit();
+    this.fetchDiary();
   }
 
   selectCurrentWeek() {
-    this.dateValue = new Date();
-    this.ngOnInit();
+    this.dateValue = StudentDiaryComponent.getStartOfWeek();
+    this.fetchDiary();
   }
 
   selectDay() {
-    this.ngOnInit();
+    this.fetchDiary();
   }
 
   dateFilter(date) {

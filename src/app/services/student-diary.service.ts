@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 
-import { diary } from '../store/diary/diary.actions'
+import { fetchDiary } from '../store/diary/diary.actions'
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class StudentDiaryService {
   private BASE_URI = environment.APIEndpoint;
 
   fetchStudentDiary(data) {
-    this.http
+    return this.http
       .get(`${this.BASE_URI}diaries?weekStartDate=${data}`, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export class StudentDiaryService {
         observe: 'response'
       })
       .subscribe(response => {
-        this.store.dispatch(diary({diary: response.body}));
+        this.store.dispatch(fetchDiary({ diary: response.body }));
       });
   }
 }
