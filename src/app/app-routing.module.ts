@@ -1,3 +1,4 @@
+import { ScheduleComponent } from './containers/schedule/schedule.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AdminPanelComponent} from './containers/admin-panel/admin-panel.component';
@@ -63,6 +64,10 @@ const routes: Routes = [
       {
         path: 'subjects',
         component: TemporaryComponent
+      },
+      {
+        path: 'schedule',
+        component: ScheduleComponent
       }
     ]
   }

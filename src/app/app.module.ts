@@ -1,7 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -16,6 +15,8 @@ import { TeachersComponent } from './containers/teachers/teachers.component';
 import { AdminComponent } from './pages/admin/admin.component';
 
 import { reducers, metaReducers } from './store';
+import { ScheduleComponent } from './containers/schedule/schedule.component';
+import { DailyScheduleComponent } from './containers/schedule/daily-schedule/daily-schedule.component';
 
 import {NavigationActionTiming, RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {CustomSerializer} from './store/router.reducer';
@@ -38,6 +39,8 @@ import { MaterialModule } from './modules/material/material.module';
 import {AuthInterceptor} from "./interseptors/http-interceptor/auth-interceptor";
 import {StudentsComponent} from "./pages/student/students.component";
 import {TeacherComponent} from "../../../ngSoftServe/material-ng/src/app/teacher/teacher.component";
+import { ChartComponent } from './components/chart/chart.component';
+
 
 @NgModule({
   declarations: [
@@ -46,10 +49,10 @@ import {TeacherComponent} from "../../../ngSoftServe/material-ng/src/app/teacher
     AdminComponent,
     StudentsComponent,
     TeachersComponent,
-    StudentDiaryComponent,
     MainNavComponent,
+    ScheduleComponent,
+    DailyScheduleComponent,
     AdminPanelComponent,
-    TemporaryComponent,
     TeacherCardComponent,
     StudentDiaryComponent,
     TeacherCreateComponent,
@@ -57,6 +60,7 @@ import {TeacherComponent} from "../../../ngSoftServe/material-ng/src/app/teacher
     CurrentUserComponent,
     HeaderComponent,
     TeacherComponent
+    ChartComponent
   ],
   imports: [
     ChartsModule,

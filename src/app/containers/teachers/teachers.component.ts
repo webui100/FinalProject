@@ -5,6 +5,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { selectTeachers } from '../../store/teachers/teachers.selector';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { share, map } from 'rxjs/operators';
 import { selectTeachersList } from '../../store/teachers/teachers.selector';
 import {
   animate,

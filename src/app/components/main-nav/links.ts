@@ -18,6 +18,11 @@ const links = [
     path: 'subjects',
     title: 'Предмети',
     icon: 'book'
+  },
+  {
+    path: 'schedule',
+    title: 'Розклад',
+    icon: 'schedule'
   }
 ];
 

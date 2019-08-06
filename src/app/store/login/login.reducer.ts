@@ -17,6 +17,7 @@ const reducer = createReducer(
     ...state,
     role, id
   }))
+
 );
 
 export function loginReducer(state: State | undefined, action: Action) {
