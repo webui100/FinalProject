@@ -2,7 +2,7 @@ import { Action, createReducer, on } from "@ngrx/store";
 import * as SubjectData from "./subjects.action";
 
 export interface State {
-  data: Array<object>;
+  data: Array<Object>;
 }
 
 export const initialState: State = {
