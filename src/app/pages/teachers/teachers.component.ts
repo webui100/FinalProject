@@ -5,7 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { selectAll } from '../../store/teachers/teachers.selector';
+
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { share, map } from 'rxjs/operators';
@@ -31,7 +31,7 @@ export class TeachersComponent implements OnInit {
     private teachers: TeachersService,
     private store: Store<{ teachers }>,
   ) {
-    this.data$ = this.store.pipe(select(selectAll));
+
   }
 
   private columnsToDisplay: string[] = ['firstname', 'lastname', 'dateOfBirth']; // header for TH
