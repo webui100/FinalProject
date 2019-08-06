@@ -9,6 +9,7 @@ import {
 import { ErrorStateMatcher } from "@angular/material/core";
 
 import { StudentsService } from "../../../services/students.service";
+import { ValidationService } from "../../../services/validation.service";
 import { Student } from "../../../models/students";
 
 @Component({
@@ -20,7 +21,10 @@ export class AddStudentComponent implements OnInit {
   @Input() student: Student;
   selectedFile;
 
-  constructor(private studentsService: StudentsService) {}
+  constructor(
+    private studentsService: StudentsService,
+    private formValidation: ValidationService
+  ) {}
   onFileSelected(event) {
     this.studentsService.encImage(event);
     this.studentsService.subject.subscribe(res => {
@@ -30,12 +34,26 @@ export class AddStudentComponent implements OnInit {
 
   addStudentForm: FormGroup = new FormGroup({
     avatar: new FormControl(""),
-    dateOfBirth: new FormControl(""),
-    firstname: new FormControl(""),
-    lastname: new FormControl(""),
-    patronymic: new FormControl(""),
-    email: new FormControl(""),
-    phone: new FormControl("")
+    dateOfBirth: new FormControl("", Validators.required),
+
+    firstname: new FormControl("", [
+      Validators.required,
+      Validators.pattern(this.formValidation.ukrNameRegExp)
+    ]),
+    lastname: new FormControl("", [
+      Validators.required,
+      Validators.pattern(this.formValidation.ukrNameRegExp)
+    ]),
+    patronymic: new FormControl("", [
+      Validators.required,
+      Validators.pattern(this.formValidation.ukrNameRegExp)
+    ]),
+    email: new FormControl("", [
+      Validators.pattern(this.formValidation.emailRegExp)
+    ]),
+    phone: new FormControl("", [
+      Validators.pattern(this.formValidation.phoneRegExp)
+    ])
   });
   resetValues() {
     this.addStudentForm.setValue({
@@ -57,7 +75,7 @@ export class AddStudentComponent implements OnInit {
         this.addStudentForm,
         "dateOfBirth"
       ),
-      classId: 15,
+      classId: 17,
       login: "",
       oldPass: "",
       newPass: "",
@@ -69,7 +87,6 @@ export class AddStudentComponent implements OnInit {
     };
 
     this.studentsService.addStudent(data);
-    this.resetValues();
   }
   ngOnInit() {}
 }

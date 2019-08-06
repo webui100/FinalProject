@@ -41,12 +41,28 @@
     <div class="data">
       <div class="input-margin">
         <mat-form-field>
-          <input matInput placeholder="Ім'я" formControlName="firstname" />
+          <input
+            matInput
+            placeholder="Ім'я"
+            formControlName="firstname"
+            required
+          />
+          <mat-error *ngIf="this.updateStudent.get('firstname').invalid"
+            >Українською та з великої літери.Обов'язкове поле!</mat-error
+          >
         </mat-form-field>
       </div>
       <div class="input-margin">
         <mat-form-field>
-          <input matInput placeholder="Прізвище" formControlName="lastname" />
+          <input
+            matInput
+            placeholder="Прізвище"
+            formControlName="lastname"
+            required
+          />
+          <mat-error *ngIf="this.updateStudent.get('lastname').invalid"
+            >Українською та з великої літери.Обов'язкове поле!</mat-error
+          >
         </mat-form-field>
       </div>
       <div class="input-margin">
@@ -55,7 +71,11 @@
             matInput
             placeholder="По-батькові"
             formControlName="patronymic"
+            required
           />
+          <mat-error *ngIf="this.updateStudent.get('patronymic').invalid"
+            >Українською та з великої літери.Обов'язкове поле!</mat-error
+          >
         </mat-form-field>
       </div>
 
@@ -66,6 +86,9 @@
             placeholder="Електронна скринька"
             formControlName="email"
           />
+          <mat-error *ngIf="this.updateStudent.get('email').invalid"
+            >Формат example@gmail.com</mat-error
+          >
         </mat-form-field>
       </div>
       <div class="input-margin">
@@ -75,11 +98,22 @@
             placeholder="Номер телефону"
             formControlName="phone"
           />
+          <mat-error *ngIf="this.updateStudent.get('phone').invalid"
+            >Формат +380992244666</mat-error
+          >
         </mat-form-field>
       </div>
       <div class="input-margin">
         <mat-form-field>
-          <input matInput placeholder="Логін" formControlName="login" />
+          <input
+            matInput
+            placeholder="Логін"
+            formControlName="login"
+            required
+          />
+          <mat-error *ngIf="this.updateStudent.get('login').invalid"
+            >Від 5 латинських літер.Обов'язкове поле!</mat-error
+          >
         </mat-form-field>
       </div>
 
@@ -92,6 +126,7 @@
               [matDatepicker]="picker"
               placeholder="Дата народження"
               formControlName="dateOfBirth"
+              required
             />
             <mat-datepicker-toggle
               matSuffix
@@ -102,9 +137,17 @@
               startView="year"
               [startAt]="startDate"
             ></mat-datepicker>
+            <mat-error *ngIf="this.updateStudent.get('dateOfBirth').invalid"
+              >Дата народження. Обов'язкове поле!</mat-error
+            >
           </mat-form-field>
         </div>
-        <button mat-flat-button color="warn" type="submit">
+        <button
+          mat-flat-button
+          color="warn"
+          type="submit"
+          [disabled]="!updateStudent.valid"
+        >
           Редаугвати
         </button>
       </mat-card-actions>

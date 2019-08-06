@@ -44,6 +44,9 @@
                 formControlName="firstname"
                 required
               />
+              <mat-error *ngIf="this.addStudentForm.get('firstname').invalid"
+                >Українською та з великої літери.Обов'язкове поле!</mat-error
+              >
             </mat-form-field>
           </div>
           <div class="input-margin">
@@ -54,6 +57,9 @@
                 formControlName="lastname"
                 required
               />
+              <mat-error *ngIf="this.addStudentForm.get('lastname').invalid"
+                >Українською та з великої літери.Обов'язкове поле!</mat-error
+              >
             </mat-form-field>
           </div>
           <div class="input-margin">
@@ -64,6 +70,9 @@
                 formControlName="patronymic"
                 required
               />
+              <mat-error *ngIf="this.addStudentForm.get('patronymic').invalid"
+                >Українською та з великої літери.Обов'язкове поле!</mat-error
+              >
             </mat-form-field>
           </div>
 
@@ -74,6 +83,9 @@
                 placeholder="Електронна скринька"
                 formControlName="email"
               />
+              <mat-error *ngIf="this.addStudentForm.get('email').invalid"
+                >Формат example@gmail.com</mat-error
+              >
             </mat-form-field>
           </div>
           <div class="input-margin">
@@ -83,6 +95,9 @@
                 placeholder="Номер телефону"
                 formControlName="phone"
               />
+              <mat-error *ngIf="this.addStudentForm.get('phone').invalid"
+                >Формат +380992244666</mat-error
+              >
             </mat-form-field>
           </div>
 
@@ -106,6 +121,10 @@
                   startView="year"
                   [startAt]="startDate"
                 ></mat-datepicker>
+                <mat-error
+                  *ngIf="this.addStudentForm.get('dateOfBirth').invalid"
+                  >Дата народження. Обов'язкове поле!</mat-error
+                >
               </mat-form-field>
             </div>
             <button

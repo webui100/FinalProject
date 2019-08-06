@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
+import { Validators, FormGroup, FormControl } from "@angular/forms";
 import { StudentsService } from "../../../services/students.service";
 import { Student } from "../../../models/students";
+import { ValidationService } from "../../../services/validation.service";
 
 @Component({
   selector: "webui-student-detail",
@@ -12,17 +13,36 @@ export class StudentDetailComponent implements OnInit {
   @Input() student: Student;
   selectedFile;
 
-  constructor(private studentsService: StudentsService) {}
+  constructor(
+    private studentsService: StudentsService,
+    private formValidation: ValidationService
+  ) {}
 
   updateStudent: FormGroup = new FormGroup({
     avatar: new FormControl(""),
-    dateOfBirth: new FormControl(""),
-    login: new FormControl(""),
-    firstname: new FormControl(""),
-    lastname: new FormControl(""),
-    patronymic: new FormControl(""),
-    email: new FormControl(""),
-    phone: new FormControl("")
+    dateOfBirth: new FormControl("", Validators.required),
+    login: new FormControl("", [
+      Validators.required,
+      Validators.pattern(this.formValidation.loginRegExp)
+    ]),
+    firstname: new FormControl("", [
+      Validators.required,
+      Validators.pattern(this.formValidation.ukrNameRegExp)
+    ]),
+    lastname: new FormControl("", [
+      Validators.required,
+      Validators.pattern(this.formValidation.ukrNameRegExp)
+    ]),
+    patronymic: new FormControl("", [
+      Validators.required,
+      Validators.pattern(this.formValidation.ukrNameRegExp)
+    ]),
+    email: new FormControl("", [
+      Validators.pattern(this.formValidation.emailRegExp)
+    ]),
+    phone: new FormControl("", [
+      Validators.pattern(this.formValidation.phoneRegExp)
+    ])
   });
   //Event hendler for encrypt img to BASE64
   onFileSelected(event) {
