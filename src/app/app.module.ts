@@ -47,6 +47,7 @@ import { StudentDetailComponent } from "./pages/students/student-detail/student-
 import { AddStudentComponent } from "./pages/students/add-student/add-student.component";
 import { SubjectsComponent } from './containers/subjects/subjects.component';
 import {CdkDetailRowDirective} from './containers/subjects/cdk-detail-row.directive';
+import { StudentComponent } from "./pages/student/student.component";
 
 @NgModule({
   declarations: [
@@ -66,9 +67,11 @@ import {CdkDetailRowDirective} from './containers/subjects/cdk-detail-row.direct
     HeaderComponent,
     ChartComponent,
     SubjectsComponent,
-    CdkDetailRowDirective
+    CdkDetailRowDirective,
     StudentsComponent,
     StudentDetailComponent,
+    AddStudentComponent,
+    StudentComponent,
     AddStudentComponent
 
   ],

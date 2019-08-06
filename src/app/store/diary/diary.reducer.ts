@@ -1,8 +1,21 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as Diary from './diary.actions';
+import { fetchDiary } from './diary.actions';
+
+export interface Diary {
+  data?: {
+    date: [number, number, number];
+    homeWork: string;
+    homeworkFileId: number | null;
+    lessonId: number;
+    lessonNumber: number;
+    mark: number;
+    note: string;
+    subjectName: string;
+  }[];
+}
 
 export interface State {
-  diary: object;
+  diary: Diary;
 }
 
 export const initialState: State = {
@@ -11,7 +24,7 @@ export const initialState: State = {
 
 const reducer = createReducer(
   initialState,
-  on(Diary.diary, (state, { diary }) => ({
+  on(fetchDiary, (state, { diary }) => ({
     ...state,
     diary
   }))

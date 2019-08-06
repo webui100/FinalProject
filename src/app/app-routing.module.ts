@@ -1,11 +1,10 @@
 import { ScheduleComponent } from "./containers/schedule/schedule.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+
 import { AdminPanelComponent } from "./containers/admin-panel/admin-panel.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { TeachersComponent } from "./containers/teachers/teachers.component";
-
-
 import { AdminComponent } from './pages/admin/admin.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 import { StudentDiaryComponent } from './containers/student-diary/student-diary.component';
@@ -15,7 +14,7 @@ import {StudentGuard} from './services/guards/student.guard';
 import { LoginGuard } from './services/guards/login.guard';
 import { SubjectsComponent } from './containers/subjects/subjects.component';
 import { StudentsComponent } from "./pages/students/students.component";
-
+import { StudentComponent } from './pages/student/student.component';
 
 
 
@@ -40,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: "student",
-    component: TemporaryComponent,
+    component: StudentComponent,
     canActivate: [StudentGuard],
     children: [{ path: "diary", component: StudentDiaryComponent }]
   },
@@ -67,11 +66,8 @@ const routes: Routes = [
         component: TeachersComponent
       },
       {
-
         path: 'subjects',
         component: SubjectsComponent
-
-        
       },
       {
         path: "schedule",

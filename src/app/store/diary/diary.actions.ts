@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-export const diary = createAction(
-  '[Student Diary] Diary',
+export const fetchDiary = createAction(
+  '[Student Diary] Fetch',
   props<{ diary: object }>()
 );

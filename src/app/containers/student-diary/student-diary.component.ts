@@ -1,94 +1,86 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { FormControl } from '@angular/forms';
 import { DateAdapter } from '@angular/material';
+import { registerLocaleData } from '@angular/common';
+import localeUk from '@angular/common/locales/uk';
+import { format, addDays, subDays, getDate, getDay, setDate } from 'date-fns';
 
 import { StudentDiaryService } from '../../services/student-diary.service';
 import { selectDiary } from '../../store/diary/diary.selectors';
+import { Diary } from '../../store/diary/diary.reducer';
 
 @Component({
   selector: 'webui-student-diary',
   templateUrl: './student-diary.component.html',
-  styleUrls: ['./student-diary.component.scss']
+  styleUrls: ['./student-diary.component.scss'],
+  providers: [{provide: LOCALE_ID, useValue: 'uk'}]
 })
 export class StudentDiaryComponent implements OnInit {
-  diary$: any;
-  diary: any;
-  weekDays: string[] = [
-    'Понеділок',
-    'Вівторок',
-    'Середа',
-    'Четвер',
-    'П\'ятниця'
-  ];
+  diary?: Diary;
+  dateValue = StudentDiaryComponent.getStartOfWeek();
+  weekDays: Date[];
   dayNumbers: number[];
-  currentDate = new FormControl(new Date());
   showDiary: boolean;
 
   constructor(
     private studentDiary: StudentDiaryService,
     private store: Store<{ diary }>,
-    private dateAdapter: DateAdapter<any>
+    private dateAdapter: DateAdapter<Date>
   ) {
-    this.diary$ = this.store.pipe(select(selectDiary));
+    this.store.pipe(select(selectDiary)).subscribe(data => {
+      this.diary = data.diary;
+      this.showDiary = data.diary && !!this.diary.data.length;
+    });
+  }
+
+  static getStartOfWeek() {
+    const today = new Date();
+    const weekDaysPassed = getDay(today) - 1;
+    return setDate(today, getDate(today) - weekDaysPassed);
   }
 
   ngOnInit() {
+    registerLocaleData(localeUk);
     this.dateAdapter.setLocale('uk');
-    const date = this.currentDate.value;
-
-    const weekDaysPassed = date.getDay() > 0 ? date.getDay() - 1 : date.getDay() + 6;
-    date.setDate(date.getDate() - weekDaysPassed);
-
-    const year = date.getFullYear();
-    const month = date.getMonth() < 9 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`;
-    const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`;
-
-    const dayNumbers = [];
-    const daysInMonth = this.daysInMonth(year, month);
-    this.weekDays.map((item, i) => {
-      if (+day + i <= daysInMonth) {
-        dayNumbers.push(+day + i);
-      } else {
-        dayNumbers.push(+day + i - daysInMonth);
-      }
-    });
-    this.dayNumbers = dayNumbers;
-
-    this.studentDiary.fetchStudentDiary(`${year}-${month}-${day}`);
-    this.diary$.subscribe(data => {
-      this.diary = data.diary;
-      this.showDiary = !!this.diary.data.length;
-    });
+    this.dateAdapter.getFirstDayOfWeek = () => 1;
+    this.fetchDiary();
+    this.setWeekDays();
   }
 
-  daysInMonth(year, month) {
-    return new Date(year, month, 0).getDate();
+  fetchDiary() {
+    const date = this.dateValue;
+    const formattedDate = format(
+      new Date(date),
+      'YYYY-MM-DD'
+    );
+    this.studentDiary.fetchStudentDiary(formattedDate);
+    this.setWeekDays();
   }
 
-  selectNextWeek() {
-    const year = this.currentDate.value.getFullYear();
-    const month = this.currentDate.value.getMonth();
-    const day = this.currentDate.value.getDate() + 7;
-    this.currentDate = new FormControl(new Date(year, month, day));
-    this.ngOnInit();
+  setWeekDays() {
+    this.weekDays = new Array(5).fill('');
+    this.weekDays.map((item, i, arr) => arr[i] = addDays(new Date(this.dateValue), i));
+    this.dayNumbers = new Array(5).fill('');
+    this.dayNumbers.map((item, i, arr) => arr[i] = getDate(new Date(this.weekDays[i])));
   }
 
   selectPreviousWeek() {
-    const year = this.currentDate.value.getFullYear();
-    const month = this.currentDate.value.getMonth();
-    const day = this.currentDate.value.getDate() - 7;
-    this.currentDate = new FormControl(new Date(year, month, day));
-    this.ngOnInit();
+    this.dateValue = subDays(new Date(this.dateValue), 7);
+    this.fetchDiary();
+  }
+
+  selectNextWeek() {
+    this.dateValue = addDays(new Date(this.dateValue), 7);
+    this.fetchDiary();
   }
 
   selectCurrentWeek() {
-    this.currentDate = new FormControl(new Date());
-    this.ngOnInit();
+    this.dateValue = StudentDiaryComponent.getStartOfWeek();
+    this.fetchDiary();
   }
 
   selectDay() {
-    this.ngOnInit();
+    this.fetchDiary();
   }
 
   dateFilter(date) {
