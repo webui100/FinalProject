@@ -36,10 +36,8 @@ import { StudentDiaryComponent } from './containers/student-diary/student-diary.
 import { TeacherCreateComponent } from './containers/teachers/teacher-create/teacher-create.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 import { MaterialModule } from './modules/material/material.module';
-import {AuthInterceptor} from "./interseptors/http-interceptor/auth-interceptor";
-import {StudentsComponent} from "./pages/student/students.component";
-import {TeacherComponent} from "../../../ngSoftServe/material-ng/src/app/teacher/teacher.component";
 import { ChartComponent } from './components/chart/chart.component';
+import { AuthInterceptor } from './interseptors/http-interceptor/auth-interceptor';
 
 
 @NgModule({
@@ -47,7 +45,6 @@ import { ChartComponent } from './components/chart/chart.component';
     AppComponent,
     LoginComponent,
     AdminComponent,
-    StudentsComponent,
     TeachersComponent,
     MainNavComponent,
     ScheduleComponent,
@@ -59,7 +56,6 @@ import { ChartComponent } from './components/chart/chart.component';
     TemporaryComponent,
     CurrentUserComponent,
     HeaderComponent,
-    TeacherComponent
     ChartComponent
   ],
   imports: [
