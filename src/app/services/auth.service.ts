@@ -9,8 +9,8 @@ import { login } from '../store/login/login.actions';
 import { selectRole, selectId } from '../store/login/login.selectors';
 import { takeUntil, tap} from 'rxjs/operators';
 
-import {Subject} from 'rxjs/Subject';
 import {timer} from 'rxjs/internal/observable/timer';
+import {Subject} from "rxjs/internal/Subject";
 
 
 @Injectable({
