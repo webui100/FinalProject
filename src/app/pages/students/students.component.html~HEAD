@@ -1,0 +1,8 @@
+<h1>Studilka</h1>
+<button
+  routerLink="diary"
+  mat-raised-button
+  color="primary"
+>
+  Show Diary
+</button>
