@@ -11,4 +11,3 @@ export const selectTeachersList = createSelector(
     selectTeachers,
     selectData
   );
-
