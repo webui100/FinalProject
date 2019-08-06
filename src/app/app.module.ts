@@ -45,6 +45,8 @@ import { AuthInterceptor } from "./interseptors/http-interceptor/auth-intercepto
 import { StudentsComponent } from "./pages/students/students.component";
 import { StudentDetailComponent } from "./pages/students/student-detail/student-detail.component";
 import { AddStudentComponent } from "./pages/students/add-student/add-student.component";
+import { SubjectsComponent } from './containers/subjects/subjects.component';
+import {CdkDetailRowDirective} from './containers/subjects/cdk-detail-row.directive';
 import { StudentComponent } from "./pages/student/student.component";
 
 @NgModule({
@@ -64,10 +66,14 @@ import { StudentComponent } from "./pages/student/student.component";
     CurrentUserComponent,
     HeaderComponent,
     ChartComponent,
+    SubjectsComponent,
+    CdkDetailRowDirective,
     StudentsComponent,
     StudentDetailComponent,
     AddStudentComponent,
-    StudentComponent
+    StudentComponent,
+    AddStudentComponent
+
   ],
   imports: [
     ChartsModule,
