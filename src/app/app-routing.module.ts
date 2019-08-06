@@ -1,64 +1,60 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {AdminPanelComponent} from './containers/admin-panel/admin-panel.component';
-import { LoginComponent } from './pages/login/login.component';
-import { TeachersComponent } from './containers/teachers/teachers.component';
-import { StudentsComponent } from './pages/students/students.component';
-import { AdminComponent } from './pages/admin/admin.component';
-import { TemporaryComponent } from './components/temporary/temporary.component';
-import { StudentDiaryComponent } from './containers/student-diary/student-diary.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { LoginComponent } from "./pages/login/login.component";
+import { TeachersComponent } from "./containers/teachers/teachers.component";
+import { StudentsComponent } from "./pages/students/students.component";
+import { AdminComponent } from "./pages/admin/admin.component";
+import { TemporaryComponent } from "./components/temporary/temporary.component";
+import { StudentDiaryComponent } from "./containers/student-diary/student-diary.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: LoginComponent
   },
   {
-    path: 'teachers',
+    path: "teachers",
     component: TeachersComponent
   },
   {
-    path: 'student',
+    path: "students",
     component: StudentsComponent
   },
   {
-    path: 'student/diary',
+    path: "student/diary",
     component: StudentDiaryComponent
   },
   {
-    path: 'admin',
+    path: "admin",
     component: AdminComponent,
     children: [
       {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
+        path: "",
+        redirectTo: "pupils",
+        pathMatch: "full"
       },
       {
-        path: 'home',
-        component: AdminPanelComponent
-      },
-      {
-        path: 'pupils',
+        path: "pupils",
         component: TemporaryComponent
       },
       {
-        path: 'teachers',
+        path: "teachers",
         component: TeachersComponent
       },
       {
-        path: 'subjects',
+        path: "subjects",
+        component: TemporaryComponent
+      },
+      {
+        path: "classes",
         component: TemporaryComponent
       }
     ]
   }
 ];
 
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-// @ts-ignore
 export class AppRoutingModule {}
-// @ts-ignore
