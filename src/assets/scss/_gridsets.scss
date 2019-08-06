@@ -8,13 +8,13 @@ $v-step: 20px;
   padding: 0 $gutter/2;
 }
 
-.row{
+.myrow{
   display: flex;
   flex-wrap: wrap;
   margin: 0 ($gutter/2 * (-1)) !important;
 }
 
-[class*='column'] {
+[class*='mycol'] {
   width: 100%;
   padding: 0;
 }
@@ -58,7 +58,7 @@ $points: ("mobile", "phablet", "tablet", "laptop", "desktop");
     $i: $i + 1
   }
 }
-.column{
+.mycol{
   @each $point in $points {
     @include breakpoint($point) {
       &-#{$point} {

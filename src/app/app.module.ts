@@ -49,6 +49,8 @@ import { StudentDiaryComponent } from './containers/student-diary/student-diary.
 import { TeacherCreateComponent } from './containers/teachers/teacher-create/teacher-create.component';
 import { TemporaryComponent } from './components/temporary/temporary.component';
 import { MaterialModule } from './modules/material/material.module';
+import { ChartComponent } from './components/chart/chart.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { MaterialModule } from './modules/material/material.module';
     TeacherCardComponent,
     StudentDiaryComponent,
     TeacherCreateComponent,
-    TemporaryComponent
+    TemporaryComponent,
+    ChartComponent
   ],
   imports: [
     ChartsModule,
