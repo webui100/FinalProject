@@ -1,7 +1,7 @@
-import { ErrorService } from '../../services/error.service';
+import { ErrorService } from './../services/error.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AuthInterceptor } from './auth-interceptor';
+import { AuthInterceptor } from './http-interceptor/auth-interceptor';
 import { ErrorHandler } from '@angular/core';
 
 /** Http interceptor providers in outside-in order */
