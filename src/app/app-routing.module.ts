@@ -15,6 +15,7 @@ import { LoginGuard } from './services/guards/login.guard';
 import { SubjectsComponent } from './containers/subjects/subjects.component';
 import { StudentsComponent } from "./pages/students/students.component";
 import { StudentComponent } from './pages/student/student.component';
+import { ClassesComponent } from './containers/classes/classes.component';
 
 
 
@@ -72,6 +73,10 @@ const routes: Routes = [
       {
         path: "schedule",
         component: ScheduleComponent
+      },
+      {
+        path: "classes",
+        component: ClassesComponent
       }
     ]
   }
