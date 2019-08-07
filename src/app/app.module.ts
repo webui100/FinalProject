@@ -17,6 +17,8 @@ import { AdminComponent } from "./pages/admin/admin.component";
 import { reducers, metaReducers } from "./store";
 import { ScheduleComponent } from "./containers/schedule/schedule.component";
 import { DailyScheduleComponent } from "./containers/schedule/daily-schedule/daily-schedule.component";
+import { ClassesComponent } from './containers/classes/classes.component';
+
 
 import {
   NavigationActionTiming,
@@ -72,7 +74,8 @@ import { StudentComponent } from "./pages/student/student.component";
     StudentDetailComponent,
     AddStudentComponent,
     StudentComponent,
-    AddStudentComponent
+    AddStudentComponent,
+    ClassesComponent
 
   ],
   imports: [

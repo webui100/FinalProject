@@ -33,6 +33,8 @@ import {
   studentsReducer,
   State as StudentsState
 } from "./students/students.reducer";
+import { classesReducer, State as ClassesState } from './classes/classes.reducer';
+
 export interface State {
   user: LoginState;
   errors: ErrorState;
@@ -44,6 +46,7 @@ export interface State {
   currentUser: currentUserState;
   router: RouterReducerState<RouterStateUrl>;
   students: StudentsState;
+  classes: ClassesState;
 }
 
 export const reducers: ActionReducerMap<any> = {
@@ -56,7 +59,8 @@ export const reducers: ActionReducerMap<any> = {
   router: routerReducer,
   subjects: subjectsDataReducer,
   diary: diaryReducer,
-  students: studentsReducer
+  students: studentsReducer,
+  classes: classesReducer
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
